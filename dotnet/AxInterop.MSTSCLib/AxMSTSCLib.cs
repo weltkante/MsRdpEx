@@ -1,5 +1,6 @@
 
 using System;
+using System.Runtime.InteropServices.Marshalling;
 
 namespace AxMSTSCLib {
     
@@ -363,7 +364,7 @@ namespace AxMSTSCLib {
         protected override void CreateSink() {
             try {
                 this.eventMulticaster = new AxMsTscAxNotSafeForScriptingEventMulticaster(this);
-                this.cookie = new System.Windows.Forms.AxHost.ConnectionPointCookie(this.ocx, this.eventMulticaster, typeof(MSTSCLib.IMsTscAxEvents));
+                this.cookie = new System.Windows.Forms.AxHost.ConnectionPointCookie(MSTSCLib.ProxyObject.Unpack(this.ocx), this.eventMulticaster, typeof(MsRdpEx.Interop.Compatibility.IMsTscAxEvents));
             }
             catch (System.Exception ) {
             }
@@ -818,8 +819,9 @@ namespace AxMSTSCLib {
         }
     }
     
+    [GeneratedComClass]
     [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
-    public class AxMsTscAxNotSafeForScriptingEventMulticaster : MSTSCLib.IMsTscAxEvents {
+    public partial class AxMsTscAxNotSafeForScriptingEventMulticaster : MSTSCLib.IMsTscAxEvents, MsRdpEx.Interop.Compatibility.IMsTscAxEvents {
         
         private AxMsTscAxNotSafeForScripting parent;
         
@@ -857,7 +859,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnLeaveFullScreenMode(this.parent, onleavefullscreenmodeEvent);
         }
         
-        public virtual void OnChannelReceivedData(string chanName, string data) {
+        public virtual void OnChannelReceivedData(BinaryString chanName, BinaryString data) {
             IMsTscAxEvents_OnChannelReceivedDataEvent onchannelreceiveddataEvent = new IMsTscAxEvents_OnChannelReceivedDataEvent(chanName, data);
             this.parent.RaiseOnOnChannelReceivedData(this.parent, onchannelreceiveddataEvent);
         }
@@ -903,7 +905,7 @@ namespace AxMSTSCLib {
             pfAllowClose = onconfirmcloseEvent.pfAllowClose;
         }
         
-        public virtual void OnReceivedTSPublicKey(string publicKey, out bool pfContinueLogon) {
+        public virtual void OnReceivedTSPublicKey(BinaryString publicKey, out bool pfContinueLogon) {
             IMsTscAxEvents_OnReceivedTSPublicKeyEvent onreceivedtspublickeyEvent = new IMsTscAxEvents_OnReceivedTSPublicKeyEvent(publicKey);
             this.parent.RaiseOnOnReceivedTSPublicKey(this.parent, onreceivedtspublickeyEvent);
             pfContinueLogon = onreceivedtspublickeyEvent.pfContinueLogon;
@@ -925,7 +927,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnAuthenticationWarningDismissed(this.parent, onauthenticationwarningdismissedEvent);
         }
         
-        public virtual void OnRemoteProgramResult(string bstrRemoteProgram, MSTSCLib.RemoteProgramResult lError, bool vbIsExecutable) {
+        public virtual void OnRemoteProgramResult(BinaryString bstrRemoteProgram, MSTSCLib.RemoteProgramResult lError, bool vbIsExecutable) {
             IMsTscAxEvents_OnRemoteProgramResultEvent onremoteprogramresultEvent = new IMsTscAxEvents_OnRemoteProgramResultEvent(bstrRemoteProgram, lError, vbIsExecutable);
             this.parent.RaiseOnOnRemoteProgramResult(this.parent, onremoteprogramresultEvent);
         }
@@ -951,7 +953,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnFocusReleased(this.parent, onfocusreleasedEvent);
         }
         
-        public virtual void OnUserNameAcquired(string bstrUserName) {
+        public virtual void OnUserNameAcquired(BinaryString bstrUserName) {
             IMsTscAxEvents_OnUserNameAcquiredEvent onusernameacquiredEvent = new IMsTscAxEvents_OnUserNameAcquiredEvent(bstrUserName);
             this.parent.RaiseOnOnUserNameAcquired(this.parent, onusernameacquiredEvent);
         }
@@ -961,7 +963,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnMouseInputModeChanged(this.parent, onmouseinputmodechangedEvent);
         }
         
-        public virtual void OnServiceMessageReceived(string serviceMessage) {
+        public virtual void OnServiceMessageReceived(BinaryString serviceMessage) {
             IMsTscAxEvents_OnServiceMessageReceivedEvent onservicemessagereceivedEvent = new IMsTscAxEvents_OnServiceMessageReceivedEvent(serviceMessage);
             this.parent.RaiseOnOnServiceMessageReceived(this.parent, onservicemessagereceivedEvent);
         }
@@ -1444,7 +1446,7 @@ namespace AxMSTSCLib {
         protected override void CreateSink() {
             try {
                 this.eventMulticaster = new AxMsRdpClientNotSafeForScriptingEventMulticaster(this);
-                this.cookie = new System.Windows.Forms.AxHost.ConnectionPointCookie(this.ocx, this.eventMulticaster, typeof(MSTSCLib.IMsTscAxEvents));
+                this.cookie = new System.Windows.Forms.AxHost.ConnectionPointCookie(MSTSCLib.ProxyObject.Unpack(this.ocx), this.eventMulticaster, typeof(MsRdpEx.Interop.Compatibility.IMsTscAxEvents));
             }
             catch (System.Exception ) {
             }
@@ -1659,8 +1661,9 @@ namespace AxMSTSCLib {
         }
     }
     
+    [GeneratedComClass]
     [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
-    public class AxMsRdpClientNotSafeForScriptingEventMulticaster : MSTSCLib.IMsTscAxEvents {
+    public partial class AxMsRdpClientNotSafeForScriptingEventMulticaster : MSTSCLib.IMsTscAxEvents, MsRdpEx.Interop.Compatibility.IMsTscAxEvents {
         
         private AxMsRdpClientNotSafeForScripting parent;
         
@@ -1698,7 +1701,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnLeaveFullScreenMode(this.parent, onleavefullscreenmodeEvent);
         }
         
-        public virtual void OnChannelReceivedData(string chanName, string data) {
+        public virtual void OnChannelReceivedData(BinaryString chanName, BinaryString data) {
             IMsTscAxEvents_OnChannelReceivedDataEvent onchannelreceiveddataEvent = new IMsTscAxEvents_OnChannelReceivedDataEvent(chanName, data);
             this.parent.RaiseOnOnChannelReceivedData(this.parent, onchannelreceiveddataEvent);
         }
@@ -1744,7 +1747,7 @@ namespace AxMSTSCLib {
             pfAllowClose = onconfirmcloseEvent.pfAllowClose;
         }
         
-        public virtual void OnReceivedTSPublicKey(string publicKey, out bool pfContinueLogon) {
+        public virtual void OnReceivedTSPublicKey(BinaryString publicKey, out bool pfContinueLogon) {
             IMsTscAxEvents_OnReceivedTSPublicKeyEvent onreceivedtspublickeyEvent = new IMsTscAxEvents_OnReceivedTSPublicKeyEvent(publicKey);
             this.parent.RaiseOnOnReceivedTSPublicKey(this.parent, onreceivedtspublickeyEvent);
             pfContinueLogon = onreceivedtspublickeyEvent.pfContinueLogon;
@@ -1766,7 +1769,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnAuthenticationWarningDismissed(this.parent, onauthenticationwarningdismissedEvent);
         }
         
-        public virtual void OnRemoteProgramResult(string bstrRemoteProgram, MSTSCLib.RemoteProgramResult lError, bool vbIsExecutable) {
+        public virtual void OnRemoteProgramResult(BinaryString bstrRemoteProgram, MSTSCLib.RemoteProgramResult lError, bool vbIsExecutable) {
             IMsTscAxEvents_OnRemoteProgramResultEvent onremoteprogramresultEvent = new IMsTscAxEvents_OnRemoteProgramResultEvent(bstrRemoteProgram, lError, vbIsExecutable);
             this.parent.RaiseOnOnRemoteProgramResult(this.parent, onremoteprogramresultEvent);
         }
@@ -1792,7 +1795,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnFocusReleased(this.parent, onfocusreleasedEvent);
         }
         
-        public virtual void OnUserNameAcquired(string bstrUserName) {
+        public virtual void OnUserNameAcquired(BinaryString bstrUserName) {
             IMsTscAxEvents_OnUserNameAcquiredEvent onusernameacquiredEvent = new IMsTscAxEvents_OnUserNameAcquiredEvent(bstrUserName);
             this.parent.RaiseOnOnUserNameAcquired(this.parent, onusernameacquiredEvent);
         }
@@ -1802,7 +1805,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnMouseInputModeChanged(this.parent, onmouseinputmodechangedEvent);
         }
         
-        public virtual void OnServiceMessageReceived(string serviceMessage) {
+        public virtual void OnServiceMessageReceived(BinaryString serviceMessage) {
             IMsTscAxEvents_OnServiceMessageReceivedEvent onservicemessagereceivedEvent = new IMsTscAxEvents_OnServiceMessageReceivedEvent(serviceMessage);
             this.parent.RaiseOnOnServiceMessageReceived(this.parent, onservicemessagereceivedEvent);
         }
@@ -2314,7 +2317,7 @@ namespace AxMSTSCLib {
         protected override void CreateSink() {
             try {
                 this.eventMulticaster = new AxMsRdpClient2NotSafeForScriptingEventMulticaster(this);
-                this.cookie = new System.Windows.Forms.AxHost.ConnectionPointCookie(this.ocx, this.eventMulticaster, typeof(MSTSCLib.IMsTscAxEvents));
+                this.cookie = new System.Windows.Forms.AxHost.ConnectionPointCookie(MSTSCLib.ProxyObject.Unpack(this.ocx), this.eventMulticaster, typeof(MsRdpEx.Interop.Compatibility.IMsTscAxEvents));
             }
             catch (System.Exception ) {
             }
@@ -2529,8 +2532,9 @@ namespace AxMSTSCLib {
         }
     }
     
+    [GeneratedComClass]
     [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
-    public class AxMsRdpClient2NotSafeForScriptingEventMulticaster : MSTSCLib.IMsTscAxEvents {
+    public partial class AxMsRdpClient2NotSafeForScriptingEventMulticaster : MSTSCLib.IMsTscAxEvents, MsRdpEx.Interop.Compatibility.IMsTscAxEvents {
         
         private AxMsRdpClient2NotSafeForScripting parent;
         
@@ -2568,7 +2572,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnLeaveFullScreenMode(this.parent, onleavefullscreenmodeEvent);
         }
         
-        public virtual void OnChannelReceivedData(string chanName, string data) {
+        public virtual void OnChannelReceivedData(BinaryString chanName, BinaryString data) {
             IMsTscAxEvents_OnChannelReceivedDataEvent onchannelreceiveddataEvent = new IMsTscAxEvents_OnChannelReceivedDataEvent(chanName, data);
             this.parent.RaiseOnOnChannelReceivedData(this.parent, onchannelreceiveddataEvent);
         }
@@ -2614,7 +2618,7 @@ namespace AxMSTSCLib {
             pfAllowClose = onconfirmcloseEvent.pfAllowClose;
         }
         
-        public virtual void OnReceivedTSPublicKey(string publicKey, out bool pfContinueLogon) {
+        public virtual void OnReceivedTSPublicKey(BinaryString publicKey, out bool pfContinueLogon) {
             IMsTscAxEvents_OnReceivedTSPublicKeyEvent onreceivedtspublickeyEvent = new IMsTscAxEvents_OnReceivedTSPublicKeyEvent(publicKey);
             this.parent.RaiseOnOnReceivedTSPublicKey(this.parent, onreceivedtspublickeyEvent);
             pfContinueLogon = onreceivedtspublickeyEvent.pfContinueLogon;
@@ -2636,7 +2640,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnAuthenticationWarningDismissed(this.parent, onauthenticationwarningdismissedEvent);
         }
         
-        public virtual void OnRemoteProgramResult(string bstrRemoteProgram, MSTSCLib.RemoteProgramResult lError, bool vbIsExecutable) {
+        public virtual void OnRemoteProgramResult(BinaryString bstrRemoteProgram, MSTSCLib.RemoteProgramResult lError, bool vbIsExecutable) {
             IMsTscAxEvents_OnRemoteProgramResultEvent onremoteprogramresultEvent = new IMsTscAxEvents_OnRemoteProgramResultEvent(bstrRemoteProgram, lError, vbIsExecutable);
             this.parent.RaiseOnOnRemoteProgramResult(this.parent, onremoteprogramresultEvent);
         }
@@ -2662,7 +2666,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnFocusReleased(this.parent, onfocusreleasedEvent);
         }
         
-        public virtual void OnUserNameAcquired(string bstrUserName) {
+        public virtual void OnUserNameAcquired(BinaryString bstrUserName) {
             IMsTscAxEvents_OnUserNameAcquiredEvent onusernameacquiredEvent = new IMsTscAxEvents_OnUserNameAcquiredEvent(bstrUserName);
             this.parent.RaiseOnOnUserNameAcquired(this.parent, onusernameacquiredEvent);
         }
@@ -2672,7 +2676,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnMouseInputModeChanged(this.parent, onmouseinputmodechangedEvent);
         }
         
-        public virtual void OnServiceMessageReceived(string serviceMessage) {
+        public virtual void OnServiceMessageReceived(BinaryString serviceMessage) {
             IMsTscAxEvents_OnServiceMessageReceivedEvent onservicemessagereceivedEvent = new IMsTscAxEvents_OnServiceMessageReceivedEvent(serviceMessage);
             this.parent.RaiseOnOnServiceMessageReceived(this.parent, onservicemessagereceivedEvent);
         }
@@ -3184,7 +3188,7 @@ namespace AxMSTSCLib {
         protected override void CreateSink() {
             try {
                 this.eventMulticaster = new AxMsRdpClient2EventMulticaster(this);
-                this.cookie = new System.Windows.Forms.AxHost.ConnectionPointCookie(this.ocx, this.eventMulticaster, typeof(MSTSCLib.IMsTscAxEvents));
+                this.cookie = new System.Windows.Forms.AxHost.ConnectionPointCookie(MSTSCLib.ProxyObject.Unpack(this.ocx), this.eventMulticaster, typeof(MsRdpEx.Interop.Compatibility.IMsTscAxEvents));
             }
             catch (System.Exception ) {
             }
@@ -3399,8 +3403,9 @@ namespace AxMSTSCLib {
         }
     }
     
+    [GeneratedComClass]
     [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
-    public class AxMsRdpClient2EventMulticaster : MSTSCLib.IMsTscAxEvents {
+    public partial class AxMsRdpClient2EventMulticaster : MSTSCLib.IMsTscAxEvents, MsRdpEx.Interop.Compatibility.IMsTscAxEvents {
         
         private AxMsRdpClient2 parent;
         
@@ -3438,7 +3443,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnLeaveFullScreenMode(this.parent, onleavefullscreenmodeEvent);
         }
         
-        public virtual void OnChannelReceivedData(string chanName, string data) {
+        public virtual void OnChannelReceivedData(BinaryString chanName, BinaryString data) {
             IMsTscAxEvents_OnChannelReceivedDataEvent onchannelreceiveddataEvent = new IMsTscAxEvents_OnChannelReceivedDataEvent(chanName, data);
             this.parent.RaiseOnOnChannelReceivedData(this.parent, onchannelreceiveddataEvent);
         }
@@ -3484,7 +3489,7 @@ namespace AxMSTSCLib {
             pfAllowClose = onconfirmcloseEvent.pfAllowClose;
         }
         
-        public virtual void OnReceivedTSPublicKey(string publicKey, out bool pfContinueLogon) {
+        public virtual void OnReceivedTSPublicKey(BinaryString publicKey, out bool pfContinueLogon) {
             IMsTscAxEvents_OnReceivedTSPublicKeyEvent onreceivedtspublickeyEvent = new IMsTscAxEvents_OnReceivedTSPublicKeyEvent(publicKey);
             this.parent.RaiseOnOnReceivedTSPublicKey(this.parent, onreceivedtspublickeyEvent);
             pfContinueLogon = onreceivedtspublickeyEvent.pfContinueLogon;
@@ -3506,7 +3511,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnAuthenticationWarningDismissed(this.parent, onauthenticationwarningdismissedEvent);
         }
         
-        public virtual void OnRemoteProgramResult(string bstrRemoteProgram, MSTSCLib.RemoteProgramResult lError, bool vbIsExecutable) {
+        public virtual void OnRemoteProgramResult(BinaryString bstrRemoteProgram, MSTSCLib.RemoteProgramResult lError, bool vbIsExecutable) {
             IMsTscAxEvents_OnRemoteProgramResultEvent onremoteprogramresultEvent = new IMsTscAxEvents_OnRemoteProgramResultEvent(bstrRemoteProgram, lError, vbIsExecutable);
             this.parent.RaiseOnOnRemoteProgramResult(this.parent, onremoteprogramresultEvent);
         }
@@ -3532,7 +3537,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnFocusReleased(this.parent, onfocusreleasedEvent);
         }
         
-        public virtual void OnUserNameAcquired(string bstrUserName) {
+        public virtual void OnUserNameAcquired(BinaryString bstrUserName) {
             IMsTscAxEvents_OnUserNameAcquiredEvent onusernameacquiredEvent = new IMsTscAxEvents_OnUserNameAcquiredEvent(bstrUserName);
             this.parent.RaiseOnOnUserNameAcquired(this.parent, onusernameacquiredEvent);
         }
@@ -3542,7 +3547,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnMouseInputModeChanged(this.parent, onmouseinputmodechangedEvent);
         }
         
-        public virtual void OnServiceMessageReceived(string serviceMessage) {
+        public virtual void OnServiceMessageReceived(BinaryString serviceMessage) {
             IMsTscAxEvents_OnServiceMessageReceivedEvent onservicemessagereceivedEvent = new IMsTscAxEvents_OnServiceMessageReceivedEvent(serviceMessage);
             this.parent.RaiseOnOnServiceMessageReceived(this.parent, onservicemessagereceivedEvent);
         }
@@ -4054,7 +4059,7 @@ namespace AxMSTSCLib {
         protected override void CreateSink() {
             try {
                 this.eventMulticaster = new AxMsRdpClient2aEventMulticaster(this);
-                this.cookie = new System.Windows.Forms.AxHost.ConnectionPointCookie(this.ocx, this.eventMulticaster, typeof(MSTSCLib.IMsTscAxEvents));
+                this.cookie = new System.Windows.Forms.AxHost.ConnectionPointCookie(MSTSCLib.ProxyObject.Unpack(this.ocx), this.eventMulticaster, typeof(MsRdpEx.Interop.Compatibility.IMsTscAxEvents));
             }
             catch (System.Exception ) {
             }
@@ -4269,8 +4274,9 @@ namespace AxMSTSCLib {
         }
     }
     
+    [GeneratedComClass]
     [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
-    public class AxMsRdpClient2aEventMulticaster : MSTSCLib.IMsTscAxEvents {
+    public partial class AxMsRdpClient2aEventMulticaster : MSTSCLib.IMsTscAxEvents, MsRdpEx.Interop.Compatibility.IMsTscAxEvents {
         
         private AxMsRdpClient2a parent;
         
@@ -4308,7 +4314,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnLeaveFullScreenMode(this.parent, onleavefullscreenmodeEvent);
         }
         
-        public virtual void OnChannelReceivedData(string chanName, string data) {
+        public virtual void OnChannelReceivedData(BinaryString chanName, BinaryString data) {
             IMsTscAxEvents_OnChannelReceivedDataEvent onchannelreceiveddataEvent = new IMsTscAxEvents_OnChannelReceivedDataEvent(chanName, data);
             this.parent.RaiseOnOnChannelReceivedData(this.parent, onchannelreceiveddataEvent);
         }
@@ -4354,7 +4360,7 @@ namespace AxMSTSCLib {
             pfAllowClose = onconfirmcloseEvent.pfAllowClose;
         }
         
-        public virtual void OnReceivedTSPublicKey(string publicKey, out bool pfContinueLogon) {
+        public virtual void OnReceivedTSPublicKey(BinaryString publicKey, out bool pfContinueLogon) {
             IMsTscAxEvents_OnReceivedTSPublicKeyEvent onreceivedtspublickeyEvent = new IMsTscAxEvents_OnReceivedTSPublicKeyEvent(publicKey);
             this.parent.RaiseOnOnReceivedTSPublicKey(this.parent, onreceivedtspublickeyEvent);
             pfContinueLogon = onreceivedtspublickeyEvent.pfContinueLogon;
@@ -4376,7 +4382,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnAuthenticationWarningDismissed(this.parent, onauthenticationwarningdismissedEvent);
         }
         
-        public virtual void OnRemoteProgramResult(string bstrRemoteProgram, MSTSCLib.RemoteProgramResult lError, bool vbIsExecutable) {
+        public virtual void OnRemoteProgramResult(BinaryString bstrRemoteProgram, MSTSCLib.RemoteProgramResult lError, bool vbIsExecutable) {
             IMsTscAxEvents_OnRemoteProgramResultEvent onremoteprogramresultEvent = new IMsTscAxEvents_OnRemoteProgramResultEvent(bstrRemoteProgram, lError, vbIsExecutable);
             this.parent.RaiseOnOnRemoteProgramResult(this.parent, onremoteprogramresultEvent);
         }
@@ -4402,7 +4408,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnFocusReleased(this.parent, onfocusreleasedEvent);
         }
         
-        public virtual void OnUserNameAcquired(string bstrUserName) {
+        public virtual void OnUserNameAcquired(BinaryString bstrUserName) {
             IMsTscAxEvents_OnUserNameAcquiredEvent onusernameacquiredEvent = new IMsTscAxEvents_OnUserNameAcquiredEvent(bstrUserName);
             this.parent.RaiseOnOnUserNameAcquired(this.parent, onusernameacquiredEvent);
         }
@@ -4412,7 +4418,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnMouseInputModeChanged(this.parent, onmouseinputmodechangedEvent);
         }
         
-        public virtual void OnServiceMessageReceived(string serviceMessage) {
+        public virtual void OnServiceMessageReceived(BinaryString serviceMessage) {
             IMsTscAxEvents_OnServiceMessageReceivedEvent onservicemessagereceivedEvent = new IMsTscAxEvents_OnServiceMessageReceivedEvent(serviceMessage);
             this.parent.RaiseOnOnServiceMessageReceived(this.parent, onservicemessagereceivedEvent);
         }
@@ -4936,7 +4942,7 @@ namespace AxMSTSCLib {
         protected override void CreateSink() {
             try {
                 this.eventMulticaster = new AxMsRdpClient3NotSafeForScriptingEventMulticaster(this);
-                this.cookie = new System.Windows.Forms.AxHost.ConnectionPointCookie(this.ocx, this.eventMulticaster, typeof(MSTSCLib.IMsTscAxEvents));
+                this.cookie = new System.Windows.Forms.AxHost.ConnectionPointCookie(MSTSCLib.ProxyObject.Unpack(this.ocx), this.eventMulticaster, typeof(MsRdpEx.Interop.Compatibility.IMsTscAxEvents));
             }
             catch (System.Exception ) {
             }
@@ -5151,8 +5157,9 @@ namespace AxMSTSCLib {
         }
     }
     
+    [GeneratedComClass]
     [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
-    public class AxMsRdpClient3NotSafeForScriptingEventMulticaster : MSTSCLib.IMsTscAxEvents {
+    public partial class AxMsRdpClient3NotSafeForScriptingEventMulticaster : MSTSCLib.IMsTscAxEvents, MsRdpEx.Interop.Compatibility.IMsTscAxEvents {
         
         private AxMsRdpClient3NotSafeForScripting parent;
         
@@ -5190,7 +5197,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnLeaveFullScreenMode(this.parent, onleavefullscreenmodeEvent);
         }
         
-        public virtual void OnChannelReceivedData(string chanName, string data) {
+        public virtual void OnChannelReceivedData(BinaryString chanName, BinaryString data) {
             IMsTscAxEvents_OnChannelReceivedDataEvent onchannelreceiveddataEvent = new IMsTscAxEvents_OnChannelReceivedDataEvent(chanName, data);
             this.parent.RaiseOnOnChannelReceivedData(this.parent, onchannelreceiveddataEvent);
         }
@@ -5236,7 +5243,7 @@ namespace AxMSTSCLib {
             pfAllowClose = onconfirmcloseEvent.pfAllowClose;
         }
         
-        public virtual void OnReceivedTSPublicKey(string publicKey, out bool pfContinueLogon) {
+        public virtual void OnReceivedTSPublicKey(BinaryString publicKey, out bool pfContinueLogon) {
             IMsTscAxEvents_OnReceivedTSPublicKeyEvent onreceivedtspublickeyEvent = new IMsTscAxEvents_OnReceivedTSPublicKeyEvent(publicKey);
             this.parent.RaiseOnOnReceivedTSPublicKey(this.parent, onreceivedtspublickeyEvent);
             pfContinueLogon = onreceivedtspublickeyEvent.pfContinueLogon;
@@ -5258,7 +5265,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnAuthenticationWarningDismissed(this.parent, onauthenticationwarningdismissedEvent);
         }
         
-        public virtual void OnRemoteProgramResult(string bstrRemoteProgram, MSTSCLib.RemoteProgramResult lError, bool vbIsExecutable) {
+        public virtual void OnRemoteProgramResult(BinaryString bstrRemoteProgram, MSTSCLib.RemoteProgramResult lError, bool vbIsExecutable) {
             IMsTscAxEvents_OnRemoteProgramResultEvent onremoteprogramresultEvent = new IMsTscAxEvents_OnRemoteProgramResultEvent(bstrRemoteProgram, lError, vbIsExecutable);
             this.parent.RaiseOnOnRemoteProgramResult(this.parent, onremoteprogramresultEvent);
         }
@@ -5284,7 +5291,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnFocusReleased(this.parent, onfocusreleasedEvent);
         }
         
-        public virtual void OnUserNameAcquired(string bstrUserName) {
+        public virtual void OnUserNameAcquired(BinaryString bstrUserName) {
             IMsTscAxEvents_OnUserNameAcquiredEvent onusernameacquiredEvent = new IMsTscAxEvents_OnUserNameAcquiredEvent(bstrUserName);
             this.parent.RaiseOnOnUserNameAcquired(this.parent, onusernameacquiredEvent);
         }
@@ -5294,7 +5301,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnMouseInputModeChanged(this.parent, onmouseinputmodechangedEvent);
         }
         
-        public virtual void OnServiceMessageReceived(string serviceMessage) {
+        public virtual void OnServiceMessageReceived(BinaryString serviceMessage) {
             IMsTscAxEvents_OnServiceMessageReceivedEvent onservicemessagereceivedEvent = new IMsTscAxEvents_OnServiceMessageReceivedEvent(serviceMessage);
             this.parent.RaiseOnOnServiceMessageReceived(this.parent, onservicemessagereceivedEvent);
         }
@@ -5818,7 +5825,7 @@ namespace AxMSTSCLib {
         protected override void CreateSink() {
             try {
                 this.eventMulticaster = new AxMsRdpClient3EventMulticaster(this);
-                this.cookie = new System.Windows.Forms.AxHost.ConnectionPointCookie(this.ocx, this.eventMulticaster, typeof(MSTSCLib.IMsTscAxEvents));
+                this.cookie = new System.Windows.Forms.AxHost.ConnectionPointCookie(MSTSCLib.ProxyObject.Unpack(this.ocx), this.eventMulticaster, typeof(MsRdpEx.Interop.Compatibility.IMsTscAxEvents));
             }
             catch (System.Exception ) {
             }
@@ -6033,8 +6040,9 @@ namespace AxMSTSCLib {
         }
     }
     
+    [GeneratedComClass]
     [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
-    public class AxMsRdpClient3EventMulticaster : MSTSCLib.IMsTscAxEvents {
+    public partial class AxMsRdpClient3EventMulticaster : MSTSCLib.IMsTscAxEvents, MsRdpEx.Interop.Compatibility.IMsTscAxEvents {
         
         private AxMsRdpClient3 parent;
         
@@ -6072,7 +6080,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnLeaveFullScreenMode(this.parent, onleavefullscreenmodeEvent);
         }
         
-        public virtual void OnChannelReceivedData(string chanName, string data) {
+        public virtual void OnChannelReceivedData(BinaryString chanName, BinaryString data) {
             IMsTscAxEvents_OnChannelReceivedDataEvent onchannelreceiveddataEvent = new IMsTscAxEvents_OnChannelReceivedDataEvent(chanName, data);
             this.parent.RaiseOnOnChannelReceivedData(this.parent, onchannelreceiveddataEvent);
         }
@@ -6118,7 +6126,7 @@ namespace AxMSTSCLib {
             pfAllowClose = onconfirmcloseEvent.pfAllowClose;
         }
         
-        public virtual void OnReceivedTSPublicKey(string publicKey, out bool pfContinueLogon) {
+        public virtual void OnReceivedTSPublicKey(BinaryString publicKey, out bool pfContinueLogon) {
             IMsTscAxEvents_OnReceivedTSPublicKeyEvent onreceivedtspublickeyEvent = new IMsTscAxEvents_OnReceivedTSPublicKeyEvent(publicKey);
             this.parent.RaiseOnOnReceivedTSPublicKey(this.parent, onreceivedtspublickeyEvent);
             pfContinueLogon = onreceivedtspublickeyEvent.pfContinueLogon;
@@ -6140,7 +6148,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnAuthenticationWarningDismissed(this.parent, onauthenticationwarningdismissedEvent);
         }
         
-        public virtual void OnRemoteProgramResult(string bstrRemoteProgram, MSTSCLib.RemoteProgramResult lError, bool vbIsExecutable) {
+        public virtual void OnRemoteProgramResult(BinaryString bstrRemoteProgram, MSTSCLib.RemoteProgramResult lError, bool vbIsExecutable) {
             IMsTscAxEvents_OnRemoteProgramResultEvent onremoteprogramresultEvent = new IMsTscAxEvents_OnRemoteProgramResultEvent(bstrRemoteProgram, lError, vbIsExecutable);
             this.parent.RaiseOnOnRemoteProgramResult(this.parent, onremoteprogramresultEvent);
         }
@@ -6166,7 +6174,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnFocusReleased(this.parent, onfocusreleasedEvent);
         }
         
-        public virtual void OnUserNameAcquired(string bstrUserName) {
+        public virtual void OnUserNameAcquired(BinaryString bstrUserName) {
             IMsTscAxEvents_OnUserNameAcquiredEvent onusernameacquiredEvent = new IMsTscAxEvents_OnUserNameAcquiredEvent(bstrUserName);
             this.parent.RaiseOnOnUserNameAcquired(this.parent, onusernameacquiredEvent);
         }
@@ -6176,7 +6184,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnMouseInputModeChanged(this.parent, onmouseinputmodechangedEvent);
         }
         
-        public virtual void OnServiceMessageReceived(string serviceMessage) {
+        public virtual void OnServiceMessageReceived(BinaryString serviceMessage) {
             IMsTscAxEvents_OnServiceMessageReceivedEvent onservicemessagereceivedEvent = new IMsTscAxEvents_OnServiceMessageReceivedEvent(serviceMessage);
             this.parent.RaiseOnOnServiceMessageReceived(this.parent, onservicemessagereceivedEvent);
         }
@@ -6700,7 +6708,7 @@ namespace AxMSTSCLib {
         protected override void CreateSink() {
             try {
                 this.eventMulticaster = new AxMsRdpClient3aEventMulticaster(this);
-                this.cookie = new System.Windows.Forms.AxHost.ConnectionPointCookie(this.ocx, this.eventMulticaster, typeof(MSTSCLib.IMsTscAxEvents));
+                this.cookie = new System.Windows.Forms.AxHost.ConnectionPointCookie(MSTSCLib.ProxyObject.Unpack(this.ocx), this.eventMulticaster, typeof(MsRdpEx.Interop.Compatibility.IMsTscAxEvents));
             }
             catch (System.Exception ) {
             }
@@ -6915,8 +6923,9 @@ namespace AxMSTSCLib {
         }
     }
     
+    [GeneratedComClass]
     [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
-    public class AxMsRdpClient3aEventMulticaster : MSTSCLib.IMsTscAxEvents {
+    public partial class AxMsRdpClient3aEventMulticaster : MSTSCLib.IMsTscAxEvents, MsRdpEx.Interop.Compatibility.IMsTscAxEvents {
         
         private AxMsRdpClient3a parent;
         
@@ -6954,7 +6963,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnLeaveFullScreenMode(this.parent, onleavefullscreenmodeEvent);
         }
         
-        public virtual void OnChannelReceivedData(string chanName, string data) {
+        public virtual void OnChannelReceivedData(BinaryString chanName, BinaryString data) {
             IMsTscAxEvents_OnChannelReceivedDataEvent onchannelreceiveddataEvent = new IMsTscAxEvents_OnChannelReceivedDataEvent(chanName, data);
             this.parent.RaiseOnOnChannelReceivedData(this.parent, onchannelreceiveddataEvent);
         }
@@ -7000,7 +7009,7 @@ namespace AxMSTSCLib {
             pfAllowClose = onconfirmcloseEvent.pfAllowClose;
         }
         
-        public virtual void OnReceivedTSPublicKey(string publicKey, out bool pfContinueLogon) {
+        public virtual void OnReceivedTSPublicKey(BinaryString publicKey, out bool pfContinueLogon) {
             IMsTscAxEvents_OnReceivedTSPublicKeyEvent onreceivedtspublickeyEvent = new IMsTscAxEvents_OnReceivedTSPublicKeyEvent(publicKey);
             this.parent.RaiseOnOnReceivedTSPublicKey(this.parent, onreceivedtspublickeyEvent);
             pfContinueLogon = onreceivedtspublickeyEvent.pfContinueLogon;
@@ -7022,7 +7031,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnAuthenticationWarningDismissed(this.parent, onauthenticationwarningdismissedEvent);
         }
         
-        public virtual void OnRemoteProgramResult(string bstrRemoteProgram, MSTSCLib.RemoteProgramResult lError, bool vbIsExecutable) {
+        public virtual void OnRemoteProgramResult(BinaryString bstrRemoteProgram, MSTSCLib.RemoteProgramResult lError, bool vbIsExecutable) {
             IMsTscAxEvents_OnRemoteProgramResultEvent onremoteprogramresultEvent = new IMsTscAxEvents_OnRemoteProgramResultEvent(bstrRemoteProgram, lError, vbIsExecutable);
             this.parent.RaiseOnOnRemoteProgramResult(this.parent, onremoteprogramresultEvent);
         }
@@ -7048,7 +7057,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnFocusReleased(this.parent, onfocusreleasedEvent);
         }
         
-        public virtual void OnUserNameAcquired(string bstrUserName) {
+        public virtual void OnUserNameAcquired(BinaryString bstrUserName) {
             IMsTscAxEvents_OnUserNameAcquiredEvent onusernameacquiredEvent = new IMsTscAxEvents_OnUserNameAcquiredEvent(bstrUserName);
             this.parent.RaiseOnOnUserNameAcquired(this.parent, onusernameacquiredEvent);
         }
@@ -7058,7 +7067,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnMouseInputModeChanged(this.parent, onmouseinputmodechangedEvent);
         }
         
-        public virtual void OnServiceMessageReceived(string serviceMessage) {
+        public virtual void OnServiceMessageReceived(BinaryString serviceMessage) {
             IMsTscAxEvents_OnServiceMessageReceivedEvent onservicemessagereceivedEvent = new IMsTscAxEvents_OnServiceMessageReceivedEvent(serviceMessage);
             this.parent.RaiseOnOnServiceMessageReceived(this.parent, onservicemessagereceivedEvent);
         }
@@ -7594,7 +7603,7 @@ namespace AxMSTSCLib {
         protected override void CreateSink() {
             try {
                 this.eventMulticaster = new AxMsRdpClient4NotSafeForScriptingEventMulticaster(this);
-                this.cookie = new System.Windows.Forms.AxHost.ConnectionPointCookie(this.ocx, this.eventMulticaster, typeof(MSTSCLib.IMsTscAxEvents));
+                this.cookie = new System.Windows.Forms.AxHost.ConnectionPointCookie(MSTSCLib.ProxyObject.Unpack(this.ocx), this.eventMulticaster, typeof(MsRdpEx.Interop.Compatibility.IMsTscAxEvents));
             }
             catch (System.Exception ) {
             }
@@ -7809,8 +7818,9 @@ namespace AxMSTSCLib {
         }
     }
     
+    [GeneratedComClass]
     [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
-    public class AxMsRdpClient4NotSafeForScriptingEventMulticaster : MSTSCLib.IMsTscAxEvents {
+    public partial class AxMsRdpClient4NotSafeForScriptingEventMulticaster : MSTSCLib.IMsTscAxEvents, MsRdpEx.Interop.Compatibility.IMsTscAxEvents {
         
         private AxMsRdpClient4NotSafeForScripting parent;
         
@@ -7848,7 +7858,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnLeaveFullScreenMode(this.parent, onleavefullscreenmodeEvent);
         }
         
-        public virtual void OnChannelReceivedData(string chanName, string data) {
+        public virtual void OnChannelReceivedData(BinaryString chanName, BinaryString data) {
             IMsTscAxEvents_OnChannelReceivedDataEvent onchannelreceiveddataEvent = new IMsTscAxEvents_OnChannelReceivedDataEvent(chanName, data);
             this.parent.RaiseOnOnChannelReceivedData(this.parent, onchannelreceiveddataEvent);
         }
@@ -7894,7 +7904,7 @@ namespace AxMSTSCLib {
             pfAllowClose = onconfirmcloseEvent.pfAllowClose;
         }
         
-        public virtual void OnReceivedTSPublicKey(string publicKey, out bool pfContinueLogon) {
+        public virtual void OnReceivedTSPublicKey(BinaryString publicKey, out bool pfContinueLogon) {
             IMsTscAxEvents_OnReceivedTSPublicKeyEvent onreceivedtspublickeyEvent = new IMsTscAxEvents_OnReceivedTSPublicKeyEvent(publicKey);
             this.parent.RaiseOnOnReceivedTSPublicKey(this.parent, onreceivedtspublickeyEvent);
             pfContinueLogon = onreceivedtspublickeyEvent.pfContinueLogon;
@@ -7916,7 +7926,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnAuthenticationWarningDismissed(this.parent, onauthenticationwarningdismissedEvent);
         }
         
-        public virtual void OnRemoteProgramResult(string bstrRemoteProgram, MSTSCLib.RemoteProgramResult lError, bool vbIsExecutable) {
+        public virtual void OnRemoteProgramResult(BinaryString bstrRemoteProgram, MSTSCLib.RemoteProgramResult lError, bool vbIsExecutable) {
             IMsTscAxEvents_OnRemoteProgramResultEvent onremoteprogramresultEvent = new IMsTscAxEvents_OnRemoteProgramResultEvent(bstrRemoteProgram, lError, vbIsExecutable);
             this.parent.RaiseOnOnRemoteProgramResult(this.parent, onremoteprogramresultEvent);
         }
@@ -7942,7 +7952,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnFocusReleased(this.parent, onfocusreleasedEvent);
         }
         
-        public virtual void OnUserNameAcquired(string bstrUserName) {
+        public virtual void OnUserNameAcquired(BinaryString bstrUserName) {
             IMsTscAxEvents_OnUserNameAcquiredEvent onusernameacquiredEvent = new IMsTscAxEvents_OnUserNameAcquiredEvent(bstrUserName);
             this.parent.RaiseOnOnUserNameAcquired(this.parent, onusernameacquiredEvent);
         }
@@ -7952,7 +7962,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnMouseInputModeChanged(this.parent, onmouseinputmodechangedEvent);
         }
         
-        public virtual void OnServiceMessageReceived(string serviceMessage) {
+        public virtual void OnServiceMessageReceived(BinaryString serviceMessage) {
             IMsTscAxEvents_OnServiceMessageReceivedEvent onservicemessagereceivedEvent = new IMsTscAxEvents_OnServiceMessageReceivedEvent(serviceMessage);
             this.parent.RaiseOnOnServiceMessageReceived(this.parent, onservicemessagereceivedEvent);
         }
@@ -8488,7 +8498,7 @@ namespace AxMSTSCLib {
         protected override void CreateSink() {
             try {
                 this.eventMulticaster = new AxMsRdpClient4EventMulticaster(this);
-                this.cookie = new System.Windows.Forms.AxHost.ConnectionPointCookie(this.ocx, this.eventMulticaster, typeof(MSTSCLib.IMsTscAxEvents));
+                this.cookie = new System.Windows.Forms.AxHost.ConnectionPointCookie(MSTSCLib.ProxyObject.Unpack(this.ocx), this.eventMulticaster, typeof(MsRdpEx.Interop.Compatibility.IMsTscAxEvents));
             }
             catch (System.Exception ) {
             }
@@ -8703,8 +8713,9 @@ namespace AxMSTSCLib {
         }
     }
     
+    [GeneratedComClass]
     [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
-    public class AxMsRdpClient4EventMulticaster : MSTSCLib.IMsTscAxEvents {
+    public partial class AxMsRdpClient4EventMulticaster : MSTSCLib.IMsTscAxEvents, MsRdpEx.Interop.Compatibility.IMsTscAxEvents {
         
         private AxMsRdpClient4 parent;
         
@@ -8742,7 +8753,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnLeaveFullScreenMode(this.parent, onleavefullscreenmodeEvent);
         }
         
-        public virtual void OnChannelReceivedData(string chanName, string data) {
+        public virtual void OnChannelReceivedData(BinaryString chanName, BinaryString data) {
             IMsTscAxEvents_OnChannelReceivedDataEvent onchannelreceiveddataEvent = new IMsTscAxEvents_OnChannelReceivedDataEvent(chanName, data);
             this.parent.RaiseOnOnChannelReceivedData(this.parent, onchannelreceiveddataEvent);
         }
@@ -8788,7 +8799,7 @@ namespace AxMSTSCLib {
             pfAllowClose = onconfirmcloseEvent.pfAllowClose;
         }
         
-        public virtual void OnReceivedTSPublicKey(string publicKey, out bool pfContinueLogon) {
+        public virtual void OnReceivedTSPublicKey(BinaryString publicKey, out bool pfContinueLogon) {
             IMsTscAxEvents_OnReceivedTSPublicKeyEvent onreceivedtspublickeyEvent = new IMsTscAxEvents_OnReceivedTSPublicKeyEvent(publicKey);
             this.parent.RaiseOnOnReceivedTSPublicKey(this.parent, onreceivedtspublickeyEvent);
             pfContinueLogon = onreceivedtspublickeyEvent.pfContinueLogon;
@@ -8810,7 +8821,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnAuthenticationWarningDismissed(this.parent, onauthenticationwarningdismissedEvent);
         }
         
-        public virtual void OnRemoteProgramResult(string bstrRemoteProgram, MSTSCLib.RemoteProgramResult lError, bool vbIsExecutable) {
+        public virtual void OnRemoteProgramResult(BinaryString bstrRemoteProgram, MSTSCLib.RemoteProgramResult lError, bool vbIsExecutable) {
             IMsTscAxEvents_OnRemoteProgramResultEvent onremoteprogramresultEvent = new IMsTscAxEvents_OnRemoteProgramResultEvent(bstrRemoteProgram, lError, vbIsExecutable);
             this.parent.RaiseOnOnRemoteProgramResult(this.parent, onremoteprogramresultEvent);
         }
@@ -8836,7 +8847,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnFocusReleased(this.parent, onfocusreleasedEvent);
         }
         
-        public virtual void OnUserNameAcquired(string bstrUserName) {
+        public virtual void OnUserNameAcquired(BinaryString bstrUserName) {
             IMsTscAxEvents_OnUserNameAcquiredEvent onusernameacquiredEvent = new IMsTscAxEvents_OnUserNameAcquiredEvent(bstrUserName);
             this.parent.RaiseOnOnUserNameAcquired(this.parent, onusernameacquiredEvent);
         }
@@ -8846,7 +8857,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnMouseInputModeChanged(this.parent, onmouseinputmodechangedEvent);
         }
         
-        public virtual void OnServiceMessageReceived(string serviceMessage) {
+        public virtual void OnServiceMessageReceived(BinaryString serviceMessage) {
             IMsTscAxEvents_OnServiceMessageReceivedEvent onservicemessagereceivedEvent = new IMsTscAxEvents_OnServiceMessageReceivedEvent(serviceMessage);
             this.parent.RaiseOnOnServiceMessageReceived(this.parent, onservicemessagereceivedEvent);
         }
@@ -9382,7 +9393,7 @@ namespace AxMSTSCLib {
         protected override void CreateSink() {
             try {
                 this.eventMulticaster = new AxMsRdpClient4aEventMulticaster(this);
-                this.cookie = new System.Windows.Forms.AxHost.ConnectionPointCookie(this.ocx, this.eventMulticaster, typeof(MSTSCLib.IMsTscAxEvents));
+                this.cookie = new System.Windows.Forms.AxHost.ConnectionPointCookie(MSTSCLib.ProxyObject.Unpack(this.ocx), this.eventMulticaster, typeof(MsRdpEx.Interop.Compatibility.IMsTscAxEvents));
             }
             catch (System.Exception ) {
             }
@@ -9597,8 +9608,9 @@ namespace AxMSTSCLib {
         }
     }
     
+    [GeneratedComClass]
     [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
-    public class AxMsRdpClient4aEventMulticaster : MSTSCLib.IMsTscAxEvents {
+    public partial class AxMsRdpClient4aEventMulticaster : MSTSCLib.IMsTscAxEvents, MsRdpEx.Interop.Compatibility.IMsTscAxEvents {
         
         private AxMsRdpClient4a parent;
         
@@ -9636,7 +9648,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnLeaveFullScreenMode(this.parent, onleavefullscreenmodeEvent);
         }
         
-        public virtual void OnChannelReceivedData(string chanName, string data) {
+        public virtual void OnChannelReceivedData(BinaryString chanName, BinaryString data) {
             IMsTscAxEvents_OnChannelReceivedDataEvent onchannelreceiveddataEvent = new IMsTscAxEvents_OnChannelReceivedDataEvent(chanName, data);
             this.parent.RaiseOnOnChannelReceivedData(this.parent, onchannelreceiveddataEvent);
         }
@@ -9682,7 +9694,7 @@ namespace AxMSTSCLib {
             pfAllowClose = onconfirmcloseEvent.pfAllowClose;
         }
         
-        public virtual void OnReceivedTSPublicKey(string publicKey, out bool pfContinueLogon) {
+        public virtual void OnReceivedTSPublicKey(BinaryString publicKey, out bool pfContinueLogon) {
             IMsTscAxEvents_OnReceivedTSPublicKeyEvent onreceivedtspublickeyEvent = new IMsTscAxEvents_OnReceivedTSPublicKeyEvent(publicKey);
             this.parent.RaiseOnOnReceivedTSPublicKey(this.parent, onreceivedtspublickeyEvent);
             pfContinueLogon = onreceivedtspublickeyEvent.pfContinueLogon;
@@ -9704,7 +9716,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnAuthenticationWarningDismissed(this.parent, onauthenticationwarningdismissedEvent);
         }
         
-        public virtual void OnRemoteProgramResult(string bstrRemoteProgram, MSTSCLib.RemoteProgramResult lError, bool vbIsExecutable) {
+        public virtual void OnRemoteProgramResult(BinaryString bstrRemoteProgram, MSTSCLib.RemoteProgramResult lError, bool vbIsExecutable) {
             IMsTscAxEvents_OnRemoteProgramResultEvent onremoteprogramresultEvent = new IMsTscAxEvents_OnRemoteProgramResultEvent(bstrRemoteProgram, lError, vbIsExecutable);
             this.parent.RaiseOnOnRemoteProgramResult(this.parent, onremoteprogramresultEvent);
         }
@@ -9730,7 +9742,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnFocusReleased(this.parent, onfocusreleasedEvent);
         }
         
-        public virtual void OnUserNameAcquired(string bstrUserName) {
+        public virtual void OnUserNameAcquired(BinaryString bstrUserName) {
             IMsTscAxEvents_OnUserNameAcquiredEvent onusernameacquiredEvent = new IMsTscAxEvents_OnUserNameAcquiredEvent(bstrUserName);
             this.parent.RaiseOnOnUserNameAcquired(this.parent, onusernameacquiredEvent);
         }
@@ -9740,7 +9752,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnMouseInputModeChanged(this.parent, onmouseinputmodechangedEvent);
         }
         
-        public virtual void OnServiceMessageReceived(string serviceMessage) {
+        public virtual void OnServiceMessageReceived(BinaryString serviceMessage) {
             IMsTscAxEvents_OnServiceMessageReceivedEvent onservicemessagereceivedEvent = new IMsTscAxEvents_OnServiceMessageReceivedEvent(serviceMessage);
             this.parent.RaiseOnOnServiceMessageReceived(this.parent, onservicemessagereceivedEvent);
         }
@@ -10332,7 +10344,7 @@ namespace AxMSTSCLib {
         protected override void CreateSink() {
             try {
                 this.eventMulticaster = new AxMsRdpClient5NotSafeForScriptingEventMulticaster(this);
-                this.cookie = new System.Windows.Forms.AxHost.ConnectionPointCookie(this.ocx, this.eventMulticaster, typeof(MSTSCLib.IMsTscAxEvents));
+                this.cookie = new System.Windows.Forms.AxHost.ConnectionPointCookie(MSTSCLib.ProxyObject.Unpack(this.ocx), this.eventMulticaster, typeof(MsRdpEx.Interop.Compatibility.IMsTscAxEvents));
             }
             catch (System.Exception ) {
             }
@@ -10547,8 +10559,9 @@ namespace AxMSTSCLib {
         }
     }
     
+    [GeneratedComClass]
     [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
-    public class AxMsRdpClient5NotSafeForScriptingEventMulticaster : MSTSCLib.IMsTscAxEvents {
+    public partial class AxMsRdpClient5NotSafeForScriptingEventMulticaster : MSTSCLib.IMsTscAxEvents, MsRdpEx.Interop.Compatibility.IMsTscAxEvents {
         
         private AxMsRdpClient5NotSafeForScripting parent;
         
@@ -10586,7 +10599,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnLeaveFullScreenMode(this.parent, onleavefullscreenmodeEvent);
         }
         
-        public virtual void OnChannelReceivedData(string chanName, string data) {
+        public virtual void OnChannelReceivedData(BinaryString chanName, BinaryString data) {
             IMsTscAxEvents_OnChannelReceivedDataEvent onchannelreceiveddataEvent = new IMsTscAxEvents_OnChannelReceivedDataEvent(chanName, data);
             this.parent.RaiseOnOnChannelReceivedData(this.parent, onchannelreceiveddataEvent);
         }
@@ -10632,7 +10645,7 @@ namespace AxMSTSCLib {
             pfAllowClose = onconfirmcloseEvent.pfAllowClose;
         }
         
-        public virtual void OnReceivedTSPublicKey(string publicKey, out bool pfContinueLogon) {
+        public virtual void OnReceivedTSPublicKey(BinaryString publicKey, out bool pfContinueLogon) {
             IMsTscAxEvents_OnReceivedTSPublicKeyEvent onreceivedtspublickeyEvent = new IMsTscAxEvents_OnReceivedTSPublicKeyEvent(publicKey);
             this.parent.RaiseOnOnReceivedTSPublicKey(this.parent, onreceivedtspublickeyEvent);
             pfContinueLogon = onreceivedtspublickeyEvent.pfContinueLogon;
@@ -10654,7 +10667,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnAuthenticationWarningDismissed(this.parent, onauthenticationwarningdismissedEvent);
         }
         
-        public virtual void OnRemoteProgramResult(string bstrRemoteProgram, MSTSCLib.RemoteProgramResult lError, bool vbIsExecutable) {
+        public virtual void OnRemoteProgramResult(BinaryString bstrRemoteProgram, MSTSCLib.RemoteProgramResult lError, bool vbIsExecutable) {
             IMsTscAxEvents_OnRemoteProgramResultEvent onremoteprogramresultEvent = new IMsTscAxEvents_OnRemoteProgramResultEvent(bstrRemoteProgram, lError, vbIsExecutable);
             this.parent.RaiseOnOnRemoteProgramResult(this.parent, onremoteprogramresultEvent);
         }
@@ -10680,7 +10693,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnFocusReleased(this.parent, onfocusreleasedEvent);
         }
         
-        public virtual void OnUserNameAcquired(string bstrUserName) {
+        public virtual void OnUserNameAcquired(BinaryString bstrUserName) {
             IMsTscAxEvents_OnUserNameAcquiredEvent onusernameacquiredEvent = new IMsTscAxEvents_OnUserNameAcquiredEvent(bstrUserName);
             this.parent.RaiseOnOnUserNameAcquired(this.parent, onusernameacquiredEvent);
         }
@@ -10690,7 +10703,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnMouseInputModeChanged(this.parent, onmouseinputmodechangedEvent);
         }
         
-        public virtual void OnServiceMessageReceived(string serviceMessage) {
+        public virtual void OnServiceMessageReceived(BinaryString serviceMessage) {
             IMsTscAxEvents_OnServiceMessageReceivedEvent onservicemessagereceivedEvent = new IMsTscAxEvents_OnServiceMessageReceivedEvent(serviceMessage);
             this.parent.RaiseOnOnServiceMessageReceived(this.parent, onservicemessagereceivedEvent);
         }
@@ -11282,7 +11295,7 @@ namespace AxMSTSCLib {
         protected override void CreateSink() {
             try {
                 this.eventMulticaster = new AxMsRdpClient5EventMulticaster(this);
-                this.cookie = new System.Windows.Forms.AxHost.ConnectionPointCookie(this.ocx, this.eventMulticaster, typeof(MSTSCLib.IMsTscAxEvents));
+                this.cookie = new System.Windows.Forms.AxHost.ConnectionPointCookie(MSTSCLib.ProxyObject.Unpack(this.ocx), this.eventMulticaster, typeof(MsRdpEx.Interop.Compatibility.IMsTscAxEvents));
             }
             catch (System.Exception ) {
             }
@@ -11497,8 +11510,9 @@ namespace AxMSTSCLib {
         }
     }
     
+    [GeneratedComClass]
     [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
-    public class AxMsRdpClient5EventMulticaster : MSTSCLib.IMsTscAxEvents {
+    public partial class AxMsRdpClient5EventMulticaster : MSTSCLib.IMsTscAxEvents, MsRdpEx.Interop.Compatibility.IMsTscAxEvents {
         
         private AxMsRdpClient5 parent;
         
@@ -11536,7 +11550,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnLeaveFullScreenMode(this.parent, onleavefullscreenmodeEvent);
         }
         
-        public virtual void OnChannelReceivedData(string chanName, string data) {
+        public virtual void OnChannelReceivedData(BinaryString chanName, BinaryString data) {
             IMsTscAxEvents_OnChannelReceivedDataEvent onchannelreceiveddataEvent = new IMsTscAxEvents_OnChannelReceivedDataEvent(chanName, data);
             this.parent.RaiseOnOnChannelReceivedData(this.parent, onchannelreceiveddataEvent);
         }
@@ -11582,7 +11596,7 @@ namespace AxMSTSCLib {
             pfAllowClose = onconfirmcloseEvent.pfAllowClose;
         }
         
-        public virtual void OnReceivedTSPublicKey(string publicKey, out bool pfContinueLogon) {
+        public virtual void OnReceivedTSPublicKey(BinaryString publicKey, out bool pfContinueLogon) {
             IMsTscAxEvents_OnReceivedTSPublicKeyEvent onreceivedtspublickeyEvent = new IMsTscAxEvents_OnReceivedTSPublicKeyEvent(publicKey);
             this.parent.RaiseOnOnReceivedTSPublicKey(this.parent, onreceivedtspublickeyEvent);
             pfContinueLogon = onreceivedtspublickeyEvent.pfContinueLogon;
@@ -11604,7 +11618,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnAuthenticationWarningDismissed(this.parent, onauthenticationwarningdismissedEvent);
         }
         
-        public virtual void OnRemoteProgramResult(string bstrRemoteProgram, MSTSCLib.RemoteProgramResult lError, bool vbIsExecutable) {
+        public virtual void OnRemoteProgramResult(BinaryString bstrRemoteProgram, MSTSCLib.RemoteProgramResult lError, bool vbIsExecutable) {
             IMsTscAxEvents_OnRemoteProgramResultEvent onremoteprogramresultEvent = new IMsTscAxEvents_OnRemoteProgramResultEvent(bstrRemoteProgram, lError, vbIsExecutable);
             this.parent.RaiseOnOnRemoteProgramResult(this.parent, onremoteprogramresultEvent);
         }
@@ -11630,7 +11644,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnFocusReleased(this.parent, onfocusreleasedEvent);
         }
         
-        public virtual void OnUserNameAcquired(string bstrUserName) {
+        public virtual void OnUserNameAcquired(BinaryString bstrUserName) {
             IMsTscAxEvents_OnUserNameAcquiredEvent onusernameacquiredEvent = new IMsTscAxEvents_OnUserNameAcquiredEvent(bstrUserName);
             this.parent.RaiseOnOnUserNameAcquired(this.parent, onusernameacquiredEvent);
         }
@@ -11640,7 +11654,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnMouseInputModeChanged(this.parent, onmouseinputmodechangedEvent);
         }
         
-        public virtual void OnServiceMessageReceived(string serviceMessage) {
+        public virtual void OnServiceMessageReceived(BinaryString serviceMessage) {
             IMsTscAxEvents_OnServiceMessageReceivedEvent onservicemessagereceivedEvent = new IMsTscAxEvents_OnServiceMessageReceivedEvent(serviceMessage);
             this.parent.RaiseOnOnServiceMessageReceived(this.parent, onservicemessagereceivedEvent);
         }
@@ -12256,7 +12270,7 @@ namespace AxMSTSCLib {
         protected override void CreateSink() {
             try {
                 this.eventMulticaster = new AxMsRdpClient6NotSafeForScriptingEventMulticaster(this);
-                this.cookie = new System.Windows.Forms.AxHost.ConnectionPointCookie(this.ocx, this.eventMulticaster, typeof(MSTSCLib.IMsTscAxEvents));
+                this.cookie = new System.Windows.Forms.AxHost.ConnectionPointCookie(MSTSCLib.ProxyObject.Unpack(this.ocx), this.eventMulticaster, typeof(MsRdpEx.Interop.Compatibility.IMsTscAxEvents));
             }
             catch (System.Exception ) {
             }
@@ -12471,8 +12485,9 @@ namespace AxMSTSCLib {
         }
     }
     
+    [GeneratedComClass]
     [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
-    public class AxMsRdpClient6NotSafeForScriptingEventMulticaster : MSTSCLib.IMsTscAxEvents {
+    public partial class AxMsRdpClient6NotSafeForScriptingEventMulticaster : MSTSCLib.IMsTscAxEvents, MsRdpEx.Interop.Compatibility.IMsTscAxEvents {
         
         private AxMsRdpClient6NotSafeForScripting parent;
         
@@ -12510,7 +12525,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnLeaveFullScreenMode(this.parent, onleavefullscreenmodeEvent);
         }
         
-        public virtual void OnChannelReceivedData(string chanName, string data) {
+        public virtual void OnChannelReceivedData(BinaryString chanName, BinaryString data) {
             IMsTscAxEvents_OnChannelReceivedDataEvent onchannelreceiveddataEvent = new IMsTscAxEvents_OnChannelReceivedDataEvent(chanName, data);
             this.parent.RaiseOnOnChannelReceivedData(this.parent, onchannelreceiveddataEvent);
         }
@@ -12556,7 +12571,7 @@ namespace AxMSTSCLib {
             pfAllowClose = onconfirmcloseEvent.pfAllowClose;
         }
         
-        public virtual void OnReceivedTSPublicKey(string publicKey, out bool pfContinueLogon) {
+        public virtual void OnReceivedTSPublicKey(BinaryString publicKey, out bool pfContinueLogon) {
             IMsTscAxEvents_OnReceivedTSPublicKeyEvent onreceivedtspublickeyEvent = new IMsTscAxEvents_OnReceivedTSPublicKeyEvent(publicKey);
             this.parent.RaiseOnOnReceivedTSPublicKey(this.parent, onreceivedtspublickeyEvent);
             pfContinueLogon = onreceivedtspublickeyEvent.pfContinueLogon;
@@ -12578,7 +12593,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnAuthenticationWarningDismissed(this.parent, onauthenticationwarningdismissedEvent);
         }
         
-        public virtual void OnRemoteProgramResult(string bstrRemoteProgram, MSTSCLib.RemoteProgramResult lError, bool vbIsExecutable) {
+        public virtual void OnRemoteProgramResult(BinaryString bstrRemoteProgram, MSTSCLib.RemoteProgramResult lError, bool vbIsExecutable) {
             IMsTscAxEvents_OnRemoteProgramResultEvent onremoteprogramresultEvent = new IMsTscAxEvents_OnRemoteProgramResultEvent(bstrRemoteProgram, lError, vbIsExecutable);
             this.parent.RaiseOnOnRemoteProgramResult(this.parent, onremoteprogramresultEvent);
         }
@@ -12604,7 +12619,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnFocusReleased(this.parent, onfocusreleasedEvent);
         }
         
-        public virtual void OnUserNameAcquired(string bstrUserName) {
+        public virtual void OnUserNameAcquired(BinaryString bstrUserName) {
             IMsTscAxEvents_OnUserNameAcquiredEvent onusernameacquiredEvent = new IMsTscAxEvents_OnUserNameAcquiredEvent(bstrUserName);
             this.parent.RaiseOnOnUserNameAcquired(this.parent, onusernameacquiredEvent);
         }
@@ -12614,7 +12629,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnMouseInputModeChanged(this.parent, onmouseinputmodechangedEvent);
         }
         
-        public virtual void OnServiceMessageReceived(string serviceMessage) {
+        public virtual void OnServiceMessageReceived(BinaryString serviceMessage) {
             IMsTscAxEvents_OnServiceMessageReceivedEvent onservicemessagereceivedEvent = new IMsTscAxEvents_OnServiceMessageReceivedEvent(serviceMessage);
             this.parent.RaiseOnOnServiceMessageReceived(this.parent, onservicemessagereceivedEvent);
         }
@@ -13230,7 +13245,7 @@ namespace AxMSTSCLib {
         protected override void CreateSink() {
             try {
                 this.eventMulticaster = new AxMsRdpClient6EventMulticaster(this);
-                this.cookie = new System.Windows.Forms.AxHost.ConnectionPointCookie(this.ocx, this.eventMulticaster, typeof(MSTSCLib.IMsTscAxEvents));
+                this.cookie = new System.Windows.Forms.AxHost.ConnectionPointCookie(MSTSCLib.ProxyObject.Unpack(this.ocx), this.eventMulticaster, typeof(MsRdpEx.Interop.Compatibility.IMsTscAxEvents));
             }
             catch (System.Exception ) {
             }
@@ -13445,8 +13460,9 @@ namespace AxMSTSCLib {
         }
     }
     
+    [GeneratedComClass]
     [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
-    public class AxMsRdpClient6EventMulticaster : MSTSCLib.IMsTscAxEvents {
+    public partial class AxMsRdpClient6EventMulticaster : MSTSCLib.IMsTscAxEvents, MsRdpEx.Interop.Compatibility.IMsTscAxEvents {
         
         private AxMsRdpClient6 parent;
         
@@ -13484,7 +13500,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnLeaveFullScreenMode(this.parent, onleavefullscreenmodeEvent);
         }
         
-        public virtual void OnChannelReceivedData(string chanName, string data) {
+        public virtual void OnChannelReceivedData(BinaryString chanName, BinaryString data) {
             IMsTscAxEvents_OnChannelReceivedDataEvent onchannelreceiveddataEvent = new IMsTscAxEvents_OnChannelReceivedDataEvent(chanName, data);
             this.parent.RaiseOnOnChannelReceivedData(this.parent, onchannelreceiveddataEvent);
         }
@@ -13530,7 +13546,7 @@ namespace AxMSTSCLib {
             pfAllowClose = onconfirmcloseEvent.pfAllowClose;
         }
         
-        public virtual void OnReceivedTSPublicKey(string publicKey, out bool pfContinueLogon) {
+        public virtual void OnReceivedTSPublicKey(BinaryString publicKey, out bool pfContinueLogon) {
             IMsTscAxEvents_OnReceivedTSPublicKeyEvent onreceivedtspublickeyEvent = new IMsTscAxEvents_OnReceivedTSPublicKeyEvent(publicKey);
             this.parent.RaiseOnOnReceivedTSPublicKey(this.parent, onreceivedtspublickeyEvent);
             pfContinueLogon = onreceivedtspublickeyEvent.pfContinueLogon;
@@ -13552,7 +13568,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnAuthenticationWarningDismissed(this.parent, onauthenticationwarningdismissedEvent);
         }
         
-        public virtual void OnRemoteProgramResult(string bstrRemoteProgram, MSTSCLib.RemoteProgramResult lError, bool vbIsExecutable) {
+        public virtual void OnRemoteProgramResult(BinaryString bstrRemoteProgram, MSTSCLib.RemoteProgramResult lError, bool vbIsExecutable) {
             IMsTscAxEvents_OnRemoteProgramResultEvent onremoteprogramresultEvent = new IMsTscAxEvents_OnRemoteProgramResultEvent(bstrRemoteProgram, lError, vbIsExecutable);
             this.parent.RaiseOnOnRemoteProgramResult(this.parent, onremoteprogramresultEvent);
         }
@@ -13578,7 +13594,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnFocusReleased(this.parent, onfocusreleasedEvent);
         }
         
-        public virtual void OnUserNameAcquired(string bstrUserName) {
+        public virtual void OnUserNameAcquired(BinaryString bstrUserName) {
             IMsTscAxEvents_OnUserNameAcquiredEvent onusernameacquiredEvent = new IMsTscAxEvents_OnUserNameAcquiredEvent(bstrUserName);
             this.parent.RaiseOnOnUserNameAcquired(this.parent, onusernameacquiredEvent);
         }
@@ -13588,7 +13604,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnMouseInputModeChanged(this.parent, onmouseinputmodechangedEvent);
         }
         
-        public virtual void OnServiceMessageReceived(string serviceMessage) {
+        public virtual void OnServiceMessageReceived(BinaryString serviceMessage) {
             IMsTscAxEvents_OnServiceMessageReceivedEvent onservicemessagereceivedEvent = new IMsTscAxEvents_OnServiceMessageReceivedEvent(serviceMessage);
             this.parent.RaiseOnOnServiceMessageReceived(this.parent, onservicemessagereceivedEvent);
         }
@@ -14260,7 +14276,7 @@ namespace AxMSTSCLib {
         protected override void CreateSink() {
             try {
                 this.eventMulticaster = new AxMsRdpClient7NotSafeForScriptingEventMulticaster(this);
-                this.cookie = new System.Windows.Forms.AxHost.ConnectionPointCookie(this.ocx, this.eventMulticaster, typeof(MSTSCLib.IMsTscAxEvents));
+                this.cookie = new System.Windows.Forms.AxHost.ConnectionPointCookie(MSTSCLib.ProxyObject.Unpack(this.ocx), this.eventMulticaster, typeof(MsRdpEx.Interop.Compatibility.IMsTscAxEvents));
             }
             catch (System.Exception ) {
             }
@@ -14475,8 +14491,9 @@ namespace AxMSTSCLib {
         }
     }
     
+    [GeneratedComClass]
     [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
-    public class AxMsRdpClient7NotSafeForScriptingEventMulticaster : MSTSCLib.IMsTscAxEvents {
+    public partial class AxMsRdpClient7NotSafeForScriptingEventMulticaster : MSTSCLib.IMsTscAxEvents, MsRdpEx.Interop.Compatibility.IMsTscAxEvents {
         
         private AxMsRdpClient7NotSafeForScripting parent;
         
@@ -14514,7 +14531,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnLeaveFullScreenMode(this.parent, onleavefullscreenmodeEvent);
         }
         
-        public virtual void OnChannelReceivedData(string chanName, string data) {
+        public virtual void OnChannelReceivedData(BinaryString chanName, BinaryString data) {
             IMsTscAxEvents_OnChannelReceivedDataEvent onchannelreceiveddataEvent = new IMsTscAxEvents_OnChannelReceivedDataEvent(chanName, data);
             this.parent.RaiseOnOnChannelReceivedData(this.parent, onchannelreceiveddataEvent);
         }
@@ -14560,7 +14577,7 @@ namespace AxMSTSCLib {
             pfAllowClose = onconfirmcloseEvent.pfAllowClose;
         }
         
-        public virtual void OnReceivedTSPublicKey(string publicKey, out bool pfContinueLogon) {
+        public virtual void OnReceivedTSPublicKey(BinaryString publicKey, out bool pfContinueLogon) {
             IMsTscAxEvents_OnReceivedTSPublicKeyEvent onreceivedtspublickeyEvent = new IMsTscAxEvents_OnReceivedTSPublicKeyEvent(publicKey);
             this.parent.RaiseOnOnReceivedTSPublicKey(this.parent, onreceivedtspublickeyEvent);
             pfContinueLogon = onreceivedtspublickeyEvent.pfContinueLogon;
@@ -14582,7 +14599,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnAuthenticationWarningDismissed(this.parent, onauthenticationwarningdismissedEvent);
         }
         
-        public virtual void OnRemoteProgramResult(string bstrRemoteProgram, MSTSCLib.RemoteProgramResult lError, bool vbIsExecutable) {
+        public virtual void OnRemoteProgramResult(BinaryString bstrRemoteProgram, MSTSCLib.RemoteProgramResult lError, bool vbIsExecutable) {
             IMsTscAxEvents_OnRemoteProgramResultEvent onremoteprogramresultEvent = new IMsTscAxEvents_OnRemoteProgramResultEvent(bstrRemoteProgram, lError, vbIsExecutable);
             this.parent.RaiseOnOnRemoteProgramResult(this.parent, onremoteprogramresultEvent);
         }
@@ -14608,7 +14625,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnFocusReleased(this.parent, onfocusreleasedEvent);
         }
         
-        public virtual void OnUserNameAcquired(string bstrUserName) {
+        public virtual void OnUserNameAcquired(BinaryString bstrUserName) {
             IMsTscAxEvents_OnUserNameAcquiredEvent onusernameacquiredEvent = new IMsTscAxEvents_OnUserNameAcquiredEvent(bstrUserName);
             this.parent.RaiseOnOnUserNameAcquired(this.parent, onusernameacquiredEvent);
         }
@@ -14618,7 +14635,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnMouseInputModeChanged(this.parent, onmouseinputmodechangedEvent);
         }
         
-        public virtual void OnServiceMessageReceived(string serviceMessage) {
+        public virtual void OnServiceMessageReceived(BinaryString serviceMessage) {
             IMsTscAxEvents_OnServiceMessageReceivedEvent onservicemessagereceivedEvent = new IMsTscAxEvents_OnServiceMessageReceivedEvent(serviceMessage);
             this.parent.RaiseOnOnServiceMessageReceived(this.parent, onservicemessagereceivedEvent);
         }
@@ -15290,7 +15307,7 @@ namespace AxMSTSCLib {
         protected override void CreateSink() {
             try {
                 this.eventMulticaster = new AxMsRdpClient7EventMulticaster(this);
-                this.cookie = new System.Windows.Forms.AxHost.ConnectionPointCookie(this.ocx, this.eventMulticaster, typeof(MSTSCLib.IMsTscAxEvents));
+                this.cookie = new System.Windows.Forms.AxHost.ConnectionPointCookie(MSTSCLib.ProxyObject.Unpack(this.ocx), this.eventMulticaster, typeof(MsRdpEx.Interop.Compatibility.IMsTscAxEvents));
             }
             catch (System.Exception ) {
             }
@@ -15505,8 +15522,9 @@ namespace AxMSTSCLib {
         }
     }
     
+    [GeneratedComClass]
     [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
-    public class AxMsRdpClient7EventMulticaster : MSTSCLib.IMsTscAxEvents {
+    public partial class AxMsRdpClient7EventMulticaster : MSTSCLib.IMsTscAxEvents, MsRdpEx.Interop.Compatibility.IMsTscAxEvents {
         
         private AxMsRdpClient7 parent;
         
@@ -15544,7 +15562,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnLeaveFullScreenMode(this.parent, onleavefullscreenmodeEvent);
         }
         
-        public virtual void OnChannelReceivedData(string chanName, string data) {
+        public virtual void OnChannelReceivedData(BinaryString chanName, BinaryString data) {
             IMsTscAxEvents_OnChannelReceivedDataEvent onchannelreceiveddataEvent = new IMsTscAxEvents_OnChannelReceivedDataEvent(chanName, data);
             this.parent.RaiseOnOnChannelReceivedData(this.parent, onchannelreceiveddataEvent);
         }
@@ -15590,7 +15608,7 @@ namespace AxMSTSCLib {
             pfAllowClose = onconfirmcloseEvent.pfAllowClose;
         }
         
-        public virtual void OnReceivedTSPublicKey(string publicKey, out bool pfContinueLogon) {
+        public virtual void OnReceivedTSPublicKey(BinaryString publicKey, out bool pfContinueLogon) {
             IMsTscAxEvents_OnReceivedTSPublicKeyEvent onreceivedtspublickeyEvent = new IMsTscAxEvents_OnReceivedTSPublicKeyEvent(publicKey);
             this.parent.RaiseOnOnReceivedTSPublicKey(this.parent, onreceivedtspublickeyEvent);
             pfContinueLogon = onreceivedtspublickeyEvent.pfContinueLogon;
@@ -15612,7 +15630,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnAuthenticationWarningDismissed(this.parent, onauthenticationwarningdismissedEvent);
         }
         
-        public virtual void OnRemoteProgramResult(string bstrRemoteProgram, MSTSCLib.RemoteProgramResult lError, bool vbIsExecutable) {
+        public virtual void OnRemoteProgramResult(BinaryString bstrRemoteProgram, MSTSCLib.RemoteProgramResult lError, bool vbIsExecutable) {
             IMsTscAxEvents_OnRemoteProgramResultEvent onremoteprogramresultEvent = new IMsTscAxEvents_OnRemoteProgramResultEvent(bstrRemoteProgram, lError, vbIsExecutable);
             this.parent.RaiseOnOnRemoteProgramResult(this.parent, onremoteprogramresultEvent);
         }
@@ -15638,7 +15656,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnFocusReleased(this.parent, onfocusreleasedEvent);
         }
         
-        public virtual void OnUserNameAcquired(string bstrUserName) {
+        public virtual void OnUserNameAcquired(BinaryString bstrUserName) {
             IMsTscAxEvents_OnUserNameAcquiredEvent onusernameacquiredEvent = new IMsTscAxEvents_OnUserNameAcquiredEvent(bstrUserName);
             this.parent.RaiseOnOnUserNameAcquired(this.parent, onusernameacquiredEvent);
         }
@@ -15648,7 +15666,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnMouseInputModeChanged(this.parent, onmouseinputmodechangedEvent);
         }
         
-        public virtual void OnServiceMessageReceived(string serviceMessage) {
+        public virtual void OnServiceMessageReceived(BinaryString serviceMessage) {
             IMsTscAxEvents_OnServiceMessageReceivedEvent onservicemessagereceivedEvent = new IMsTscAxEvents_OnServiceMessageReceivedEvent(serviceMessage);
             this.parent.RaiseOnOnServiceMessageReceived(this.parent, onservicemessagereceivedEvent);
         }
@@ -16347,7 +16365,7 @@ namespace AxMSTSCLib {
         protected override void CreateSink() {
             try {
                 this.eventMulticaster = new AxMsRdpClient8NotSafeForScriptingEventMulticaster(this);
-                this.cookie = new System.Windows.Forms.AxHost.ConnectionPointCookie(this.ocx, this.eventMulticaster, typeof(MSTSCLib.IMsTscAxEvents));
+                this.cookie = new System.Windows.Forms.AxHost.ConnectionPointCookie(MSTSCLib.ProxyObject.Unpack(this.ocx), this.eventMulticaster, typeof(MsRdpEx.Interop.Compatibility.IMsTscAxEvents));
             }
             catch (System.Exception ) {
             }
@@ -16562,8 +16580,9 @@ namespace AxMSTSCLib {
         }
     }
     
+    [GeneratedComClass]
     [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
-    public class AxMsRdpClient8NotSafeForScriptingEventMulticaster : MSTSCLib.IMsTscAxEvents {
+    public partial class AxMsRdpClient8NotSafeForScriptingEventMulticaster : MSTSCLib.IMsTscAxEvents, MsRdpEx.Interop.Compatibility.IMsTscAxEvents {
         
         private AxMsRdpClient8NotSafeForScripting parent;
         
@@ -16601,7 +16620,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnLeaveFullScreenMode(this.parent, onleavefullscreenmodeEvent);
         }
         
-        public virtual void OnChannelReceivedData(string chanName, string data) {
+        public virtual void OnChannelReceivedData(BinaryString chanName, BinaryString data) {
             IMsTscAxEvents_OnChannelReceivedDataEvent onchannelreceiveddataEvent = new IMsTscAxEvents_OnChannelReceivedDataEvent(chanName, data);
             this.parent.RaiseOnOnChannelReceivedData(this.parent, onchannelreceiveddataEvent);
         }
@@ -16647,7 +16666,7 @@ namespace AxMSTSCLib {
             pfAllowClose = onconfirmcloseEvent.pfAllowClose;
         }
         
-        public virtual void OnReceivedTSPublicKey(string publicKey, out bool pfContinueLogon) {
+        public virtual void OnReceivedTSPublicKey(BinaryString publicKey, out bool pfContinueLogon) {
             IMsTscAxEvents_OnReceivedTSPublicKeyEvent onreceivedtspublickeyEvent = new IMsTscAxEvents_OnReceivedTSPublicKeyEvent(publicKey);
             this.parent.RaiseOnOnReceivedTSPublicKey(this.parent, onreceivedtspublickeyEvent);
             pfContinueLogon = onreceivedtspublickeyEvent.pfContinueLogon;
@@ -16669,7 +16688,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnAuthenticationWarningDismissed(this.parent, onauthenticationwarningdismissedEvent);
         }
         
-        public virtual void OnRemoteProgramResult(string bstrRemoteProgram, MSTSCLib.RemoteProgramResult lError, bool vbIsExecutable) {
+        public virtual void OnRemoteProgramResult(BinaryString bstrRemoteProgram, MSTSCLib.RemoteProgramResult lError, bool vbIsExecutable) {
             IMsTscAxEvents_OnRemoteProgramResultEvent onremoteprogramresultEvent = new IMsTscAxEvents_OnRemoteProgramResultEvent(bstrRemoteProgram, lError, vbIsExecutable);
             this.parent.RaiseOnOnRemoteProgramResult(this.parent, onremoteprogramresultEvent);
         }
@@ -16695,7 +16714,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnFocusReleased(this.parent, onfocusreleasedEvent);
         }
         
-        public virtual void OnUserNameAcquired(string bstrUserName) {
+        public virtual void OnUserNameAcquired(BinaryString bstrUserName) {
             IMsTscAxEvents_OnUserNameAcquiredEvent onusernameacquiredEvent = new IMsTscAxEvents_OnUserNameAcquiredEvent(bstrUserName);
             this.parent.RaiseOnOnUserNameAcquired(this.parent, onusernameacquiredEvent);
         }
@@ -16705,7 +16724,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnMouseInputModeChanged(this.parent, onmouseinputmodechangedEvent);
         }
         
-        public virtual void OnServiceMessageReceived(string serviceMessage) {
+        public virtual void OnServiceMessageReceived(BinaryString serviceMessage) {
             IMsTscAxEvents_OnServiceMessageReceivedEvent onservicemessagereceivedEvent = new IMsTscAxEvents_OnServiceMessageReceivedEvent(serviceMessage);
             this.parent.RaiseOnOnServiceMessageReceived(this.parent, onservicemessagereceivedEvent);
         }
@@ -17404,7 +17423,7 @@ namespace AxMSTSCLib {
         protected override void CreateSink() {
             try {
                 this.eventMulticaster = new AxMsRdpClient8EventMulticaster(this);
-                this.cookie = new System.Windows.Forms.AxHost.ConnectionPointCookie(this.ocx, this.eventMulticaster, typeof(MSTSCLib.IMsTscAxEvents));
+                this.cookie = new System.Windows.Forms.AxHost.ConnectionPointCookie(MSTSCLib.ProxyObject.Unpack(this.ocx), this.eventMulticaster, typeof(MsRdpEx.Interop.Compatibility.IMsTscAxEvents));
             }
             catch (System.Exception ) {
             }
@@ -17619,8 +17638,9 @@ namespace AxMSTSCLib {
         }
     }
     
+    [GeneratedComClass]
     [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
-    public class AxMsRdpClient8EventMulticaster : MSTSCLib.IMsTscAxEvents {
+    public partial class AxMsRdpClient8EventMulticaster : MSTSCLib.IMsTscAxEvents, MsRdpEx.Interop.Compatibility.IMsTscAxEvents {
         
         private AxMsRdpClient8 parent;
         
@@ -17658,7 +17678,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnLeaveFullScreenMode(this.parent, onleavefullscreenmodeEvent);
         }
         
-        public virtual void OnChannelReceivedData(string chanName, string data) {
+        public virtual void OnChannelReceivedData(BinaryString chanName, BinaryString data) {
             IMsTscAxEvents_OnChannelReceivedDataEvent onchannelreceiveddataEvent = new IMsTscAxEvents_OnChannelReceivedDataEvent(chanName, data);
             this.parent.RaiseOnOnChannelReceivedData(this.parent, onchannelreceiveddataEvent);
         }
@@ -17704,7 +17724,7 @@ namespace AxMSTSCLib {
             pfAllowClose = onconfirmcloseEvent.pfAllowClose;
         }
         
-        public virtual void OnReceivedTSPublicKey(string publicKey, out bool pfContinueLogon) {
+        public virtual void OnReceivedTSPublicKey(BinaryString publicKey, out bool pfContinueLogon) {
             IMsTscAxEvents_OnReceivedTSPublicKeyEvent onreceivedtspublickeyEvent = new IMsTscAxEvents_OnReceivedTSPublicKeyEvent(publicKey);
             this.parent.RaiseOnOnReceivedTSPublicKey(this.parent, onreceivedtspublickeyEvent);
             pfContinueLogon = onreceivedtspublickeyEvent.pfContinueLogon;
@@ -17726,7 +17746,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnAuthenticationWarningDismissed(this.parent, onauthenticationwarningdismissedEvent);
         }
         
-        public virtual void OnRemoteProgramResult(string bstrRemoteProgram, MSTSCLib.RemoteProgramResult lError, bool vbIsExecutable) {
+        public virtual void OnRemoteProgramResult(BinaryString bstrRemoteProgram, MSTSCLib.RemoteProgramResult lError, bool vbIsExecutable) {
             IMsTscAxEvents_OnRemoteProgramResultEvent onremoteprogramresultEvent = new IMsTscAxEvents_OnRemoteProgramResultEvent(bstrRemoteProgram, lError, vbIsExecutable);
             this.parent.RaiseOnOnRemoteProgramResult(this.parent, onremoteprogramresultEvent);
         }
@@ -17752,7 +17772,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnFocusReleased(this.parent, onfocusreleasedEvent);
         }
         
-        public virtual void OnUserNameAcquired(string bstrUserName) {
+        public virtual void OnUserNameAcquired(BinaryString bstrUserName) {
             IMsTscAxEvents_OnUserNameAcquiredEvent onusernameacquiredEvent = new IMsTscAxEvents_OnUserNameAcquiredEvent(bstrUserName);
             this.parent.RaiseOnOnUserNameAcquired(this.parent, onusernameacquiredEvent);
         }
@@ -17762,7 +17782,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnMouseInputModeChanged(this.parent, onmouseinputmodechangedEvent);
         }
         
-        public virtual void OnServiceMessageReceived(string serviceMessage) {
+        public virtual void OnServiceMessageReceived(BinaryString serviceMessage) {
             IMsTscAxEvents_OnServiceMessageReceivedEvent onservicemessagereceivedEvent = new IMsTscAxEvents_OnServiceMessageReceivedEvent(serviceMessage);
             this.parent.RaiseOnOnServiceMessageReceived(this.parent, onservicemessagereceivedEvent);
         }
@@ -18501,7 +18521,7 @@ namespace AxMSTSCLib {
         protected override void CreateSink() {
             try {
                 this.eventMulticaster = new AxMsRdpClient9NotSafeForScriptingEventMulticaster(this);
-                this.cookie = new System.Windows.Forms.AxHost.ConnectionPointCookie(this.ocx, this.eventMulticaster, typeof(MSTSCLib.IMsTscAxEvents));
+                this.cookie = new System.Windows.Forms.AxHost.ConnectionPointCookie(MSTSCLib.ProxyObject.Unpack(this.ocx), this.eventMulticaster, typeof(MsRdpEx.Interop.Compatibility.IMsTscAxEvents));
             }
             catch (System.Exception ) {
             }
@@ -18716,8 +18736,9 @@ namespace AxMSTSCLib {
         }
     }
     
+    [GeneratedComClass]
     [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
-    public class AxMsRdpClient9NotSafeForScriptingEventMulticaster : MSTSCLib.IMsTscAxEvents {
+    public partial class AxMsRdpClient9NotSafeForScriptingEventMulticaster : MSTSCLib.IMsTscAxEvents, MsRdpEx.Interop.Compatibility.IMsTscAxEvents {
         
         private AxMsRdpClient9NotSafeForScripting parent;
         
@@ -18755,7 +18776,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnLeaveFullScreenMode(this.parent, onleavefullscreenmodeEvent);
         }
         
-        public virtual void OnChannelReceivedData(string chanName, string data) {
+        public virtual void OnChannelReceivedData(BinaryString chanName, BinaryString data) {
             IMsTscAxEvents_OnChannelReceivedDataEvent onchannelreceiveddataEvent = new IMsTscAxEvents_OnChannelReceivedDataEvent(chanName, data);
             this.parent.RaiseOnOnChannelReceivedData(this.parent, onchannelreceiveddataEvent);
         }
@@ -18801,7 +18822,7 @@ namespace AxMSTSCLib {
             pfAllowClose = onconfirmcloseEvent.pfAllowClose;
         }
         
-        public virtual void OnReceivedTSPublicKey(string publicKey, out bool pfContinueLogon) {
+        public virtual void OnReceivedTSPublicKey(BinaryString publicKey, out bool pfContinueLogon) {
             IMsTscAxEvents_OnReceivedTSPublicKeyEvent onreceivedtspublickeyEvent = new IMsTscAxEvents_OnReceivedTSPublicKeyEvent(publicKey);
             this.parent.RaiseOnOnReceivedTSPublicKey(this.parent, onreceivedtspublickeyEvent);
             pfContinueLogon = onreceivedtspublickeyEvent.pfContinueLogon;
@@ -18823,7 +18844,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnAuthenticationWarningDismissed(this.parent, onauthenticationwarningdismissedEvent);
         }
         
-        public virtual void OnRemoteProgramResult(string bstrRemoteProgram, MSTSCLib.RemoteProgramResult lError, bool vbIsExecutable) {
+        public virtual void OnRemoteProgramResult(BinaryString bstrRemoteProgram, MSTSCLib.RemoteProgramResult lError, bool vbIsExecutable) {
             IMsTscAxEvents_OnRemoteProgramResultEvent onremoteprogramresultEvent = new IMsTscAxEvents_OnRemoteProgramResultEvent(bstrRemoteProgram, lError, vbIsExecutable);
             this.parent.RaiseOnOnRemoteProgramResult(this.parent, onremoteprogramresultEvent);
         }
@@ -18849,7 +18870,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnFocusReleased(this.parent, onfocusreleasedEvent);
         }
         
-        public virtual void OnUserNameAcquired(string bstrUserName) {
+        public virtual void OnUserNameAcquired(BinaryString bstrUserName) {
             IMsTscAxEvents_OnUserNameAcquiredEvent onusernameacquiredEvent = new IMsTscAxEvents_OnUserNameAcquiredEvent(bstrUserName);
             this.parent.RaiseOnOnUserNameAcquired(this.parent, onusernameacquiredEvent);
         }
@@ -18859,7 +18880,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnMouseInputModeChanged(this.parent, onmouseinputmodechangedEvent);
         }
         
-        public virtual void OnServiceMessageReceived(string serviceMessage) {
+        public virtual void OnServiceMessageReceived(BinaryString serviceMessage) {
             IMsTscAxEvents_OnServiceMessageReceivedEvent onservicemessagereceivedEvent = new IMsTscAxEvents_OnServiceMessageReceivedEvent(serviceMessage);
             this.parent.RaiseOnOnServiceMessageReceived(this.parent, onservicemessagereceivedEvent);
         }
@@ -19598,7 +19619,7 @@ namespace AxMSTSCLib {
         protected override void CreateSink() {
             try {
                 this.eventMulticaster = new AxMsRdpClient9EventMulticaster(this);
-                this.cookie = new System.Windows.Forms.AxHost.ConnectionPointCookie(this.ocx, this.eventMulticaster, typeof(MSTSCLib.IMsTscAxEvents));
+                this.cookie = new System.Windows.Forms.AxHost.ConnectionPointCookie(MSTSCLib.ProxyObject.Unpack(this.ocx), this.eventMulticaster, typeof(MsRdpEx.Interop.Compatibility.IMsTscAxEvents));
             }
             catch (System.Exception ) {
             }
@@ -19813,8 +19834,9 @@ namespace AxMSTSCLib {
         }
     }
     
+    [GeneratedComClass]
     [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
-    public class AxMsRdpClient9EventMulticaster : MSTSCLib.IMsTscAxEvents {
+    public partial class AxMsRdpClient9EventMulticaster : MSTSCLib.IMsTscAxEvents, MsRdpEx.Interop.Compatibility.IMsTscAxEvents {
         
         private AxMsRdpClient9 parent;
         
@@ -19852,7 +19874,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnLeaveFullScreenMode(this.parent, onleavefullscreenmodeEvent);
         }
         
-        public virtual void OnChannelReceivedData(string chanName, string data) {
+        public virtual void OnChannelReceivedData(BinaryString chanName, BinaryString data) {
             IMsTscAxEvents_OnChannelReceivedDataEvent onchannelreceiveddataEvent = new IMsTscAxEvents_OnChannelReceivedDataEvent(chanName, data);
             this.parent.RaiseOnOnChannelReceivedData(this.parent, onchannelreceiveddataEvent);
         }
@@ -19898,7 +19920,7 @@ namespace AxMSTSCLib {
             pfAllowClose = onconfirmcloseEvent.pfAllowClose;
         }
         
-        public virtual void OnReceivedTSPublicKey(string publicKey, out bool pfContinueLogon) {
+        public virtual void OnReceivedTSPublicKey(BinaryString publicKey, out bool pfContinueLogon) {
             IMsTscAxEvents_OnReceivedTSPublicKeyEvent onreceivedtspublickeyEvent = new IMsTscAxEvents_OnReceivedTSPublicKeyEvent(publicKey);
             this.parent.RaiseOnOnReceivedTSPublicKey(this.parent, onreceivedtspublickeyEvent);
             pfContinueLogon = onreceivedtspublickeyEvent.pfContinueLogon;
@@ -19920,7 +19942,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnAuthenticationWarningDismissed(this.parent, onauthenticationwarningdismissedEvent);
         }
         
-        public virtual void OnRemoteProgramResult(string bstrRemoteProgram, MSTSCLib.RemoteProgramResult lError, bool vbIsExecutable) {
+        public virtual void OnRemoteProgramResult(BinaryString bstrRemoteProgram, MSTSCLib.RemoteProgramResult lError, bool vbIsExecutable) {
             IMsTscAxEvents_OnRemoteProgramResultEvent onremoteprogramresultEvent = new IMsTscAxEvents_OnRemoteProgramResultEvent(bstrRemoteProgram, lError, vbIsExecutable);
             this.parent.RaiseOnOnRemoteProgramResult(this.parent, onremoteprogramresultEvent);
         }
@@ -19946,7 +19968,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnFocusReleased(this.parent, onfocusreleasedEvent);
         }
         
-        public virtual void OnUserNameAcquired(string bstrUserName) {
+        public virtual void OnUserNameAcquired(BinaryString bstrUserName) {
             IMsTscAxEvents_OnUserNameAcquiredEvent onusernameacquiredEvent = new IMsTscAxEvents_OnUserNameAcquiredEvent(bstrUserName);
             this.parent.RaiseOnOnUserNameAcquired(this.parent, onusernameacquiredEvent);
         }
@@ -19956,7 +19978,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnMouseInputModeChanged(this.parent, onmouseinputmodechangedEvent);
         }
         
-        public virtual void OnServiceMessageReceived(string serviceMessage) {
+        public virtual void OnServiceMessageReceived(BinaryString serviceMessage) {
             IMsTscAxEvents_OnServiceMessageReceivedEvent onservicemessagereceivedEvent = new IMsTscAxEvents_OnServiceMessageReceivedEvent(serviceMessage);
             this.parent.RaiseOnOnServiceMessageReceived(this.parent, onservicemessagereceivedEvent);
         }
@@ -20707,7 +20729,7 @@ namespace AxMSTSCLib {
         protected override void CreateSink() {
             try {
                 this.eventMulticaster = new AxMsRdpClient10NotSafeForScriptingEventMulticaster(this);
-                this.cookie = new System.Windows.Forms.AxHost.ConnectionPointCookie(this.ocx, this.eventMulticaster, typeof(MSTSCLib.IMsTscAxEvents));
+                this.cookie = new System.Windows.Forms.AxHost.ConnectionPointCookie(MSTSCLib.ProxyObject.Unpack(this.ocx), this.eventMulticaster, typeof(MsRdpEx.Interop.Compatibility.IMsTscAxEvents));
             }
             catch (System.Exception ) {
             }
@@ -20922,8 +20944,9 @@ namespace AxMSTSCLib {
         }
     }
     
+    [GeneratedComClass]
     [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
-    public class AxMsRdpClient10NotSafeForScriptingEventMulticaster : MSTSCLib.IMsTscAxEvents {
+    public partial class AxMsRdpClient10NotSafeForScriptingEventMulticaster : MSTSCLib.IMsTscAxEvents, MsRdpEx.Interop.Compatibility.IMsTscAxEvents {
         
         private AxMsRdpClient10NotSafeForScripting parent;
         
@@ -20961,7 +20984,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnLeaveFullScreenMode(this.parent, onleavefullscreenmodeEvent);
         }
         
-        public virtual void OnChannelReceivedData(string chanName, string data) {
+        public virtual void OnChannelReceivedData(BinaryString chanName, BinaryString data) {
             IMsTscAxEvents_OnChannelReceivedDataEvent onchannelreceiveddataEvent = new IMsTscAxEvents_OnChannelReceivedDataEvent(chanName, data);
             this.parent.RaiseOnOnChannelReceivedData(this.parent, onchannelreceiveddataEvent);
         }
@@ -21007,7 +21030,7 @@ namespace AxMSTSCLib {
             pfAllowClose = onconfirmcloseEvent.pfAllowClose;
         }
         
-        public virtual void OnReceivedTSPublicKey(string publicKey, out bool pfContinueLogon) {
+        public virtual void OnReceivedTSPublicKey(BinaryString publicKey, out bool pfContinueLogon) {
             IMsTscAxEvents_OnReceivedTSPublicKeyEvent onreceivedtspublickeyEvent = new IMsTscAxEvents_OnReceivedTSPublicKeyEvent(publicKey);
             this.parent.RaiseOnOnReceivedTSPublicKey(this.parent, onreceivedtspublickeyEvent);
             pfContinueLogon = onreceivedtspublickeyEvent.pfContinueLogon;
@@ -21029,7 +21052,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnAuthenticationWarningDismissed(this.parent, onauthenticationwarningdismissedEvent);
         }
         
-        public virtual void OnRemoteProgramResult(string bstrRemoteProgram, MSTSCLib.RemoteProgramResult lError, bool vbIsExecutable) {
+        public virtual void OnRemoteProgramResult(BinaryString bstrRemoteProgram, MSTSCLib.RemoteProgramResult lError, bool vbIsExecutable) {
             IMsTscAxEvents_OnRemoteProgramResultEvent onremoteprogramresultEvent = new IMsTscAxEvents_OnRemoteProgramResultEvent(bstrRemoteProgram, lError, vbIsExecutable);
             this.parent.RaiseOnOnRemoteProgramResult(this.parent, onremoteprogramresultEvent);
         }
@@ -21055,7 +21078,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnFocusReleased(this.parent, onfocusreleasedEvent);
         }
         
-        public virtual void OnUserNameAcquired(string bstrUserName) {
+        public virtual void OnUserNameAcquired(BinaryString bstrUserName) {
             IMsTscAxEvents_OnUserNameAcquiredEvent onusernameacquiredEvent = new IMsTscAxEvents_OnUserNameAcquiredEvent(bstrUserName);
             this.parent.RaiseOnOnUserNameAcquired(this.parent, onusernameacquiredEvent);
         }
@@ -21065,7 +21088,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnMouseInputModeChanged(this.parent, onmouseinputmodechangedEvent);
         }
         
-        public virtual void OnServiceMessageReceived(string serviceMessage) {
+        public virtual void OnServiceMessageReceived(BinaryString serviceMessage) {
             IMsTscAxEvents_OnServiceMessageReceivedEvent onservicemessagereceivedEvent = new IMsTscAxEvents_OnServiceMessageReceivedEvent(serviceMessage);
             this.parent.RaiseOnOnServiceMessageReceived(this.parent, onservicemessagereceivedEvent);
         }
@@ -21816,7 +21839,7 @@ namespace AxMSTSCLib {
         protected override void CreateSink() {
             try {
                 this.eventMulticaster = new AxMsRdpClient10EventMulticaster(this);
-                this.cookie = new System.Windows.Forms.AxHost.ConnectionPointCookie(this.ocx, this.eventMulticaster, typeof(MSTSCLib.IMsTscAxEvents));
+                this.cookie = new System.Windows.Forms.AxHost.ConnectionPointCookie(MSTSCLib.ProxyObject.Unpack(this.ocx), this.eventMulticaster, typeof(MsRdpEx.Interop.Compatibility.IMsTscAxEvents));
             }
             catch (System.Exception ) {
             }
@@ -22031,8 +22054,9 @@ namespace AxMSTSCLib {
         }
     }
     
+    [GeneratedComClass]
     [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
-    public class AxMsRdpClient10EventMulticaster : MSTSCLib.IMsTscAxEvents {
+    public partial class AxMsRdpClient10EventMulticaster : MSTSCLib.IMsTscAxEvents, MsRdpEx.Interop.Compatibility.IMsTscAxEvents {
         
         private AxMsRdpClient10 parent;
         
@@ -22070,7 +22094,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnLeaveFullScreenMode(this.parent, onleavefullscreenmodeEvent);
         }
         
-        public virtual void OnChannelReceivedData(string chanName, string data) {
+        public virtual void OnChannelReceivedData(BinaryString chanName, BinaryString data) {
             IMsTscAxEvents_OnChannelReceivedDataEvent onchannelreceiveddataEvent = new IMsTscAxEvents_OnChannelReceivedDataEvent(chanName, data);
             this.parent.RaiseOnOnChannelReceivedData(this.parent, onchannelreceiveddataEvent);
         }
@@ -22116,7 +22140,7 @@ namespace AxMSTSCLib {
             pfAllowClose = onconfirmcloseEvent.pfAllowClose;
         }
         
-        public virtual void OnReceivedTSPublicKey(string publicKey, out bool pfContinueLogon) {
+        public virtual void OnReceivedTSPublicKey(BinaryString publicKey, out bool pfContinueLogon) {
             IMsTscAxEvents_OnReceivedTSPublicKeyEvent onreceivedtspublickeyEvent = new IMsTscAxEvents_OnReceivedTSPublicKeyEvent(publicKey);
             this.parent.RaiseOnOnReceivedTSPublicKey(this.parent, onreceivedtspublickeyEvent);
             pfContinueLogon = onreceivedtspublickeyEvent.pfContinueLogon;
@@ -22138,7 +22162,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnAuthenticationWarningDismissed(this.parent, onauthenticationwarningdismissedEvent);
         }
         
-        public virtual void OnRemoteProgramResult(string bstrRemoteProgram, MSTSCLib.RemoteProgramResult lError, bool vbIsExecutable) {
+        public virtual void OnRemoteProgramResult(BinaryString bstrRemoteProgram, MSTSCLib.RemoteProgramResult lError, bool vbIsExecutable) {
             IMsTscAxEvents_OnRemoteProgramResultEvent onremoteprogramresultEvent = new IMsTscAxEvents_OnRemoteProgramResultEvent(bstrRemoteProgram, lError, vbIsExecutable);
             this.parent.RaiseOnOnRemoteProgramResult(this.parent, onremoteprogramresultEvent);
         }
@@ -22164,7 +22188,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnFocusReleased(this.parent, onfocusreleasedEvent);
         }
         
-        public virtual void OnUserNameAcquired(string bstrUserName) {
+        public virtual void OnUserNameAcquired(BinaryString bstrUserName) {
             IMsTscAxEvents_OnUserNameAcquiredEvent onusernameacquiredEvent = new IMsTscAxEvents_OnUserNameAcquiredEvent(bstrUserName);
             this.parent.RaiseOnOnUserNameAcquired(this.parent, onusernameacquiredEvent);
         }
@@ -22174,7 +22198,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnMouseInputModeChanged(this.parent, onmouseinputmodechangedEvent);
         }
         
-        public virtual void OnServiceMessageReceived(string serviceMessage) {
+        public virtual void OnServiceMessageReceived(BinaryString serviceMessage) {
             IMsTscAxEvents_OnServiceMessageReceivedEvent onservicemessagereceivedEvent = new IMsTscAxEvents_OnServiceMessageReceivedEvent(serviceMessage);
             this.parent.RaiseOnOnServiceMessageReceived(this.parent, onservicemessagereceivedEvent);
         }
@@ -22925,7 +22949,7 @@ namespace AxMSTSCLib {
         protected override void CreateSink() {
             try {
                 this.eventMulticaster = new AxMsRdpClient11NotSafeForScriptingEventMulticaster(this);
-                this.cookie = new System.Windows.Forms.AxHost.ConnectionPointCookie(this.ocx, this.eventMulticaster, typeof(MSTSCLib.IMsTscAxEvents));
+                this.cookie = new System.Windows.Forms.AxHost.ConnectionPointCookie(MSTSCLib.ProxyObject.Unpack(this.ocx), this.eventMulticaster, typeof(MsRdpEx.Interop.Compatibility.IMsTscAxEvents));
             }
             catch (System.Exception ) {
             }
@@ -23140,8 +23164,9 @@ namespace AxMSTSCLib {
         }
     }
     
+    [GeneratedComClass]
     [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
-    public class AxMsRdpClient11NotSafeForScriptingEventMulticaster : MSTSCLib.IMsTscAxEvents {
+    public partial class AxMsRdpClient11NotSafeForScriptingEventMulticaster : MSTSCLib.IMsTscAxEvents, MsRdpEx.Interop.Compatibility.IMsTscAxEvents {
         
         private AxMsRdpClient11NotSafeForScripting parent;
         
@@ -23179,7 +23204,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnLeaveFullScreenMode(this.parent, onleavefullscreenmodeEvent);
         }
         
-        public virtual void OnChannelReceivedData(string chanName, string data) {
+        public virtual void OnChannelReceivedData(BinaryString chanName, BinaryString data) {
             IMsTscAxEvents_OnChannelReceivedDataEvent onchannelreceiveddataEvent = new IMsTscAxEvents_OnChannelReceivedDataEvent(chanName, data);
             this.parent.RaiseOnOnChannelReceivedData(this.parent, onchannelreceiveddataEvent);
         }
@@ -23225,7 +23250,7 @@ namespace AxMSTSCLib {
             pfAllowClose = onconfirmcloseEvent.pfAllowClose;
         }
         
-        public virtual void OnReceivedTSPublicKey(string publicKey, out bool pfContinueLogon) {
+        public virtual void OnReceivedTSPublicKey(BinaryString publicKey, out bool pfContinueLogon) {
             IMsTscAxEvents_OnReceivedTSPublicKeyEvent onreceivedtspublickeyEvent = new IMsTscAxEvents_OnReceivedTSPublicKeyEvent(publicKey);
             this.parent.RaiseOnOnReceivedTSPublicKey(this.parent, onreceivedtspublickeyEvent);
             pfContinueLogon = onreceivedtspublickeyEvent.pfContinueLogon;
@@ -23247,7 +23272,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnAuthenticationWarningDismissed(this.parent, onauthenticationwarningdismissedEvent);
         }
         
-        public virtual void OnRemoteProgramResult(string bstrRemoteProgram, MSTSCLib.RemoteProgramResult lError, bool vbIsExecutable) {
+        public virtual void OnRemoteProgramResult(BinaryString bstrRemoteProgram, MSTSCLib.RemoteProgramResult lError, bool vbIsExecutable) {
             IMsTscAxEvents_OnRemoteProgramResultEvent onremoteprogramresultEvent = new IMsTscAxEvents_OnRemoteProgramResultEvent(bstrRemoteProgram, lError, vbIsExecutable);
             this.parent.RaiseOnOnRemoteProgramResult(this.parent, onremoteprogramresultEvent);
         }
@@ -23273,7 +23298,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnFocusReleased(this.parent, onfocusreleasedEvent);
         }
         
-        public virtual void OnUserNameAcquired(string bstrUserName) {
+        public virtual void OnUserNameAcquired(BinaryString bstrUserName) {
             IMsTscAxEvents_OnUserNameAcquiredEvent onusernameacquiredEvent = new IMsTscAxEvents_OnUserNameAcquiredEvent(bstrUserName);
             this.parent.RaiseOnOnUserNameAcquired(this.parent, onusernameacquiredEvent);
         }
@@ -23283,7 +23308,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnMouseInputModeChanged(this.parent, onmouseinputmodechangedEvent);
         }
         
-        public virtual void OnServiceMessageReceived(string serviceMessage) {
+        public virtual void OnServiceMessageReceived(BinaryString serviceMessage) {
             IMsTscAxEvents_OnServiceMessageReceivedEvent onservicemessagereceivedEvent = new IMsTscAxEvents_OnServiceMessageReceivedEvent(serviceMessage);
             this.parent.RaiseOnOnServiceMessageReceived(this.parent, onservicemessagereceivedEvent);
         }
@@ -24034,7 +24059,7 @@ namespace AxMSTSCLib {
         protected override void CreateSink() {
             try {
                 this.eventMulticaster = new AxMsRdpClient11EventMulticaster(this);
-                this.cookie = new System.Windows.Forms.AxHost.ConnectionPointCookie(this.ocx, this.eventMulticaster, typeof(MSTSCLib.IMsTscAxEvents));
+                this.cookie = new System.Windows.Forms.AxHost.ConnectionPointCookie(MSTSCLib.ProxyObject.Unpack(this.ocx), this.eventMulticaster, typeof(MsRdpEx.Interop.Compatibility.IMsTscAxEvents));
             }
             catch (System.Exception ) {
             }
@@ -24249,8 +24274,9 @@ namespace AxMSTSCLib {
         }
     }
     
+    [GeneratedComClass]
     [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
-    public class AxMsRdpClient11EventMulticaster : MSTSCLib.IMsTscAxEvents {
+    public partial class AxMsRdpClient11EventMulticaster : MSTSCLib.IMsTscAxEvents, MsRdpEx.Interop.Compatibility.IMsTscAxEvents {
         
         private AxMsRdpClient11 parent;
         
@@ -24288,7 +24314,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnLeaveFullScreenMode(this.parent, onleavefullscreenmodeEvent);
         }
         
-        public virtual void OnChannelReceivedData(string chanName, string data) {
+        public virtual void OnChannelReceivedData(BinaryString chanName, BinaryString data) {
             IMsTscAxEvents_OnChannelReceivedDataEvent onchannelreceiveddataEvent = new IMsTscAxEvents_OnChannelReceivedDataEvent(chanName, data);
             this.parent.RaiseOnOnChannelReceivedData(this.parent, onchannelreceiveddataEvent);
         }
@@ -24334,7 +24360,7 @@ namespace AxMSTSCLib {
             pfAllowClose = onconfirmcloseEvent.pfAllowClose;
         }
         
-        public virtual void OnReceivedTSPublicKey(string publicKey, out bool pfContinueLogon) {
+        public virtual void OnReceivedTSPublicKey(BinaryString publicKey, out bool pfContinueLogon) {
             IMsTscAxEvents_OnReceivedTSPublicKeyEvent onreceivedtspublickeyEvent = new IMsTscAxEvents_OnReceivedTSPublicKeyEvent(publicKey);
             this.parent.RaiseOnOnReceivedTSPublicKey(this.parent, onreceivedtspublickeyEvent);
             pfContinueLogon = onreceivedtspublickeyEvent.pfContinueLogon;
@@ -24356,7 +24382,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnAuthenticationWarningDismissed(this.parent, onauthenticationwarningdismissedEvent);
         }
         
-        public virtual void OnRemoteProgramResult(string bstrRemoteProgram, MSTSCLib.RemoteProgramResult lError, bool vbIsExecutable) {
+        public virtual void OnRemoteProgramResult(BinaryString bstrRemoteProgram, MSTSCLib.RemoteProgramResult lError, bool vbIsExecutable) {
             IMsTscAxEvents_OnRemoteProgramResultEvent onremoteprogramresultEvent = new IMsTscAxEvents_OnRemoteProgramResultEvent(bstrRemoteProgram, lError, vbIsExecutable);
             this.parent.RaiseOnOnRemoteProgramResult(this.parent, onremoteprogramresultEvent);
         }
@@ -24382,7 +24408,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnFocusReleased(this.parent, onfocusreleasedEvent);
         }
         
-        public virtual void OnUserNameAcquired(string bstrUserName) {
+        public virtual void OnUserNameAcquired(BinaryString bstrUserName) {
             IMsTscAxEvents_OnUserNameAcquiredEvent onusernameacquiredEvent = new IMsTscAxEvents_OnUserNameAcquiredEvent(bstrUserName);
             this.parent.RaiseOnOnUserNameAcquired(this.parent, onusernameacquiredEvent);
         }
@@ -24392,7 +24418,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnMouseInputModeChanged(this.parent, onmouseinputmodechangedEvent);
         }
         
-        public virtual void OnServiceMessageReceived(string serviceMessage) {
+        public virtual void OnServiceMessageReceived(BinaryString serviceMessage) {
             IMsTscAxEvents_OnServiceMessageReceivedEvent onservicemessagereceivedEvent = new IMsTscAxEvents_OnServiceMessageReceivedEvent(serviceMessage);
             this.parent.RaiseOnOnServiceMessageReceived(this.parent, onservicemessagereceivedEvent);
         }
@@ -24553,7 +24579,7 @@ namespace AxMSTSCLib {
         protected override void CreateSink() {
             try {
                 this.eventMulticaster = new AxRemoteDesktopClientEventMulticaster(this);
-                this.cookie = new System.Windows.Forms.AxHost.ConnectionPointCookie(this.ocx, this.eventMulticaster, typeof(MSTSCLib.IRemoteDesktopClientEvents));
+                this.cookie = new System.Windows.Forms.AxHost.ConnectionPointCookie(MSTSCLib.ProxyObject.Unpack(this.ocx), this.eventMulticaster, typeof(MsRdpEx.Interop.Compatibility.IRemoteDesktopClientEvents));
             }
             catch (System.Exception ) {
             }
@@ -24784,8 +24810,9 @@ namespace AxMSTSCLib {
         }
     }
     
+    [GeneratedComClass]
     [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
-    public class AxRemoteDesktopClientEventMulticaster : MSTSCLib.IRemoteDesktopClientEvents {
+    public partial class AxRemoteDesktopClientEventMulticaster : MSTSCLib.IRemoteDesktopClientEvents, MsRdpEx.Interop.Compatibility.IRemoteDesktopClientEvents {
         
         private AxRemoteDesktopClient parent;
         
@@ -24808,17 +24835,17 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnLoginCompleted(this.parent, onlogincompletedEvent);
         }
         
-        public virtual void OnDisconnected(int disconnectReason, int extendedDisconnectReason, string disconnectErrorMessage) {
+        public virtual void OnDisconnected(int disconnectReason, int extendedDisconnectReason, BinaryString disconnectErrorMessage) {
             IRemoteDesktopClientEvents_OnDisconnectedEvent ondisconnectedEvent = new IRemoteDesktopClientEvents_OnDisconnectedEvent(disconnectReason, extendedDisconnectReason, disconnectErrorMessage);
             this.parent.RaiseOnOnDisconnected(this.parent, ondisconnectedEvent);
         }
         
-        public virtual void OnStatusChanged(int statusCode, string statusMessage) {
+        public virtual void OnStatusChanged(int statusCode, BinaryString statusMessage) {
             IRemoteDesktopClientEvents_OnStatusChangedEvent onstatuschangedEvent = new IRemoteDesktopClientEvents_OnStatusChangedEvent(statusCode, statusMessage);
             this.parent.RaiseOnOnStatusChanged(this.parent, onstatuschangedEvent);
         }
         
-        public virtual void OnAutoReconnecting(int disconnectReason, int extendedDisconnectReason, string disconnectErrorMessage, bool networkAvailable, int attemptCount, int maxAttemptCount) {
+        public virtual void OnAutoReconnecting(int disconnectReason, int extendedDisconnectReason, BinaryString disconnectErrorMessage, bool networkAvailable, int attemptCount, int maxAttemptCount) {
             IRemoteDesktopClientEvents_OnAutoReconnectingEvent onautoreconnectingEvent = new IRemoteDesktopClientEvents_OnAutoReconnectingEvent(disconnectReason, extendedDisconnectReason, disconnectErrorMessage, networkAvailable, attemptCount, maxAttemptCount);
             this.parent.RaiseOnOnAutoReconnecting(this.parent, onautoreconnectingEvent);
         }
@@ -24843,7 +24870,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnNetworkStatusChanged(this.parent, onnetworkstatuschangedEvent);
         }
         
-        public virtual void OnAdminMessageReceived(string adminMessage) {
+        public virtual void OnAdminMessageReceived(BinaryString adminMessage) {
             IRemoteDesktopClientEvents_OnAdminMessageReceivedEvent onadminmessagereceivedEvent = new IRemoteDesktopClientEvents_OnAdminMessageReceivedEvent(adminMessage);
             this.parent.RaiseOnOnAdminMessageReceived(this.parent, onadminmessagereceivedEvent);
         }

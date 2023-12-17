@@ -10,20 +10,20 @@ namespace MsRdpEx.Interop
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public unsafe partial interface IRemoteDesktopClientEvents : IDispatch
     {
-        [DispId(750)] void OnConnecting();
-        [DispId(751)] void OnConnected();
-        [DispId(752)] void OnLoginCompleted();
-        [DispId(753)] void OnDisconnected(int disconnectReason, int ExtendedDisconnectReason, ReadOnlyBinaryStringRef disconnectErrorMessage);
-        [DispId(754)] void OnStatusChanged(int statusCode, ReadOnlyBinaryStringRef statusMessage);
-        [DispId(755)] void OnAutoReconnecting(int disconnectReason, int ExtendedDisconnectReason, ReadOnlyBinaryStringRef disconnectErrorMessage, VariantBool networkAvailable, int attemptCount, int maxAttemptCount);
-        [DispId(756)] void OnAutoReconnected();
-        [DispId(757)] void OnDialogDisplaying();
-        [DispId(758)] void OnDialogDismissed();
-        [DispId(759)] void OnNetworkStatusChanged(uint qualityLevel, int bandwidth, int rtt);
-        [DispId(760)] void OnAdminMessageReceived(ReadOnlyBinaryStringRef adminMessage);
-        [DispId(761)] void OnKeyCombinationPressed(int keyCombination);
-        [DispId(762)] void OnRemoteDesktopSizeChanged(int width, int height);
-        [DispId(800)] void OnTouchPointerCursorMoved(int x, int y);
+        [PreserveSig, DispId(750)] void OnConnecting();
+        [PreserveSig, DispId(751)] void OnConnected();
+        [PreserveSig, DispId(752)] void OnLoginCompleted();
+        [PreserveSig, DispId(753)] void OnDisconnected(int disconnectReason, int ExtendedDisconnectReason, ReadOnlyBinaryStringRef disconnectErrorMessage);
+        [PreserveSig, DispId(754)] void OnStatusChanged(int statusCode, ReadOnlyBinaryStringRef statusMessage);
+        [PreserveSig, DispId(755)] void OnAutoReconnecting(int disconnectReason, int ExtendedDisconnectReason, ReadOnlyBinaryStringRef disconnectErrorMessage, VariantBool networkAvailable, int attemptCount, int maxAttemptCount);
+        [PreserveSig, DispId(756)] void OnAutoReconnected();
+        [PreserveSig, DispId(757)] void OnDialogDisplaying();
+        [PreserveSig, DispId(758)] void OnDialogDismissed();
+        [PreserveSig, DispId(759)] void OnNetworkStatusChanged(uint qualityLevel, int bandwidth, int rtt);
+        [PreserveSig, DispId(760)] void OnAdminMessageReceived(ReadOnlyBinaryStringRef adminMessage);
+        [PreserveSig, DispId(761)] void OnKeyCombinationPressed(int keyCombination);
+        [PreserveSig, DispId(762)] void OnRemoteDesktopSizeChanged(int width, int height);
+        [PreserveSig, DispId(800)] void OnTouchPointerCursorMoved(int x, int y);
     }
 
     [GeneratedComInterface]

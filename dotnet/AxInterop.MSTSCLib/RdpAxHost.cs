@@ -4,6 +4,10 @@ using System.IO;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
+using System.Reflection;
+using MSTSCLib;
+
+[assembly: ComVisible(false)]
 
 namespace AxMSTSCLib {
 
@@ -199,5 +203,10 @@ namespace AxMSTSCLib {
         }
 
         public AxHostEx(string clsid): base(clsid) { }
+
+        public new object GetOcx()
+        {
+            return ProxyObject.Pack(base.GetOcx());
+        }
     }
 }

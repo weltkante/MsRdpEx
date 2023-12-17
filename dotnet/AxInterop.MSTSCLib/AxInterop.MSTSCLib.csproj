@@ -10,6 +10,7 @@
     <Nullable>disable</Nullable>
     <GenerateAssemblyInfo>True</GenerateAssemblyInfo>
     <OutputPath>$(CMakeOutputPath)</OutputPath>
+    <LangVersion>12</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -19,7 +20,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <!--<Compile Remove="MSTSCLib/Legacy.cs" />-->
+    <Compile Remove="MSTSCLib/NetCore/*.cs" Condition="'$(TargetFramework)'=='net48'" />
+    <Compile Remove="MSTSCLib/Desktop/*.cs" Condition="'$(TargetFramework)'!='net48'" />
     <Compile Remove="Binding/*.cs" Condition="'$(TargetFramework)'=='net48'" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!--<None Include="MSTSCLib/Legacy.cs" />-->
+    <None Include="MSTSCLib/NetCore/*.cs" Condition="'$(TargetFramework)'=='net48'" />
+    <None Include="MSTSCLib/Desktop/*.cs" Condition="'$(TargetFramework)'!='net48'" />
     <None Include="Binding/*.cs" Condition="'$(TargetFramework)'=='net48'" />
   </ItemGroup>
 

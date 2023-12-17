@@ -433,7 +433,7 @@ namespace MsRdpEx_App
 
             if (axHookEnabled)
             {
-                RdpInstance rdpInstance = new RdpInstance((IMsRdpExInstance)rdp.GetOcx());
+                RdpInstance rdpInstance = new RdpInstance((IMsRdpExInstance)ProxyObject.Unpack(rdp.GetOcx()));
                 rdpInstance.OutputMirrorEnabled = false;
                 rdpInstance.VideoRecordingEnabled = false;
 
@@ -463,10 +463,10 @@ namespace MsRdpEx_App
             if (axHookEnabled)
             {
                 object corePropsVal = extendedSettings.get_Property("CoreProperties");
-                IMsRdpExtendedSettings coreProps = (IMsRdpExtendedSettings)corePropsVal;
+                IMsRdpExtendedSettings coreProps = (IMsRdpExtendedSettings)ProxyObject.Pack(corePropsVal);
 
                 object basePropsVal = extendedSettings.get_Property("BaseProperties");
-                IMsRdpExtendedSettings baseProps = (IMsRdpExtendedSettings)basePropsVal;
+                IMsRdpExtendedSettings baseProps = (IMsRdpExtendedSettings)ProxyObject.Pack(basePropsVal);
 
                 object BandwidthAutodetect = false;
                 coreProps.set_Property("BandwidthAutodetect", ref BandwidthAutodetect);

@@ -6,6 +6,8 @@ using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
 using System.Text;
 
+[assembly: ComVisible(false)]
+
 namespace MsRdpEx
 {
     public class MarshalHelpers
