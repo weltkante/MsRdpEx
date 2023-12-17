@@ -1,4 +1,6 @@
 
+using System;
+
 namespace AxMSTSCLib {
     
     [System.Windows.Forms.AxHost.ClsidAttribute("{a41a4187-5a86-4e26-b40a-856f9035d9cb}")]
@@ -713,11 +715,11 @@ namespace AxMSTSCLib {
         
         public bool vbDisplayed;
         
-        public MSTSCLib._RemotableHandle hwnd;
+        public IntPtr hwnd;
         
         public MSTSCLib.RemoteWindowDisplayedAttribute windowAttribute;
         
-        public IMsTscAxEvents_OnRemoteWindowDisplayedEvent(bool vbDisplayed, MSTSCLib._RemotableHandle hwnd, MSTSCLib.RemoteWindowDisplayedAttribute windowAttribute) {
+        public IMsTscAxEvents_OnRemoteWindowDisplayedEvent(bool vbDisplayed, IntPtr hwnd, MSTSCLib.RemoteWindowDisplayedAttribute windowAttribute) {
             this.vbDisplayed = vbDisplayed;
             this.hwnd = hwnd;
             this.windowAttribute = windowAttribute;
@@ -933,7 +935,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnRemoteProgramDisplayed(this.parent, onremoteprogramdisplayedEvent);
         }
         
-        public virtual void OnRemoteWindowDisplayed(bool vbDisplayed, ref MSTSCLib._RemotableHandle hwnd, MSTSCLib.RemoteWindowDisplayedAttribute windowAttribute) {
+        public virtual void OnRemoteWindowDisplayed(bool vbDisplayed, IntPtr hwnd, MSTSCLib.RemoteWindowDisplayedAttribute windowAttribute) {
             IMsTscAxEvents_OnRemoteWindowDisplayedEvent onremotewindowdisplayedEvent = new IMsTscAxEvents_OnRemoteWindowDisplayedEvent(vbDisplayed, hwnd, windowAttribute);
             this.parent.RaiseOnOnRemoteWindowDisplayed(this.parent, onremotewindowdisplayedEvent);
             hwnd = onremotewindowdisplayedEvent.hwnd;
@@ -1774,7 +1776,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnRemoteProgramDisplayed(this.parent, onremoteprogramdisplayedEvent);
         }
         
-        public virtual void OnRemoteWindowDisplayed(bool vbDisplayed, ref MSTSCLib._RemotableHandle hwnd, MSTSCLib.RemoteWindowDisplayedAttribute windowAttribute) {
+        public virtual void OnRemoteWindowDisplayed(bool vbDisplayed, IntPtr hwnd, MSTSCLib.RemoteWindowDisplayedAttribute windowAttribute) {
             IMsTscAxEvents_OnRemoteWindowDisplayedEvent onremotewindowdisplayedEvent = new IMsTscAxEvents_OnRemoteWindowDisplayedEvent(vbDisplayed, hwnd, windowAttribute);
             this.parent.RaiseOnOnRemoteWindowDisplayed(this.parent, onremotewindowdisplayedEvent);
             hwnd = onremotewindowdisplayedEvent.hwnd;
@@ -2644,7 +2646,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnRemoteProgramDisplayed(this.parent, onremoteprogramdisplayedEvent);
         }
         
-        public virtual void OnRemoteWindowDisplayed(bool vbDisplayed, ref MSTSCLib._RemotableHandle hwnd, MSTSCLib.RemoteWindowDisplayedAttribute windowAttribute) {
+        public virtual void OnRemoteWindowDisplayed(bool vbDisplayed, IntPtr hwnd, MSTSCLib.RemoteWindowDisplayedAttribute windowAttribute) {
             IMsTscAxEvents_OnRemoteWindowDisplayedEvent onremotewindowdisplayedEvent = new IMsTscAxEvents_OnRemoteWindowDisplayedEvent(vbDisplayed, hwnd, windowAttribute);
             this.parent.RaiseOnOnRemoteWindowDisplayed(this.parent, onremotewindowdisplayedEvent);
             hwnd = onremotewindowdisplayedEvent.hwnd;
@@ -3514,7 +3516,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnRemoteProgramDisplayed(this.parent, onremoteprogramdisplayedEvent);
         }
         
-        public virtual void OnRemoteWindowDisplayed(bool vbDisplayed, ref MSTSCLib._RemotableHandle hwnd, MSTSCLib.RemoteWindowDisplayedAttribute windowAttribute) {
+        public virtual void OnRemoteWindowDisplayed(bool vbDisplayed, IntPtr hwnd, MSTSCLib.RemoteWindowDisplayedAttribute windowAttribute) {
             IMsTscAxEvents_OnRemoteWindowDisplayedEvent onremotewindowdisplayedEvent = new IMsTscAxEvents_OnRemoteWindowDisplayedEvent(vbDisplayed, hwnd, windowAttribute);
             this.parent.RaiseOnOnRemoteWindowDisplayed(this.parent, onremotewindowdisplayedEvent);
             hwnd = onremotewindowdisplayedEvent.hwnd;
@@ -4384,7 +4386,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnRemoteProgramDisplayed(this.parent, onremoteprogramdisplayedEvent);
         }
         
-        public virtual void OnRemoteWindowDisplayed(bool vbDisplayed, ref MSTSCLib._RemotableHandle hwnd, MSTSCLib.RemoteWindowDisplayedAttribute windowAttribute) {
+        public virtual void OnRemoteWindowDisplayed(bool vbDisplayed, IntPtr hwnd, MSTSCLib.RemoteWindowDisplayedAttribute windowAttribute) {
             IMsTscAxEvents_OnRemoteWindowDisplayedEvent onremotewindowdisplayedEvent = new IMsTscAxEvents_OnRemoteWindowDisplayedEvent(vbDisplayed, hwnd, windowAttribute);
             this.parent.RaiseOnOnRemoteWindowDisplayed(this.parent, onremotewindowdisplayedEvent);
             hwnd = onremotewindowdisplayedEvent.hwnd;
@@ -5266,7 +5268,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnRemoteProgramDisplayed(this.parent, onremoteprogramdisplayedEvent);
         }
         
-        public virtual void OnRemoteWindowDisplayed(bool vbDisplayed, ref MSTSCLib._RemotableHandle hwnd, MSTSCLib.RemoteWindowDisplayedAttribute windowAttribute) {
+        public virtual void OnRemoteWindowDisplayed(bool vbDisplayed, IntPtr hwnd, MSTSCLib.RemoteWindowDisplayedAttribute windowAttribute) {
             IMsTscAxEvents_OnRemoteWindowDisplayedEvent onremotewindowdisplayedEvent = new IMsTscAxEvents_OnRemoteWindowDisplayedEvent(vbDisplayed, hwnd, windowAttribute);
             this.parent.RaiseOnOnRemoteWindowDisplayed(this.parent, onremotewindowdisplayedEvent);
             hwnd = onremotewindowdisplayedEvent.hwnd;
@@ -6148,7 +6150,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnRemoteProgramDisplayed(this.parent, onremoteprogramdisplayedEvent);
         }
         
-        public virtual void OnRemoteWindowDisplayed(bool vbDisplayed, ref MSTSCLib._RemotableHandle hwnd, MSTSCLib.RemoteWindowDisplayedAttribute windowAttribute) {
+        public virtual void OnRemoteWindowDisplayed(bool vbDisplayed, IntPtr hwnd, MSTSCLib.RemoteWindowDisplayedAttribute windowAttribute) {
             IMsTscAxEvents_OnRemoteWindowDisplayedEvent onremotewindowdisplayedEvent = new IMsTscAxEvents_OnRemoteWindowDisplayedEvent(vbDisplayed, hwnd, windowAttribute);
             this.parent.RaiseOnOnRemoteWindowDisplayed(this.parent, onremotewindowdisplayedEvent);
             hwnd = onremotewindowdisplayedEvent.hwnd;
@@ -7030,7 +7032,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnRemoteProgramDisplayed(this.parent, onremoteprogramdisplayedEvent);
         }
         
-        public virtual void OnRemoteWindowDisplayed(bool vbDisplayed, ref MSTSCLib._RemotableHandle hwnd, MSTSCLib.RemoteWindowDisplayedAttribute windowAttribute) {
+        public virtual void OnRemoteWindowDisplayed(bool vbDisplayed, IntPtr hwnd, MSTSCLib.RemoteWindowDisplayedAttribute windowAttribute) {
             IMsTscAxEvents_OnRemoteWindowDisplayedEvent onremotewindowdisplayedEvent = new IMsTscAxEvents_OnRemoteWindowDisplayedEvent(vbDisplayed, hwnd, windowAttribute);
             this.parent.RaiseOnOnRemoteWindowDisplayed(this.parent, onremotewindowdisplayedEvent);
             hwnd = onremotewindowdisplayedEvent.hwnd;
@@ -7924,7 +7926,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnRemoteProgramDisplayed(this.parent, onremoteprogramdisplayedEvent);
         }
         
-        public virtual void OnRemoteWindowDisplayed(bool vbDisplayed, ref MSTSCLib._RemotableHandle hwnd, MSTSCLib.RemoteWindowDisplayedAttribute windowAttribute) {
+        public virtual void OnRemoteWindowDisplayed(bool vbDisplayed, IntPtr hwnd, MSTSCLib.RemoteWindowDisplayedAttribute windowAttribute) {
             IMsTscAxEvents_OnRemoteWindowDisplayedEvent onremotewindowdisplayedEvent = new IMsTscAxEvents_OnRemoteWindowDisplayedEvent(vbDisplayed, hwnd, windowAttribute);
             this.parent.RaiseOnOnRemoteWindowDisplayed(this.parent, onremotewindowdisplayedEvent);
             hwnd = onremotewindowdisplayedEvent.hwnd;
@@ -8818,7 +8820,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnRemoteProgramDisplayed(this.parent, onremoteprogramdisplayedEvent);
         }
         
-        public virtual void OnRemoteWindowDisplayed(bool vbDisplayed, ref MSTSCLib._RemotableHandle hwnd, MSTSCLib.RemoteWindowDisplayedAttribute windowAttribute) {
+        public virtual void OnRemoteWindowDisplayed(bool vbDisplayed, IntPtr hwnd, MSTSCLib.RemoteWindowDisplayedAttribute windowAttribute) {
             IMsTscAxEvents_OnRemoteWindowDisplayedEvent onremotewindowdisplayedEvent = new IMsTscAxEvents_OnRemoteWindowDisplayedEvent(vbDisplayed, hwnd, windowAttribute);
             this.parent.RaiseOnOnRemoteWindowDisplayed(this.parent, onremotewindowdisplayedEvent);
             hwnd = onremotewindowdisplayedEvent.hwnd;
@@ -9712,7 +9714,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnRemoteProgramDisplayed(this.parent, onremoteprogramdisplayedEvent);
         }
         
-        public virtual void OnRemoteWindowDisplayed(bool vbDisplayed, ref MSTSCLib._RemotableHandle hwnd, MSTSCLib.RemoteWindowDisplayedAttribute windowAttribute) {
+        public virtual void OnRemoteWindowDisplayed(bool vbDisplayed, IntPtr hwnd, MSTSCLib.RemoteWindowDisplayedAttribute windowAttribute) {
             IMsTscAxEvents_OnRemoteWindowDisplayedEvent onremotewindowdisplayedEvent = new IMsTscAxEvents_OnRemoteWindowDisplayedEvent(vbDisplayed, hwnd, windowAttribute);
             this.parent.RaiseOnOnRemoteWindowDisplayed(this.parent, onremotewindowdisplayedEvent);
             hwnd = onremotewindowdisplayedEvent.hwnd;
@@ -10662,7 +10664,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnRemoteProgramDisplayed(this.parent, onremoteprogramdisplayedEvent);
         }
         
-        public virtual void OnRemoteWindowDisplayed(bool vbDisplayed, ref MSTSCLib._RemotableHandle hwnd, MSTSCLib.RemoteWindowDisplayedAttribute windowAttribute) {
+        public virtual void OnRemoteWindowDisplayed(bool vbDisplayed, IntPtr hwnd, MSTSCLib.RemoteWindowDisplayedAttribute windowAttribute) {
             IMsTscAxEvents_OnRemoteWindowDisplayedEvent onremotewindowdisplayedEvent = new IMsTscAxEvents_OnRemoteWindowDisplayedEvent(vbDisplayed, hwnd, windowAttribute);
             this.parent.RaiseOnOnRemoteWindowDisplayed(this.parent, onremotewindowdisplayedEvent);
             hwnd = onremotewindowdisplayedEvent.hwnd;
@@ -11612,7 +11614,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnRemoteProgramDisplayed(this.parent, onremoteprogramdisplayedEvent);
         }
         
-        public virtual void OnRemoteWindowDisplayed(bool vbDisplayed, ref MSTSCLib._RemotableHandle hwnd, MSTSCLib.RemoteWindowDisplayedAttribute windowAttribute) {
+        public virtual void OnRemoteWindowDisplayed(bool vbDisplayed, IntPtr hwnd, MSTSCLib.RemoteWindowDisplayedAttribute windowAttribute) {
             IMsTscAxEvents_OnRemoteWindowDisplayedEvent onremotewindowdisplayedEvent = new IMsTscAxEvents_OnRemoteWindowDisplayedEvent(vbDisplayed, hwnd, windowAttribute);
             this.parent.RaiseOnOnRemoteWindowDisplayed(this.parent, onremotewindowdisplayedEvent);
             hwnd = onremotewindowdisplayedEvent.hwnd;
@@ -12586,7 +12588,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnRemoteProgramDisplayed(this.parent, onremoteprogramdisplayedEvent);
         }
         
-        public virtual void OnRemoteWindowDisplayed(bool vbDisplayed, ref MSTSCLib._RemotableHandle hwnd, MSTSCLib.RemoteWindowDisplayedAttribute windowAttribute) {
+        public virtual void OnRemoteWindowDisplayed(bool vbDisplayed, IntPtr hwnd, MSTSCLib.RemoteWindowDisplayedAttribute windowAttribute) {
             IMsTscAxEvents_OnRemoteWindowDisplayedEvent onremotewindowdisplayedEvent = new IMsTscAxEvents_OnRemoteWindowDisplayedEvent(vbDisplayed, hwnd, windowAttribute);
             this.parent.RaiseOnOnRemoteWindowDisplayed(this.parent, onremotewindowdisplayedEvent);
             hwnd = onremotewindowdisplayedEvent.hwnd;
@@ -13560,7 +13562,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnRemoteProgramDisplayed(this.parent, onremoteprogramdisplayedEvent);
         }
         
-        public virtual void OnRemoteWindowDisplayed(bool vbDisplayed, ref MSTSCLib._RemotableHandle hwnd, MSTSCLib.RemoteWindowDisplayedAttribute windowAttribute) {
+        public virtual void OnRemoteWindowDisplayed(bool vbDisplayed, IntPtr hwnd, MSTSCLib.RemoteWindowDisplayedAttribute windowAttribute) {
             IMsTscAxEvents_OnRemoteWindowDisplayedEvent onremotewindowdisplayedEvent = new IMsTscAxEvents_OnRemoteWindowDisplayedEvent(vbDisplayed, hwnd, windowAttribute);
             this.parent.RaiseOnOnRemoteWindowDisplayed(this.parent, onremotewindowdisplayedEvent);
             hwnd = onremotewindowdisplayedEvent.hwnd;
@@ -14590,7 +14592,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnRemoteProgramDisplayed(this.parent, onremoteprogramdisplayedEvent);
         }
         
-        public virtual void OnRemoteWindowDisplayed(bool vbDisplayed, ref MSTSCLib._RemotableHandle hwnd, MSTSCLib.RemoteWindowDisplayedAttribute windowAttribute) {
+        public virtual void OnRemoteWindowDisplayed(bool vbDisplayed, IntPtr hwnd, MSTSCLib.RemoteWindowDisplayedAttribute windowAttribute) {
             IMsTscAxEvents_OnRemoteWindowDisplayedEvent onremotewindowdisplayedEvent = new IMsTscAxEvents_OnRemoteWindowDisplayedEvent(vbDisplayed, hwnd, windowAttribute);
             this.parent.RaiseOnOnRemoteWindowDisplayed(this.parent, onremotewindowdisplayedEvent);
             hwnd = onremotewindowdisplayedEvent.hwnd;
@@ -15620,7 +15622,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnRemoteProgramDisplayed(this.parent, onremoteprogramdisplayedEvent);
         }
         
-        public virtual void OnRemoteWindowDisplayed(bool vbDisplayed, ref MSTSCLib._RemotableHandle hwnd, MSTSCLib.RemoteWindowDisplayedAttribute windowAttribute) {
+        public virtual void OnRemoteWindowDisplayed(bool vbDisplayed, IntPtr hwnd, MSTSCLib.RemoteWindowDisplayedAttribute windowAttribute) {
             IMsTscAxEvents_OnRemoteWindowDisplayedEvent onremotewindowdisplayedEvent = new IMsTscAxEvents_OnRemoteWindowDisplayedEvent(vbDisplayed, hwnd, windowAttribute);
             this.parent.RaiseOnOnRemoteWindowDisplayed(this.parent, onremotewindowdisplayedEvent);
             hwnd = onremotewindowdisplayedEvent.hwnd;
@@ -16677,7 +16679,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnRemoteProgramDisplayed(this.parent, onremoteprogramdisplayedEvent);
         }
         
-        public virtual void OnRemoteWindowDisplayed(bool vbDisplayed, ref MSTSCLib._RemotableHandle hwnd, MSTSCLib.RemoteWindowDisplayedAttribute windowAttribute) {
+        public virtual void OnRemoteWindowDisplayed(bool vbDisplayed, IntPtr hwnd, MSTSCLib.RemoteWindowDisplayedAttribute windowAttribute) {
             IMsTscAxEvents_OnRemoteWindowDisplayedEvent onremotewindowdisplayedEvent = new IMsTscAxEvents_OnRemoteWindowDisplayedEvent(vbDisplayed, hwnd, windowAttribute);
             this.parent.RaiseOnOnRemoteWindowDisplayed(this.parent, onremotewindowdisplayedEvent);
             hwnd = onremotewindowdisplayedEvent.hwnd;
@@ -17734,7 +17736,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnRemoteProgramDisplayed(this.parent, onremoteprogramdisplayedEvent);
         }
         
-        public virtual void OnRemoteWindowDisplayed(bool vbDisplayed, ref MSTSCLib._RemotableHandle hwnd, MSTSCLib.RemoteWindowDisplayedAttribute windowAttribute) {
+        public virtual void OnRemoteWindowDisplayed(bool vbDisplayed, IntPtr hwnd, MSTSCLib.RemoteWindowDisplayedAttribute windowAttribute) {
             IMsTscAxEvents_OnRemoteWindowDisplayedEvent onremotewindowdisplayedEvent = new IMsTscAxEvents_OnRemoteWindowDisplayedEvent(vbDisplayed, hwnd, windowAttribute);
             this.parent.RaiseOnOnRemoteWindowDisplayed(this.parent, onremotewindowdisplayedEvent);
             hwnd = onremotewindowdisplayedEvent.hwnd;
@@ -18831,7 +18833,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnRemoteProgramDisplayed(this.parent, onremoteprogramdisplayedEvent);
         }
         
-        public virtual void OnRemoteWindowDisplayed(bool vbDisplayed, ref MSTSCLib._RemotableHandle hwnd, MSTSCLib.RemoteWindowDisplayedAttribute windowAttribute) {
+        public virtual void OnRemoteWindowDisplayed(bool vbDisplayed, IntPtr hwnd, MSTSCLib.RemoteWindowDisplayedAttribute windowAttribute) {
             IMsTscAxEvents_OnRemoteWindowDisplayedEvent onremotewindowdisplayedEvent = new IMsTscAxEvents_OnRemoteWindowDisplayedEvent(vbDisplayed, hwnd, windowAttribute);
             this.parent.RaiseOnOnRemoteWindowDisplayed(this.parent, onremotewindowdisplayedEvent);
             hwnd = onremotewindowdisplayedEvent.hwnd;
@@ -19928,7 +19930,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnRemoteProgramDisplayed(this.parent, onremoteprogramdisplayedEvent);
         }
         
-        public virtual void OnRemoteWindowDisplayed(bool vbDisplayed, ref MSTSCLib._RemotableHandle hwnd, MSTSCLib.RemoteWindowDisplayedAttribute windowAttribute) {
+        public virtual void OnRemoteWindowDisplayed(bool vbDisplayed, IntPtr hwnd, MSTSCLib.RemoteWindowDisplayedAttribute windowAttribute) {
             IMsTscAxEvents_OnRemoteWindowDisplayedEvent onremotewindowdisplayedEvent = new IMsTscAxEvents_OnRemoteWindowDisplayedEvent(vbDisplayed, hwnd, windowAttribute);
             this.parent.RaiseOnOnRemoteWindowDisplayed(this.parent, onremotewindowdisplayedEvent);
             hwnd = onremotewindowdisplayedEvent.hwnd;
@@ -21037,7 +21039,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnRemoteProgramDisplayed(this.parent, onremoteprogramdisplayedEvent);
         }
         
-        public virtual void OnRemoteWindowDisplayed(bool vbDisplayed, ref MSTSCLib._RemotableHandle hwnd, MSTSCLib.RemoteWindowDisplayedAttribute windowAttribute) {
+        public virtual void OnRemoteWindowDisplayed(bool vbDisplayed, IntPtr hwnd, MSTSCLib.RemoteWindowDisplayedAttribute windowAttribute) {
             IMsTscAxEvents_OnRemoteWindowDisplayedEvent onremotewindowdisplayedEvent = new IMsTscAxEvents_OnRemoteWindowDisplayedEvent(vbDisplayed, hwnd, windowAttribute);
             this.parent.RaiseOnOnRemoteWindowDisplayed(this.parent, onremotewindowdisplayedEvent);
             hwnd = onremotewindowdisplayedEvent.hwnd;
@@ -22146,7 +22148,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnRemoteProgramDisplayed(this.parent, onremoteprogramdisplayedEvent);
         }
         
-        public virtual void OnRemoteWindowDisplayed(bool vbDisplayed, ref MSTSCLib._RemotableHandle hwnd, MSTSCLib.RemoteWindowDisplayedAttribute windowAttribute) {
+        public virtual void OnRemoteWindowDisplayed(bool vbDisplayed, IntPtr hwnd, MSTSCLib.RemoteWindowDisplayedAttribute windowAttribute) {
             IMsTscAxEvents_OnRemoteWindowDisplayedEvent onremotewindowdisplayedEvent = new IMsTscAxEvents_OnRemoteWindowDisplayedEvent(vbDisplayed, hwnd, windowAttribute);
             this.parent.RaiseOnOnRemoteWindowDisplayed(this.parent, onremotewindowdisplayedEvent);
             hwnd = onremotewindowdisplayedEvent.hwnd;
@@ -23255,7 +23257,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnRemoteProgramDisplayed(this.parent, onremoteprogramdisplayedEvent);
         }
         
-        public virtual void OnRemoteWindowDisplayed(bool vbDisplayed, ref MSTSCLib._RemotableHandle hwnd, MSTSCLib.RemoteWindowDisplayedAttribute windowAttribute) {
+        public virtual void OnRemoteWindowDisplayed(bool vbDisplayed, IntPtr hwnd, MSTSCLib.RemoteWindowDisplayedAttribute windowAttribute) {
             IMsTscAxEvents_OnRemoteWindowDisplayedEvent onremotewindowdisplayedEvent = new IMsTscAxEvents_OnRemoteWindowDisplayedEvent(vbDisplayed, hwnd, windowAttribute);
             this.parent.RaiseOnOnRemoteWindowDisplayed(this.parent, onremotewindowdisplayedEvent);
             hwnd = onremotewindowdisplayedEvent.hwnd;
@@ -24364,7 +24366,7 @@ namespace AxMSTSCLib {
             this.parent.RaiseOnOnRemoteProgramDisplayed(this.parent, onremoteprogramdisplayedEvent);
         }
         
-        public virtual void OnRemoteWindowDisplayed(bool vbDisplayed, ref MSTSCLib._RemotableHandle hwnd, MSTSCLib.RemoteWindowDisplayedAttribute windowAttribute) {
+        public virtual void OnRemoteWindowDisplayed(bool vbDisplayed, IntPtr hwnd, MSTSCLib.RemoteWindowDisplayedAttribute windowAttribute) {
             IMsTscAxEvents_OnRemoteWindowDisplayedEvent onremotewindowdisplayedEvent = new IMsTscAxEvents_OnRemoteWindowDisplayedEvent(vbDisplayed, hwnd, windowAttribute);
             this.parent.RaiseOnOnRemoteWindowDisplayed(this.parent, onremotewindowdisplayedEvent);
             hwnd = onremotewindowdisplayedEvent.hwnd;

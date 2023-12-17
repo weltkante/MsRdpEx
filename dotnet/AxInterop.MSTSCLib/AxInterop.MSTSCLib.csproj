@@ -19,10 +19,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Binding/*.cs" Condition="'$(TargetFramework)'=='net48'" />
+    <None Include="Binding/*.cs" Condition="'$(TargetFramework)'=='net48'" />
+  </ItemGroup>
+
+  <!--<ItemGroup>
     <Reference Include="Interop.MSTSCLib">
       <Private>True</Private>
       <HintPath>..\Interop.MSTSCLib\Interop.MSTSCLib.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-  </ItemGroup>
+  </ItemGroup>-->
 </Project>

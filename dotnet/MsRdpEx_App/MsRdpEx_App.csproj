@@ -9,6 +9,7 @@
     <GenerateAssemblyInfo>True</GenerateAssemblyInfo>
     <OutputPath>$(CMakeOutputPath)</OutputPath>
     <AppendTargetFrameworkToOutputPath>True</AppendTargetFrameworkToOutputPath>
+    <EnableGeneratedComInterfaceComImportInterop>True</EnableGeneratedComInterfaceComImportInterop>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -23,10 +24,10 @@
     <ProjectReference Include="../Devolutions.MsRdpEx/Devolutions.MsRdpEx.csproj" IncludeAssets="all" />
   </ItemGroup>
 
-  <ItemGroup>
+  <!--<ItemGroup>
     <Reference Include="Interop.MSTSCLib">
       <Private>True</Private>
       <HintPath>..\Interop.MSTSCLib\Interop.MSTSCLib.dll</HintPath>
     </Reference>
-  </ItemGroup>
+  </ItemGroup>-->
 </Project>

@@ -16,14 +16,14 @@
     <SuppressDependenciesWhenPacking>True</SuppressDependenciesWhenPacking>
   </PropertyGroup>
 
-  <ItemGroup>
+  <!--<ItemGroup>
     <Reference Include="Interop.MSTSCLib">
       <Private>False</Private>
       <HintPath>..\Interop.MSTSCLib\Interop.MSTSCLib.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
       <CopyLocal>True</CopyLocal>
     </Reference>
-  </ItemGroup>
+  </ItemGroup>-->
 
   <ItemGroup>
     <ProjectReference Include="../AxInterop.MSTSCLib/AxInterop.MSTSCLib.csproj" />

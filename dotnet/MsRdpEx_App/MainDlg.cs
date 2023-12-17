@@ -199,15 +199,7 @@ namespace MsRdpEx_App
         {
             loadBalanceInfo += "\r\n";
             byte[] bytes = Encoding.UTF8.GetBytes(loadBalanceInfo);
-            uint byteLen = (uint)bytes.Length;
-
-            IntPtr bstrPtr = SysAllocStringByteLen(IntPtr.Zero, byteLen);
-            Marshal.Copy(bytes, 0, bstrPtr, (int)byteLen);
-
-            IMsRdpClientAdvancedSettingsLB lbSettings = (IMsRdpClientAdvancedSettingsLB)advancedSettings;
-            lbSettings.LoadBalanceInfo = bstrPtr;
-            
-            Marshal.ZeroFreeBSTR(bstrPtr);
+            advancedSettings.LoadBalanceInfo = bytes;
         }
 
         private void ParseRdpFile(string filename, AxMSTSCLib.AxMsRdpClient9NotSafeForScripting rdp)
