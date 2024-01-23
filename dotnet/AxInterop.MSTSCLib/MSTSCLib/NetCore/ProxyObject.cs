@@ -8,6 +8,8 @@ using System.Runtime.InteropServices.Marshalling;
 using System.Text;
 using System.Threading.Tasks;
 
+#nullable enable
+
 namespace MSTSCLib
 {
     [AttributeUsage(AttributeTargets.Interface, Inherited = false, AllowMultiple = false)]
@@ -19,22 +21,22 @@ namespace MSTSCLib
 
     public sealed class ProxyObject : IDynamicInterfaceCastable
     {
-        public static T Unpack<T>(object obj) where T : class
+        public static T? Unpack<T>(object? obj) where T : class
         {
-            return (T)Unpack(obj);
+            return (T?)Unpack(obj);
         }
 
-        public static object Unpack(object obj)
+        public static object? Unpack(object? obj)
         {
             return obj is null ? null : ((ProxyObject)obj).obj;
         }
 
-        public static T Pack<T>(object obj) where T : class
+        public static T? Pack<T>(object? obj) where T : class
         {
-            return (T)Pack(obj);
+            return (T?)Pack(obj);
         }
 
-        public static object Pack(object obj)
+        public static object? Pack(object? obj)
         {
             if (obj is null)
                 return null;
@@ -51,7 +53,7 @@ namespace MSTSCLib
                 try { return new ProxyObject(GetComObjectForIUnknown(pUnk)); }
                 finally { Marshal.Release(pUnk); }
 
-                static unsafe object GetComObjectForIUnknown(nint pUnk) => ComInterfaceMarshaller<object>.ConvertToManaged((void*)pUnk);
+                static unsafe object GetComObjectForIUnknown(nint pUnk) => ComInterfaceMarshaller<object>.ConvertToManaged((void*)pUnk)!;
             }
 
             throw new InvalidOperationException("Not a COM object.");
@@ -66,12 +68,12 @@ namespace MSTSCLib
 
         bool IDynamicInterfaceCastable.IsInterfaceImplemented(RuntimeTypeHandle interfaceType, bool throwIfNotImplemented)
         {
-            return Type.GetTypeFromHandle(interfaceType).GetCustomAttribute<ProxyGuidAttribute>() is not null;
+            return Type.GetTypeFromHandle(interfaceType)?.GetCustomAttribute<ProxyGuidAttribute>() is not null;
         }
 
         RuntimeTypeHandle IDynamicInterfaceCastable.GetInterfaceImplementation(RuntimeTypeHandle interfaceType)
         {
-            return Type.GetTypeFromHandle(interfaceType).GetCustomAttribute<ProxyGuidAttribute>()?.Type.TypeHandle ?? default;
+            return Type.GetTypeFromHandle(interfaceType)?.GetCustomAttribute<ProxyGuidAttribute>()?.Type.TypeHandle ?? default;
         }
     }
 }

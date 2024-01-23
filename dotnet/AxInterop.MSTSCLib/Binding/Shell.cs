@@ -12,11 +12,11 @@ namespace MsRdpEx.Interop
         void Launch();
         void SetRdpFileContents(ReadOnlyBinaryStringRef RdpFile);
         BinaryString GetRdpFileContents();
-        void SetRdpProperty(ReadOnlyBinaryStringRef Property, Variant value);
-        void GetRdpProperty(ReadOnlyBinaryStringRef Property, out Variant value);
-        VariantBool GetIsRemoteProgramClientInstalled();
-        void SetPublicMode(VariantBool pfPublicMode);
-        VariantBool GetPublicMode();
+        void SetRdpProperty(ReadOnlyBinaryStringRef Property, [MarshalUsing(typeof(Variant.ObjectMarshaller))] object value);
+        [return: MarshalUsing(typeof(Variant.ObjectMarshaller))] object GetRdpProperty(ReadOnlyBinaryStringRef Property);
+        [return: MarshalAs(UnmanagedType.VariantBool)] bool GetIsRemoteProgramClientInstalled();
+        void SetPublicMode([MarshalAs(UnmanagedType.VariantBool)] bool pfPublicMode);
+        [return: MarshalAs(UnmanagedType.VariantBool)] bool GetPublicMode();
         void ShowTrustedSitesManagementDialog();
     }
 }

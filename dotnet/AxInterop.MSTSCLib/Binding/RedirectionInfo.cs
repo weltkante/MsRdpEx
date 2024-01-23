@@ -9,7 +9,7 @@ namespace MsRdpEx.Interop
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public unsafe partial interface IMsRdpPreferredRedirectionInfo
     {
-        void SetUseRedirectionServerName(VariantBool value);
-        VariantBool GetUseRedirectionServerName();
+        void SetUseRedirectionServerName([MarshalAs(UnmanagedType.VariantBool)] bool value);
+        [return: MarshalAs(UnmanagedType.VariantBool)] bool GetUseRedirectionServerName();
     }
 }

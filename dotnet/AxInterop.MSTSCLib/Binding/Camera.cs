@@ -15,11 +15,11 @@ namespace MsRdpEx.Interop
         IMsRdpCameraRedirConfig GetByIndex(uint index);
         IMsRdpCameraRedirConfig GetBySymbolicLink(ReadOnlyBinaryStringRef SymbolicLink);
         IMsRdpCameraRedirConfig GetByInstanceId(ReadOnlyBinaryStringRef InstanceId);
-        void AddConfig(ReadOnlyBinaryStringRef SymbolicLink, VariantBool fRedirected);
-        void SetRedirectByDefault(VariantBool pfRedirect);
-        VariantBool GetRedirectByDefault();
-        void SetEncodeVideo(VariantBool pfEncode);
-        VariantBool GetEncodeVideo();
+        void AddConfig(ReadOnlyBinaryStringRef SymbolicLink, [MarshalAs(UnmanagedType.VariantBool)] bool fRedirected);
+        void SetRedirectByDefault([MarshalAs(UnmanagedType.VariantBool)] bool pfRedirect);
+        [return: MarshalAs(UnmanagedType.VariantBool)] bool GetRedirectByDefault();
+        void SetEncodeVideo([MarshalAs(UnmanagedType.VariantBool)] bool pfEncode);
+        [return: MarshalAs(UnmanagedType.VariantBool)] bool GetEncodeVideo();
         void SetEncodingQuality(CameraRedirEncodingQuality pEncodingQuality);
         CameraRedirEncodingQuality GetEncodingQuality();
     }
@@ -40,8 +40,8 @@ namespace MsRdpEx.Interop
         BinaryString GetSymbolicLink();
         BinaryString GetInstanceId();
         BinaryString GetParentInstanceId();
-        void SetRedirected(VariantBool pfRedirected);
-        VariantBool GetRedirected();
-        VariantBool GetDeviceExists();
+        void SetRedirected([MarshalAs(UnmanagedType.VariantBool)] bool pfRedirected);
+        [return: MarshalAs(UnmanagedType.VariantBool)] bool GetRedirected();
+        [return: MarshalAs(UnmanagedType.VariantBool)] bool GetDeviceExists();
     }
 }

@@ -90,6 +90,9 @@ namespace MsRdpEx.Interop.Compatibility
 
         public object MarshalNativeToManaged(IntPtr pointer)
         {
+#if NET8_0_OR_GREATER
+            return BinaryString.Marshaller.ConvertToManaged(pointer);
+#else
             if (pointer == IntPtr.Zero)
                 return null;
 
@@ -100,6 +103,7 @@ namespace MsRdpEx.Interop.Compatibility
 
             // transfer ownership to managed code
             return new BinaryString(pointer);
+#endif
         }
 
         public void CleanUpManagedData(object ManagedObj)
@@ -108,6 +112,9 @@ namespace MsRdpEx.Interop.Compatibility
 
         public IntPtr MarshalManagedToNative(object ManagedObj)
         {
+#if NET8_0_OR_GREATER
+            return BinaryString.Marshaller.ConvertToUnmanaged((BinaryString)ManagedObj);
+#else
             var value = (BinaryString)ManagedObj;
             if (value is null)
                 return IntPtr.Zero;
@@ -121,6 +128,7 @@ namespace MsRdpEx.Interop.Compatibility
                 throw new OutOfMemoryException();
 
             return pointer;
+#endif
         }
 
         public void CleanUpNativeData(IntPtr pNativeData)

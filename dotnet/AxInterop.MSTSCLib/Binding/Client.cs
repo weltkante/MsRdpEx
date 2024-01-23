@@ -24,24 +24,24 @@ namespace MsRdpEx.Interop
         [PreserveSig, DispId(12)] void OnRemoteDesktopSizeChange(int width, int height);
         [PreserveSig, DispId(13)] void OnIdleTimeoutNotification();
         [PreserveSig, DispId(14)] void OnRequestContainerMinimize();
-        [PreserveSig, DispId(15)] void OnConfirmClose(out VariantBool pfAllowClose);
-        [PreserveSig, DispId(16)] void OnReceivedTSPublicKey(ReadOnlyBinaryStringRef publicKey, out VariantBool pfContinueLogon);
+        [PreserveSig, DispId(15)] void OnConfirmClose([MarshalAs(UnmanagedType.VariantBool)] out bool pfAllowClose);
+        [PreserveSig, DispId(16)] void OnReceivedTSPublicKey(ReadOnlyBinaryStringRef publicKey, [MarshalAs(UnmanagedType.VariantBool)] out bool pfContinueLogon);
         [PreserveSig, DispId(17)] void OnAutoReconnecting(int disconnectReason, int attemptCount, out AutoReconnectContinueState pArcContinueStatus);
         [PreserveSig, DispId(18)] void OnAuthenticationWarningDisplayed();
         [PreserveSig, DispId(19)] void OnAuthenticationWarningDismissed();
-        [PreserveSig, DispId(20)] void OnRemoteProgramResult(ReadOnlyBinaryStringRef bstrRemoteProgram, RemoteProgramResult lError, VariantBool vbIsExecutable);
-        [PreserveSig, DispId(21)] void OnRemoteProgramDisplayed(VariantBool vbDisplayed, uint uDisplayInformation);
-        [PreserveSig, DispId(29)] void OnRemoteWindowDisplayed(VariantBool vbDisplayed, nint hwnd, RemoteWindowDisplayedAttribute windowAttribute);
+        [PreserveSig, DispId(20)] void OnRemoteProgramResult(ReadOnlyBinaryStringRef bstrRemoteProgram, RemoteProgramResult lError, [MarshalAs(UnmanagedType.VariantBool)] bool vbIsExecutable);
+        [PreserveSig, DispId(21)] void OnRemoteProgramDisplayed([MarshalAs(UnmanagedType.VariantBool)] bool vbDisplayed, uint uDisplayInformation);
+        [PreserveSig, DispId(29)] void OnRemoteWindowDisplayed([MarshalAs(UnmanagedType.VariantBool)] bool vbDisplayed, nint hwnd, RemoteWindowDisplayedAttribute windowAttribute);
         [PreserveSig, DispId(22)] void OnLogonError(int lError);
         [PreserveSig, DispId(23)] void OnFocusReleased(int iDirection);
         [PreserveSig, DispId(24)] void OnUserNameAcquired(ReadOnlyBinaryStringRef bstrUserName);
-        [PreserveSig, DispId(26)] void OnMouseInputModeChanged(VariantBool fMouseModeRelative);
+        [PreserveSig, DispId(26)] void OnMouseInputModeChanged([MarshalAs(UnmanagedType.VariantBool)] bool fMouseModeRelative);
         [PreserveSig, DispId(28)] void OnServiceMessageReceived(ReadOnlyBinaryStringRef serviceMessage);
         [PreserveSig, DispId(30)] void OnConnectionBarPullDown();
         [PreserveSig, DispId(32)] void OnNetworkStatusChanged(uint qualityLevel, int bandwidth, int rtt);
         [PreserveSig, DispId(35)] void OnDevicesButtonPressed();
         [PreserveSig, DispId(33)] void OnAutoReconnected();
-        [PreserveSig, DispId(34)] void OnAutoReconnecting2(int disconnectReason, VariantBool networkAvailable, int attemptCount, int maxAttemptCount);
+        [PreserveSig, DispId(34)] void OnAutoReconnecting2(int disconnectReason, [MarshalAs(UnmanagedType.VariantBool)] bool networkAvailable, int attemptCount, int maxAttemptCount);
     }
 
     //public enum AutoReconnectContinueState
@@ -124,8 +124,8 @@ namespace MsRdpEx.Interop
         IMsRdpClientAdvancedSettings GetAdvancedSettings2();
         IMsRdpClientSecuredSettings GetSecuredSettings2();
         ExtendedDisconnectReasonCode GetExtendedDisconnectReason();
-        void SetFullScreen(VariantBool value);
-        VariantBool GetFullScreen();
+        void SetFullScreen([MarshalAs(UnmanagedType.VariantBool)] bool value);
+        [return: MarshalAs(UnmanagedType.VariantBool)] bool GetFullScreen();
         void SetVirtualChannelOptions(ReadOnlyBinaryStringRef chanName, int chanOptions);
         int GetVirtualChannelOptions(ReadOnlyBinaryStringRef chanName);
         ControlCloseStatus RequestClose();

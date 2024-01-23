@@ -81,24 +81,24 @@ namespace MsRdpEx.Interop
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public unsafe partial interface IMsRdpClientNonScriptable3 : IMsRdpClientNonScriptable2
     {
-        void SetShowRedirectionWarningDialog(VariantBool value);
-        VariantBool GetShowRedirectionWarningDialog();
-        void SetPromptForCredentials(VariantBool value);
-        VariantBool GetPromptForCredentials();
-        void SetNegotiateSecurityLayer(VariantBool value);
-        VariantBool GetNegotiateSecurityLayer();
-        void SetEnableCredSspSupport(VariantBool value);
-        VariantBool GetEnableCredSspSupport();
-        void SetRedirectDynamicDrives(VariantBool value);
-        VariantBool GetRedirectDynamicDrives();
-        void SetRedirectDynamicDevices(VariantBool value);
-        VariantBool GetRedirectDynamicDevices();
+        void SetShowRedirectionWarningDialog([MarshalAs(UnmanagedType.VariantBool)] bool value);
+        [return: MarshalAs(UnmanagedType.VariantBool)] bool GetShowRedirectionWarningDialog();
+        void SetPromptForCredentials([MarshalAs(UnmanagedType.VariantBool)] bool value);
+        [return: MarshalAs(UnmanagedType.VariantBool)] bool GetPromptForCredentials();
+        void SetNegotiateSecurityLayer([MarshalAs(UnmanagedType.VariantBool)] bool value);
+        [return: MarshalAs(UnmanagedType.VariantBool)] bool GetNegotiateSecurityLayer();
+        void SetEnableCredSspSupport([MarshalAs(UnmanagedType.VariantBool)] bool value);
+        [return: MarshalAs(UnmanagedType.VariantBool)] bool GetEnableCredSspSupport();
+        void SetRedirectDynamicDrives([MarshalAs(UnmanagedType.VariantBool)] bool value);
+        [return: MarshalAs(UnmanagedType.VariantBool)] bool GetRedirectDynamicDrives();
+        void SetRedirectDynamicDevices([MarshalAs(UnmanagedType.VariantBool)] bool value);
+        [return: MarshalAs(UnmanagedType.VariantBool)] bool GetRedirectDynamicDevices();
         IMsRdpDeviceCollection GetDeviceCollection();
         IMsRdpDriveCollection GetDriveCollection();
-        void SetWarnAboutSendingCredentials(VariantBool value);
-        VariantBool GetWarnAboutSendingCredentials();
-        void SetWarnAboutClipboardRedirection(VariantBool value);
-        VariantBool GetWarnAboutClipboardRedirection();
+        void SetWarnAboutSendingCredentials([MarshalAs(UnmanagedType.VariantBool)] bool value);
+        [return: MarshalAs(UnmanagedType.VariantBool)] bool GetWarnAboutSendingCredentials();
+        void SetWarnAboutClipboardRedirection([MarshalAs(UnmanagedType.VariantBool)] bool value);
+        [return: MarshalAs(UnmanagedType.VariantBool)] bool GetWarnAboutClipboardRedirection();
         void SetConnectionBarText(ReadOnlyBinaryStringRef value);
         BinaryString GetConnectionBarText();
     }
@@ -110,20 +110,20 @@ namespace MsRdpEx.Interop
     {
         void SetRedirectionWarningType(RedirectionWarningType value);
         RedirectionWarningType GetRedirectionWarningType();
-        void SetMarkRdpSettingsSecure(VariantBool value);
-        VariantBool GetMarkRdpSettingsSecure();
-        void SetPublisherCertificateChain(in Variant value);
-        void GetPublisherCertificateChain(out Variant value);
-        void SetWarnAboutPrinterRedirection(VariantBool value);
-        VariantBool GetWarnAboutPrinterRedirection();
-        void SetAllowCredentialSaving(VariantBool value);
-        VariantBool GetAllowCredentialSaving();
-        void SetPromptForCredsOnClient(VariantBool value);
-        VariantBool GetPromptForCredsOnClient();
-        void SetLaunchedViaClientShellInterface(VariantBool value);
-        VariantBool GetLaunchedViaClientShellInterface();
-        void SetTrustedZoneSite(VariantBool value);
-        VariantBool GetTrustedZoneSite();
+        void SetMarkRdpSettingsSecure([MarshalAs(UnmanagedType.VariantBool)] bool value);
+        [return: MarshalAs(UnmanagedType.VariantBool)] bool GetMarkRdpSettingsSecure();
+        void SetPublisherCertificateChain([MarshalUsing(typeof(Variant.ObjectMarshaller))] in object value);
+        [return: MarshalUsing(typeof(Variant.ObjectMarshaller))] object GetPublisherCertificateChain();
+        void SetWarnAboutPrinterRedirection([MarshalAs(UnmanagedType.VariantBool)] bool value);
+        [return: MarshalAs(UnmanagedType.VariantBool)] bool GetWarnAboutPrinterRedirection();
+        void SetAllowCredentialSaving([MarshalAs(UnmanagedType.VariantBool)] bool value);
+        [return: MarshalAs(UnmanagedType.VariantBool)] bool GetAllowCredentialSaving();
+        void SetPromptForCredsOnClient([MarshalAs(UnmanagedType.VariantBool)] bool value);
+        [return: MarshalAs(UnmanagedType.VariantBool)] bool GetPromptForCredsOnClient();
+        void SetLaunchedViaClientShellInterface([MarshalAs(UnmanagedType.VariantBool)] bool value);
+        [return: MarshalAs(UnmanagedType.VariantBool)] bool GetLaunchedViaClientShellInterface();
+        void SetTrustedZoneSite([MarshalAs(UnmanagedType.VariantBool)] bool value);
+        [return: MarshalAs(UnmanagedType.VariantBool)] bool GetTrustedZoneSite();
     }
 
     //public enum RedirectionWarningType
@@ -142,18 +142,18 @@ namespace MsRdpEx.Interop
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public unsafe partial interface IMsRdpClientNonScriptable5 : IMsRdpClientNonScriptable4
     {
-        void SetUseMultimon(VariantBool value);
-        VariantBool GetUseMultimon();
+        void SetUseMultimon([MarshalAs(UnmanagedType.VariantBool)] bool value);
+        [return: MarshalAs(UnmanagedType.VariantBool)] bool GetUseMultimon();
         uint GetRemoteMonitorCount();
         void GetRemoteMonitorsBoundingBox(out int pLeft, out int pTop, out int pRight, out int pBottom);
-        VariantBool GetRemoteMonitorLayoutMatchesLocal();
-        void SetDisableConnectionBar(VariantBool value);
-        void SetDisableRemoteAppCapsCheck(VariantBool value);
-        VariantBool GetDisableRemoteAppCapsCheck();
-        void SetWarnAboutDirectXRedirection(VariantBool value);
-        VariantBool GetWarnAboutDirectXRedirection();
-        void SetAllowPromptingForCredentials(VariantBool value);
-        VariantBool GetAllowPromptingForCredentials();
+        [return: MarshalAs(UnmanagedType.VariantBool)] bool GetRemoteMonitorLayoutMatchesLocal();
+        void SetDisableConnectionBar([MarshalAs(UnmanagedType.VariantBool)] bool value);
+        void SetDisableRemoteAppCapsCheck([MarshalAs(UnmanagedType.VariantBool)] bool value);
+        [return: MarshalAs(UnmanagedType.VariantBool)] bool GetDisableRemoteAppCapsCheck();
+        void SetWarnAboutDirectXRedirection([MarshalAs(UnmanagedType.VariantBool)] bool value);
+        [return: MarshalAs(UnmanagedType.VariantBool)] bool GetWarnAboutDirectXRedirection();
+        void SetAllowPromptingForCredentials([MarshalAs(UnmanagedType.VariantBool)] bool value);
+        [return: MarshalAs(UnmanagedType.VariantBool)] bool GetAllowPromptingForCredentials();
     }
 
     [GeneratedComInterface]
@@ -181,13 +181,13 @@ namespace MsRdpEx.Interop
     public unsafe partial interface IMsRdpClientNonScriptable8 : IMsRdpClientNonScriptable7
     {
         Guid GetCorrelationId();
-        void StartWorkspaceExtension(VariantBool isWebHosted, ReadOnlyBinaryStringRef workspaceId, byte* publisherThumbPrint, int publisherThumbPrintLength);
-        void SetSupportsWorkspaceReconnect(VariantBool value);
+        void StartWorkspaceExtension([MarshalAs(UnmanagedType.VariantBool)] bool isWebHosted, ReadOnlyBinaryStringRef workspaceId, byte* publisherThumbPrint, int publisherThumbPrintLength);
+        void SetSupportsWorkspaceReconnect([MarshalAs(UnmanagedType.VariantBool)] bool value);
     }
 
     public static unsafe partial class InteropExtensions
     {
-        public static void StartWorkspaceExtension(this IMsRdpClientNonScriptable8 client, VariantBool isWebHosted, ReadOnlyBinaryStringRef workspaceId, ReadOnlySpan<byte> publisherThumbPrint)
+        public static void StartWorkspaceExtension(this IMsRdpClientNonScriptable8 client, [MarshalAs(UnmanagedType.VariantBool)] bool isWebHosted, ReadOnlyBinaryStringRef workspaceId, ReadOnlySpan<byte> publisherThumbPrint)
         {
             fixed (byte* publisherThumbPrintPointer = publisherThumbPrint)
                 client.StartWorkspaceExtension(isWebHosted, workspaceId, publisherThumbPrintPointer, publisherThumbPrint.Length);

@@ -15,7 +15,7 @@ namespace MsRdpEx.Interop
         [PreserveSig, DispId(752)] void OnLoginCompleted();
         [PreserveSig, DispId(753)] void OnDisconnected(int disconnectReason, int ExtendedDisconnectReason, ReadOnlyBinaryStringRef disconnectErrorMessage);
         [PreserveSig, DispId(754)] void OnStatusChanged(int statusCode, ReadOnlyBinaryStringRef statusMessage);
-        [PreserveSig, DispId(755)] void OnAutoReconnecting(int disconnectReason, int ExtendedDisconnectReason, ReadOnlyBinaryStringRef disconnectErrorMessage, VariantBool networkAvailable, int attemptCount, int maxAttemptCount);
+        [PreserveSig, DispId(755)] void OnAutoReconnecting(int disconnectReason, int ExtendedDisconnectReason, ReadOnlyBinaryStringRef disconnectErrorMessage, [MarshalAs(UnmanagedType.VariantBool)] bool networkAvailable, int attemptCount, int maxAttemptCount);
         [PreserveSig, DispId(756)] void OnAutoReconnected();
         [PreserveSig, DispId(757)] void OnDialogDisplaying();
         [PreserveSig, DispId(758)] void OnDialogDismissed();
@@ -50,8 +50,8 @@ namespace MsRdpEx.Interop
     {
         void ApplySettings(ReadOnlyBinaryStringRef RdpFileContents);
         BinaryString RetrieveSettings();
-        void GetRdpProperty(ReadOnlyBinaryStringRef propertyName, out Variant value);
-        void SetRdpProperty(ReadOnlyBinaryStringRef propertyName, Variant value);
+        [return: MarshalUsing(typeof(Variant.ObjectMarshaller))] object GetRdpProperty(ReadOnlyBinaryStringRef propertyName);
+        void SetRdpProperty(ReadOnlyBinaryStringRef propertyName, [MarshalUsing(typeof(Variant.ObjectMarshaller))] object value);
     }
 
     [GeneratedComInterface]
@@ -91,10 +91,10 @@ namespace MsRdpEx.Interop
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public unsafe partial interface IRemoteDesktopClientTouchPointer : IDispatch
     {
-        void SetEnabled(VariantBool Enabled);
-        VariantBool GetEnabled();
-        void SetEventsEnabled(VariantBool EventsEnabled);
-        VariantBool GetEventsEnabled();
+        void SetEnabled([MarshalAs(UnmanagedType.VariantBool)] bool Enabled);
+        [return: MarshalAs(UnmanagedType.VariantBool)] bool GetEnabled();
+        void SetEventsEnabled([MarshalAs(UnmanagedType.VariantBool)] bool EventsEnabled);
+        [return: MarshalAs(UnmanagedType.VariantBool)] bool GetEventsEnabled();
         void SetPointerSpeed(uint PointerSpeed);
         uint GetPointerSpeed();
     }

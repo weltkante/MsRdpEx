@@ -9,7 +9,7 @@ namespace MsRdpEx.Interop
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public unsafe partial interface IMsRdpDriveCollection
     {
-        void RescanDrives(VariantBool DynRedir);
+        void RescanDrives([MarshalAs(UnmanagedType.VariantBool)] bool DynRedir);
         IMsRdpDrive GetDriveByIndex(uint index);
         uint GetDriveCount();
     }
@@ -20,7 +20,7 @@ namespace MsRdpEx.Interop
     public unsafe partial interface IMsRdpDrive
     {
         BinaryString GetName();
-        void SetRedirectionState(VariantBool RedirState);
-        VariantBool GetRedirectionState();
+        void SetRedirectionState([MarshalAs(UnmanagedType.VariantBool)] bool RedirState);
+        [return: MarshalAs(UnmanagedType.VariantBool)] bool GetRedirectionState();
     }
 }

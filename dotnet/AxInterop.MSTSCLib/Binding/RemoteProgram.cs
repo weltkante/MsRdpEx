@@ -9,9 +9,9 @@ namespace MsRdpEx.Interop
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public unsafe partial interface ITSRemoteProgram : IDispatch
     {
-        void SetRemoteProgramMode(VariantBool value);
-        VariantBool GetRemoteProgramMode();
-        void ServerStartProgram(ReadOnlyBinaryStringRef ExecutablePath, ReadOnlyBinaryStringRef FilePath, ReadOnlyBinaryStringRef WorkingDirectory, VariantBool ExpandEnvVarInWorkingDirectoryOnServer, ReadOnlyBinaryStringRef Arguments, VariantBool ExpandEnvVarInArgumentsOnServer);
+        void SetRemoteProgramMode([MarshalAs(UnmanagedType.VariantBool)] bool value);
+        [return: MarshalAs(UnmanagedType.VariantBool)] bool GetRemoteProgramMode();
+        void ServerStartProgram(ReadOnlyBinaryStringRef ExecutablePath, ReadOnlyBinaryStringRef FilePath, ReadOnlyBinaryStringRef WorkingDirectory, [MarshalAs(UnmanagedType.VariantBool)] bool ExpandEnvVarInWorkingDirectoryOnServer, ReadOnlyBinaryStringRef Arguments, [MarshalAs(UnmanagedType.VariantBool)] bool ExpandEnvVarInArgumentsOnServer);
     }
 
     [GeneratedComInterface]
@@ -29,6 +29,6 @@ namespace MsRdpEx.Interop
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public unsafe partial interface ITSRemoteProgram3 : ITSRemoteProgram2
     {
-        void ServerStartApp(ReadOnlyBinaryStringRef AppUserModelId, ReadOnlyBinaryStringRef Arguments, VariantBool ExpandEnvVarInArgumentsOnServer);
+        void ServerStartApp(ReadOnlyBinaryStringRef AppUserModelId, ReadOnlyBinaryStringRef Arguments, [MarshalAs(UnmanagedType.VariantBool)] bool ExpandEnvVarInArgumentsOnServer);
     }
 }

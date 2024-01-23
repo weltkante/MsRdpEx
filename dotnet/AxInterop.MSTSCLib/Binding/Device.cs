@@ -9,7 +9,7 @@ namespace MsRdpEx.Interop
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public unsafe partial interface IMsRdpDeviceCollection
     {
-        void RescanDevices(VariantBool DynRedir);
+        void RescanDevices([MarshalAs(UnmanagedType.VariantBool)] bool DynRedir);
         IMsRdpDevice GetDeviceByIndex(uint index);
         IMsRdpDevice GetDeviceById(ReadOnlyBinaryStringRef DeviceInstanceId);
         uint GetDeviceCount();
@@ -23,7 +23,7 @@ namespace MsRdpEx.Interop
         BinaryString GetDeviceInstanceId();
         BinaryString GetFriendlyName();
         BinaryString GetDeviceDescription();
-        void SetRedirectionState(VariantBool value);
-        VariantBool GetRedirectionState();
+        void SetRedirectionState([MarshalAs(UnmanagedType.VariantBool)] bool value);
+        [return: MarshalAs(UnmanagedType.VariantBool)] bool GetRedirectionState();
     }
 }

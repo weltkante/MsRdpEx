@@ -42,6 +42,6 @@ namespace MsRdpEx.Interop
         void SetRemoteProgramsStayConnectOnBadCaps(int pcbStayConnected);
         int GetRemoteProgramsStayConnectOnBadCaps();
         uint GetControlType();
-        void SetDecodeGfx(VariantBool rhs);
+        void SetDecodeGfx([MarshalAs(UnmanagedType.VariantBool)] bool rhs);
     }
 }

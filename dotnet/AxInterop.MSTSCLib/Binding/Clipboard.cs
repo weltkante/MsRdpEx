@@ -9,9 +9,9 @@ namespace MsRdpEx.Interop
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public unsafe partial interface IMsRdpClipboard
     {
-        VariantBool CanSyncLocalClipboardToRemoteSession();
+        [return: MarshalAs(UnmanagedType.VariantBool)] bool CanSyncLocalClipboardToRemoteSession();
         void SyncLocalClipboardToRemoteSession();
-        VariantBool CanSyncRemoteClipboardToLocalSession();
+        [return: MarshalAs(UnmanagedType.VariantBool)] bool CanSyncRemoteClipboardToLocalSession();
         void SyncRemoteClipboardToLocalSession();
     }
 }

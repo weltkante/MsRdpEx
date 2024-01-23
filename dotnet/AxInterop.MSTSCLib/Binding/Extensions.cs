@@ -1,22 +1,11 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
+using System.Windows.Forms;
 using MsRdpEx.Interop;
 
 public static class MsRdpExInteropExtensions
 {
-    public static void OnConfirmClose(this IMsTscAxEvents client, out bool pfAllowClose)
-    {
-        client.OnConfirmClose(out var _pfAllowClose);
-        pfAllowClose = _pfAllowClose;
-    }
-
-    public static void OnReceivedTSPublicKey(this IMsTscAxEvents client, ReadOnlyBinaryStringRef publicKey, out bool pfContinueLogon)
-    {
-        client.OnReceivedTSPublicKey(publicKey, out var _pfContinueLogon);
-        pfContinueLogon = _pfContinueLogon;
-    }
-
     public static void NotifyRedirectDeviceChange(this IMsRdpClientNonScriptable client, ulong wParam, long lParam)
     {
         client.NotifyRedirectDeviceChange((nuint)wParam, (nint)lParam);
@@ -39,16 +28,6 @@ public static class MsRdpExInteropExtensions
                 throw new ArgumentOutOfRangeException(nameof(numKeys));
         }
     }
-
-    public static void SetRdpProperty(this IMsRdpClientShell shell, BinaryString szProperty, object Value)
-    {
-        throw new NotImplementedException();
-    }
-
-    public static object GetRdpProperty(this IMsRdpClientShell shell, BinaryString szProperty)
-    {
-        throw new NotImplementedException();
-    }
 }
 
 public static class MSTSCLibExtensions
@@ -70,30 +49,27 @@ internal static class RedirectionHelpers
         client.SendKeys(numKeys, pbArrayKeyUp, plKeyData);
     }
 
-    // TODO: adapter should drop the 'in' keyword in the call (and correct spelling)
-    internal static void set_ConnectWithEndpoint(this IMsRdpClientAdvancedSettings settings, in object A_1)
-    {
-        throw new NotImplementedException();
-    }
-
-    // TODO: adapter should drop the 'in' keyword in the call (and correct spelling)
-    internal static void set_PublisherCertificateChain(this IMsRdpClientNonScriptable4 client, in object pVarCert)
-    {
-        throw new NotImplementedException();
-    }
-
-    // TODO: adapter should drop the 'in' keyword in the call (and correct spelling)
-    internal static void set_Property(this IMsRdpExtendedSettings settings, BinaryString bstrPropertyName, in object pValue)
-    {
-        if (pValue is bool boolValue)
-            settings.SetProperty(bstrPropertyName, boolValue);
-        else
-            throw new NotImplementedException();
-    }
-
     #endregion
 
     #region Spelling Support
+
+    // TODO: adapter should use the right spelling
+    internal static void set_ConnectWithEndpoint(this IMsRdpClientAdvancedSettings settings, in object A_1)
+    {
+        settings.SetConnectWithEndpoint(in A_1);
+    }
+
+    // TODO: adapter should use the right spelling
+    internal static void set_PublisherCertificateChain(this IMsRdpClientNonScriptable4 client, in object pVarCert)
+    {
+        client.SetPublisherCertificateChain(in pVarCert);
+    }
+
+    // TODO: adapter should use the right spelling
+    internal static void set_Property(this IMsRdpExtendedSettings settings, BinaryString bstrPropertyName, in object pValue)
+    {
+        settings.SetProperty(bstrPropertyName, in pValue);
+    }
 
     // TODO: adapter should use the right spelling
     internal static IMsRdpDevice get_DeviceByIndex(this IMsRdpDeviceCollection devices, uint index)
@@ -131,34 +107,10 @@ internal static class RedirectionHelpers
         return redirections.GetByInstanceId(InstanceId);
     }
 
-    #endregion
-
-    #region Variant Support
-
-    internal static object GetPublisherCertificateChain(this IMsRdpClientNonScriptable4 client)
-    {
-        throw new NotImplementedException();
-    }
-
+    // TODO: adapter should use the right spelling
     internal static object get_Property(this IMsRdpExtendedSettings settings, BinaryString bstrPropertyName)
     {
-        var result = settings.GetProperty(bstrPropertyName);
-
-        // HACK: should handle IUnknown/IDispatch Variants directly and not try to guess
-        if (result != null && (result is ComObject || Marshal.IsComObject(result)))
-            result = MSTSCLib.ProxyObject.Pack(result);
-
-        return result;
-    }
-
-    internal static object GetRdpProperty(this IRemoteDesktopClientSettings settings, BinaryString propertyName)
-    {
-        throw new NotImplementedException();
-    }
-
-    internal static void SetRdpProperty(this IRemoteDesktopClientSettings settings, BinaryString propertyName, object Value)
-    {
-        throw new NotImplementedException();
+        return settings.GetProperty(bstrPropertyName);
     }
 
     #endregion

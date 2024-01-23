@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Immutable;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
@@ -40,6 +42,8 @@ public unsafe readonly ref struct ReadOnlyBinaryStringRef
     public static implicit operator ReadOnlySpan<byte>(ReadOnlyBinaryStringRef bstr) => bstr.AsByteSpan();
 
     public static implicit operator ReadOnlyBinaryStringRef(string? value) => new(value);
+    public static implicit operator ReadOnlyBinaryStringRef(ImmutableArray<byte> value) => new(value.AsSpan());
+    public static implicit operator ReadOnlyBinaryStringRef(BinaryString? value) => value is null ? default : new(value.AsByteSpan());
     public static implicit operator ReadOnlyBinaryStringRef(char[] value) => new(value);
     public static implicit operator ReadOnlyBinaryStringRef(byte[] value) => new(value);
     public static implicit operator ReadOnlyBinaryStringRef(Span<char> value) => new(value);
@@ -82,6 +86,7 @@ public unsafe readonly ref struct ReadOnlyBinaryStringRef
     public bool IsNull => Unsafe.IsNullRef(ref MemoryMarshal.GetReference(content));
 
     public ReadOnlySpan<byte> AsByteSpan() => content;
+    public ImmutableArray<byte> ToImmutableArray() => ImmutableArray.Create(content);
     public ReadOnlySpan<char> AsTextSpan() => MemoryMarshal.Cast<byte, char>(content);
     public override string? ToString() => IsNull ? null : new(AsTextSpan());
     public override int GetHashCode()
@@ -111,195 +116,168 @@ public unsafe readonly ref struct ReadOnlyBinaryStringRef
     public static bool operator !=(ReadOnlyBinaryStringRef lhs, ReadOnlyBinaryStringRef rhs) => !lhs.Equals(rhs);
 }
 
-[NativeMarshalling(typeof(OwnershipTransfer))]
-public sealed unsafe partial class BinaryString : IDisposable, IEquatable<BinaryString>
+/// <summary>Contains either text or binary data.</summary>
+/// <remarks>Data is stored in immutable managed form and does not need to be disposed.</remarks>
+[NativeMarshalling(typeof(Marshaller))]
+public sealed class BinaryString : IEquatable<BinaryString>
 {
-    [CustomMarshaller(typeof(BinaryString), MarshalMode.Default, typeof(OwnershipTransfer))]
-    public ref struct OwnershipTransfer
+    [CustomMarshaller(typeof(BinaryString), MarshalMode.Default, typeof(Marshaller))]
+    public static unsafe class Marshaller
     {
-        private nint pointer;
-
-        public void FromManaged(BinaryString? value)
+        public static BinaryString? ConvertToManaged(nint data)
         {
-            Free();
-
-            // receive ownership from managed code
-            if (value is not null)
-            {
-                pointer = value.pointer;
-                value.pointer = 0;
-
-                // we are using zero pointers in non-null BinaryString as a cheap representation of an empty BinaryString
-                // however if we need to pass ownership of an empty string to native code we actually have to allocate one
-                if (pointer == 0 && (pointer = BinaryStringInterop.AllocateByteBuffer(null, 0)) == 0)
-                    throw new OutOfMemoryException();
-            }
-        }
-
-        public void FromUnmanaged(nint value)
-        {
-            Free();
-
-            // receive ownership from unmanaged code
-            pointer = value;
-        }
-
-        public nint ToUnmanaged()
-        {
-            // transfer ownership to unmanaged code
-            var result = pointer;
-            pointer = 0;
-            return result;
-        }
-
-        public BinaryString? ToManaged()
-        {
-            if (pointer == 0)
+            if (data == 0)
                 return null;
 
-            // make sure we don't construct a BinaryString larger than .NET can manage
-            // (it's safe to throw here, the marshaller retains ownership and frees it)
-            if (((int*)pointer)[-1] < 0)
-                throw new OverflowException();
+            var length = ((int*)data)[-1];
+            if (length < 0)
+                throw new OutOfMemoryException();
 
-            // transfer ownership to managed code
-            var result = new BinaryString(pointer);
-            pointer = 0;
+            if (length == 0)
+                return Empty;
+
+            // Prefer storing as string for even lengths since that is the common case and even if we want
+            // binary data we are more likely to process it as a span than asking for an ImmutableArray.
+            if ((length & 1) == 0)
+                return new BinaryString(new ReadOnlySpan<char>((char*)data, length / 2));
+
+            // If the length is odd we store it as a byte array so we don't lose the last byte.
+            return new BinaryString(new ReadOnlySpan<byte>((byte*)data, length));
+        }
+
+        public static nint ConvertToUnmanaged(BinaryString? data)
+        {
+            if (data is null)
+                return 0;
+
+            nint result;
+            if (data.mTextData is not null)
+            {
+                fixed (char* pTextData = data.mTextData)
+                    result = BinaryStringInterop.AllocateTextBuffer(pTextData, data.mTextData.Length);
+            }
+            else if (!data.mByteData.IsDefault)
+            {
+                fixed (byte* pByteData = data.mByteData.AsSpan())
+                    result = BinaryStringInterop.AllocateByteBuffer(pByteData, data.mByteData.Length);
+            }
+            else throw new UnreachableException();
+
+            if (result == 0)
+                throw new OutOfMemoryException();
+
             return result;
         }
 
-        public void Free()
+        public static void Free(nint data)
         {
-            if (pointer != 0)
-            {
-                Marshal.FreeBSTR(pointer);
-                pointer = 0;
-            }
+            if (data != 0)
+                Marshal.FreeBSTR(data);
         }
     }
 
-    public static implicit operator ReadOnlyBinaryStringRef(BinaryString? bstr) => bstr is null ? default : new(bstr.AsByteSpan());
+    public static implicit operator BinaryString?(string? text) => text is null ? null : new(text);
+    public static implicit operator BinaryString?(ImmutableArray<byte> data) => data.IsDefault ? null : new(data);
+    public static implicit operator BinaryString?(ReadOnlyBinaryStringRef bstr) => bstr.IsNull ? null : new(bstr.AsByteSpan());
+    public static implicit operator BinaryString?(char[] text) => text is null ? null : new(text);
+    public static implicit operator BinaryString?(byte[] data) => data is null ? null : new(data);
+    public static implicit operator BinaryString?(Span<char> text) => new(text);
+    public static implicit operator BinaryString?(Span<byte> data) => new(data);
+    public static implicit operator BinaryString?(ReadOnlySpan<char> text) => new(text);
+    public static implicit operator BinaryString?(ReadOnlySpan<byte> data) => new(data);
+
     public static implicit operator string?(BinaryString? bstr) => bstr?.ToString();
+    public static implicit operator ImmutableArray<byte>(BinaryString? bstr) => bstr is null ? default : bstr.ToImmutableArray();
     public static implicit operator ReadOnlySpan<char>(BinaryString? bstr) => bstr is null ? default : bstr.AsTextSpan();
     public static implicit operator ReadOnlySpan<byte>(BinaryString? bstr) => bstr is null ? default : bstr.AsByteSpan();
 
-    public static implicit operator BinaryString?(string? text) => text is null ? null : new(text);
-    public static implicit operator BinaryString(char[] text) => new(text);
-    public static implicit operator BinaryString(byte[] data) => new(data);
-    public static implicit operator BinaryString(Span<char> text) => new(text);
-    public static implicit operator BinaryString(Span<byte> data) => new(data);
-    public static implicit operator BinaryString(ReadOnlySpan<char> text) => new(text);
-    public static implicit operator BinaryString(ReadOnlySpan<byte> data) => new(data);
+    public static BinaryString Empty { get; } = new BinaryString("", []);
 
-    public static BinaryString Empty { get; } = new(0);
+    public static bool IsNullOrEmpty(BinaryString? bstr) => bstr is null || bstr.IsEmpty;
 
-    public static BinaryString AllocateByteLength(int length)
+    private string? mTextData;
+    private ImmutableArray<byte> mByteData;
+
+    private BinaryString(string? text, ImmutableArray<byte> data)
     {
-        if (length < 0)
-            throw new ArgumentOutOfRangeException(nameof(length));
+        if (text is null && data.IsDefault)
+            throw new ArgumentException("A null string must be represented by a null BinaryString.");
 
-        if (length == 0)
-            return Empty;
-
-        var pointer = BinaryStringInterop.AllocateByteBuffer(null, length);
-        if (pointer == 0)
-            throw new OutOfMemoryException();
-
-        return new(pointer);
+        mTextData = text;
+        mByteData = data;
     }
 
-    public static BinaryString AllocateTextLength(int length)
+    public BinaryString(string text)
     {
-        if (length < 0)
-            throw new ArgumentOutOfRangeException(nameof(length));
-
-        if (length == 0)
-            return Empty;
-
-        var pointer = BinaryStringInterop.AllocateTextBuffer(null, length);
-        if (pointer == 0)
-            throw new OutOfMemoryException();
-
-        return new(pointer);
-    }
-
-    internal nint pointer;
-
-    internal BinaryString(nint pointer)
-    {
-        if ((this.pointer = pointer) == 0)
-            GC.SuppressFinalize(this);
-    }
-
-    public BinaryString(ReadOnlySpan<byte> data)
-    {
-        if (data.IsEmpty)
-        {
-            GC.SuppressFinalize(this);
-        }
-        else
-        {
-            fixed (byte* dataPointer = data)
-                if ((this.pointer = BinaryStringInterop.AllocateByteBuffer(dataPointer, data.Length)) == 0)
-                    throw new OutOfMemoryException();
-        }
+        mTextData = text ?? throw new ArgumentNullException(nameof(text), "A null string must be represented by a null BinaryString.");
     }
 
     public BinaryString(ReadOnlySpan<char> text)
     {
-        if (text.IsEmpty)
-        {
-            GC.SuppressFinalize(this);
-        }
-        else
-        {
-            fixed (char* textPointer = text)
-                if ((this.pointer = BinaryStringInterop.AllocateTextBuffer(textPointer, text.Length)) == 0)
-                    throw new OutOfMemoryException();
-        }
+        mTextData = new string(text);
     }
 
-    public BinaryString(string? text)
+    public BinaryString(ImmutableArray<byte> data)
     {
-        if (string.IsNullOrEmpty(text))
-            GC.SuppressFinalize(this);
-        else
-            pointer = Marshal.StringToBSTR(text);
+        if (data.IsDefault)
+            throw new ArgumentNullException(nameof(data), "A null string must be represented by a null BinaryString.");
+
+        mByteData = data;
     }
 
-    ~BinaryString()
+    public BinaryString(ReadOnlySpan<byte> data)
     {
-        Dispose();
+        mByteData = data.ToImmutableArray();
     }
 
-    public void Dispose()
+    public bool IsEmpty => (mTextData?.Length ?? mByteData.Length) == 0;
+    public int TextLength => mTextData?.Length ?? (mByteData.Length / 2);
+    public int ByteLength => mByteData.IsDefault ? mTextData!.Length * 2 : mByteData.Length;
+
+    private ReadOnlySpan<byte> GetByteSpanSlow()
     {
-        var pointer = Interlocked.Exchange(ref this.pointer, 0);
-        if (pointer != 0)
-        {
-            GC.SuppressFinalize(this);
-            Marshal.FreeBSTR(pointer);
-        }
+        Debug.Assert(mTextData is not null);
+        return MemoryMarshal.CreateReadOnlySpan(ref Unsafe.As<char, byte>(ref Unsafe.AsRef(in mTextData.GetPinnableReference())), mTextData.Length * 2);
     }
 
-    public int ByteLength => pointer == 0 ? 0 : ((int*)pointer)[-1];
-    public int TextLength => ByteLength / 2;
-    public bool IsEmpty => ByteLength == 0;
-    public bool IsDisposed => pointer == 0;
+    public ReadOnlySpan<byte> AsByteSpan() => mByteData.IsDefault ? GetByteSpanSlow() : mByteData.AsSpan();
 
-    public Span<byte> AsByteSpan() => pointer == 0 ? new(Array.Empty<byte>()) : new((void*)pointer, ByteLength);
-    public Span<char> AsTextSpan() => pointer == 0 ? new(Array.Empty<char>()) : new((void*)pointer, TextLength);
-    public override string ToString() => new((char*)pointer, 0, TextLength);
+    private ImmutableArray<byte> GetImmutableArraySlow()
+    {
+        var data = GetByteSpanSlow().ToImmutableArray();
+        var other = ImmutableInterlocked.InterlockedCompareExchange(ref mByteData, data, default);
+        return other.IsDefault ? data : other;
+    }
+
+    public ImmutableArray<byte> ToImmutableArray() => mByteData.IsDefault ? GetImmutableArraySlow() : mByteData;
+
+    private ReadOnlySpan<char> GetTextSpanSlow()
+    {
+        Debug.Assert(!mByteData.IsDefault);
+        return MemoryMarshal.CreateReadOnlySpan(ref Unsafe.As<byte, char>(ref MemoryMarshal.GetReference(mByteData.AsSpan())), mByteData.Length / 2);
+    }
+
+    public ReadOnlySpan<char> AsTextSpan() => mTextData is null ? GetTextSpanSlow() : mTextData;
+
+    private string GetStringSlow()
+    {
+        var text = new string(GetTextSpanSlow());
+        return Interlocked.CompareExchange(ref mTextData, text, null) ?? text;
+    }
+
+    public override string ToString() => mTextData is null ? GetStringSlow() : mTextData;
+
     public override int GetHashCode()
     {
         var hash = new HashCode();
         hash.AddBytes(AsByteSpan());
         return hash.ToHashCode();
     }
+
     public override bool Equals(object? obj) => Equals(obj as BinaryString);
-    public bool Equals(BinaryString? other) => other is not null && (this.pointer == other.pointer || this.AsByteSpan().SequenceEqual(other.AsByteSpan()));
-    public static bool operator ==(BinaryString lhs, BinaryString rhs) => lhs is null ? rhs is null : lhs.Equals(rhs);
-    public static bool operator !=(BinaryString lhs, BinaryString rhs) => !(lhs == rhs);
+    public bool Equals(BinaryString? other) => other is not null && other.AsByteSpan().SequenceEqual(AsByteSpan());
+    public static bool operator ==(BinaryString? lhs, BinaryString? rhs) => lhs is null ? rhs is null : lhs.Equals(rhs);
+    public static bool operator !=(BinaryString? lhs, BinaryString? rhs) => !(lhs == rhs);
 }
 
 internal static unsafe partial class BinaryStringInterop

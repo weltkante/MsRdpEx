@@ -108,14 +108,14 @@ namespace MsRdpEx.Interop
         int GetKeyboardFunctionKey();
         void SetWinceFixedPalette(int value);
         int GetWinceFixedPalette();
-        void SetConnectToServerConsole(VariantBool value);
-        VariantBool GetConnectToServerConsole();
+        void SetConnectToServerConsole([MarshalAs(UnmanagedType.VariantBool)] bool value);
+        [return: MarshalAs(UnmanagedType.VariantBool)] bool GetConnectToServerConsole();
         void SetBitmapPersistence(int value);
         int GetBitmapPersistence();
         void SetMinutesToIdleTimeout(int value);
         int GetMinutesToIdleTimeout();
-        void SetSmartSizing(VariantBool value);
-        VariantBool GetSmartSizing();
+        void SetSmartSizing([MarshalAs(UnmanagedType.VariantBool)] bool value);
+        [return: MarshalAs(UnmanagedType.VariantBool)] bool GetSmartSizing();
         void SetRdpdrLocalPrintingDocName(ReadOnlyBinaryStringRef value);
         BinaryString GetRdpdrLocalPrintingDocName();
         void SetRdpdrClipCleanTempDirString(ReadOnlyBinaryStringRef value);
@@ -123,31 +123,31 @@ namespace MsRdpEx.Interop
         void SetRdpdrClipPasteInfoString(ReadOnlyBinaryStringRef value);
         BinaryString GetRdpdrClipPasteInfoString();
         void SetClearTextPassword(ReadOnlyBinaryStringRef value);
-        void SetDisplayConnectionBar(VariantBool value);
-        VariantBool GetDisplayConnectionBar();
-        void SetPinConnectionBar(VariantBool value);
-        VariantBool GetPinConnectionBar();
-        void SetGrabFocusOnConnect(VariantBool value);
-        VariantBool GetGrabFocusOnConnect();
+        void SetDisplayConnectionBar([MarshalAs(UnmanagedType.VariantBool)] bool value);
+        [return: MarshalAs(UnmanagedType.VariantBool)] bool GetDisplayConnectionBar();
+        void SetPinConnectionBar([MarshalAs(UnmanagedType.VariantBool)] bool value);
+        [return: MarshalAs(UnmanagedType.VariantBool)] bool GetPinConnectionBar();
+        void SetGrabFocusOnConnect([MarshalAs(UnmanagedType.VariantBool)] bool value);
+        [return: MarshalAs(UnmanagedType.VariantBool)] bool GetGrabFocusOnConnect();
         void SetLoadBalanceInfo(ReadOnlyBinaryStringRef value);
         BinaryString GetLoadBalanceInfo();
-        void SetRedirectDrives(VariantBool value);
-        VariantBool GetRedirectDrives();
-        void SetRedirectPrinters(VariantBool value);
-        VariantBool GetRedirectPrinters();
-        void SetRedirectPorts(VariantBool value);
-        VariantBool GetRedirectPorts();
-        void SetRedirectSmartCards(VariantBool value);
-        VariantBool GetRedirectSmartCards();
+        void SetRedirectDrives([MarshalAs(UnmanagedType.VariantBool)] bool value);
+        [return: MarshalAs(UnmanagedType.VariantBool)] bool GetRedirectDrives();
+        void SetRedirectPrinters([MarshalAs(UnmanagedType.VariantBool)] bool value);
+        [return: MarshalAs(UnmanagedType.VariantBool)] bool GetRedirectPrinters();
+        void SetRedirectPorts([MarshalAs(UnmanagedType.VariantBool)] bool value);
+        [return: MarshalAs(UnmanagedType.VariantBool)] bool GetRedirectPorts();
+        void SetRedirectSmartCards([MarshalAs(UnmanagedType.VariantBool)] bool value);
+        [return: MarshalAs(UnmanagedType.VariantBool)] bool GetRedirectSmartCards();
         void SetBitmapVirtualCache16BppSize(int value);
         int GetBitmapVirtualCache16BppSize();
         void SetBitmapVirtualCache24BppSize(int value);
         int GetBitmapVirtualCache24BppSize();
         void SetPerformanceFlags(int value);
         int GetPerformanceFlags();
-        void SetConnectWithEndpoint(in Variant value);
-        void SetNotifyTSPublicKey(VariantBool value);
-        VariantBool GetNotifyTSPublicKey();
+        void SetConnectWithEndpoint([MarshalUsing(typeof(Variant.ObjectMarshaller))] in object value);
+        void SetNotifyTSPublicKey([MarshalAs(UnmanagedType.VariantBool)] bool value);
+        [return: MarshalAs(UnmanagedType.VariantBool)] bool GetNotifyTSPublicKey();
     }
 
     [GeneratedComInterface]
@@ -155,9 +155,9 @@ namespace MsRdpEx.Interop
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public unsafe partial interface IMsRdpClientAdvancedSettings2 : IMsRdpClientAdvancedSettings
     {
-        VariantBool GetCanAutoReconnect();
-        void SetEnableAutoReconnect(VariantBool value);
-        VariantBool GetEnableAutoReconnect();
+        [return: MarshalAs(UnmanagedType.VariantBool)] bool GetCanAutoReconnect();
+        void SetEnableAutoReconnect([MarshalAs(UnmanagedType.VariantBool)] bool value);
+        [return: MarshalAs(UnmanagedType.VariantBool)] bool GetEnableAutoReconnect();
         void SetMaxReconnectAttempts(int value);
         int GetMaxReconnectAttempts();
     }
@@ -167,10 +167,10 @@ namespace MsRdpEx.Interop
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public unsafe partial interface IMsRdpClientAdvancedSettings3 : IMsRdpClientAdvancedSettings2
     {
-        void SetConnectionBarShowMinimizeButton(VariantBool value);
-        VariantBool GetConnectionBarShowMinimizeButton();
-        void SetConnectionBarShowRestoreButton(VariantBool value);
-        VariantBool GetConnectionBarShowRestoreButton();
+        void SetConnectionBarShowMinimizeButton([MarshalAs(UnmanagedType.VariantBool)] bool value);
+        [return: MarshalAs(UnmanagedType.VariantBool)] bool GetConnectionBarShowMinimizeButton();
+        void SetConnectionBarShowRestoreButton([MarshalAs(UnmanagedType.VariantBool)] bool value);
+        [return: MarshalAs(UnmanagedType.VariantBool)] bool GetConnectionBarShowRestoreButton();
     }
 
     [GeneratedComInterface]
@@ -187,18 +187,18 @@ namespace MsRdpEx.Interop
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public unsafe partial interface IMsRdpClientAdvancedSettings5 : IMsRdpClientAdvancedSettings4
     {
-        void SetRedirectClipboard(VariantBool value);
-        VariantBool GetRedirectClipboard();
+        void SetRedirectClipboard([MarshalAs(UnmanagedType.VariantBool)] bool value);
+        [return: MarshalAs(UnmanagedType.VariantBool)] bool GetRedirectClipboard();
         void SetAudioRedirectionMode(uint value);
         uint GetAudioRedirectionMode();
-        void SetConnectionBarShowPinButton(VariantBool value);
-        VariantBool GetConnectionBarShowPinButton();
-        void SetPublicMode(VariantBool value);
-        VariantBool GetPublicMode();
-        void SetRedirectDevices(VariantBool value);
-        VariantBool GetRedirectDevices();
-        void SetRedirectPOSDevices(VariantBool value);
-        VariantBool GetRedirectPOSDevices();
+        void SetConnectionBarShowPinButton([MarshalAs(UnmanagedType.VariantBool)] bool value);
+        [return: MarshalAs(UnmanagedType.VariantBool)] bool GetConnectionBarShowPinButton();
+        void SetPublicMode([MarshalAs(UnmanagedType.VariantBool)] bool value);
+        [return: MarshalAs(UnmanagedType.VariantBool)] bool GetPublicMode();
+        void SetRedirectDevices([MarshalAs(UnmanagedType.VariantBool)] bool value);
+        [return: MarshalAs(UnmanagedType.VariantBool)] bool GetRedirectDevices();
+        void SetRedirectPOSDevices([MarshalAs(UnmanagedType.VariantBool)] bool value);
+        [return: MarshalAs(UnmanagedType.VariantBool)] bool GetRedirectPOSDevices();
         void SetBitmapVirtualCache32BppSize(int value);
         int GetBitmapVirtualCache32BppSize();
     }
@@ -208,8 +208,8 @@ namespace MsRdpEx.Interop
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public unsafe partial interface IMsRdpClientAdvancedSettings6 : IMsRdpClientAdvancedSettings5
     {
-        void SetRelativeMouseMode(VariantBool value);
-        VariantBool GetRelativeMouseMode();
+        void SetRelativeMouseMode([MarshalAs(UnmanagedType.VariantBool)] bool value);
+        [return: MarshalAs(UnmanagedType.VariantBool)] bool GetRelativeMouseMode();
         BinaryString GetAuthenticationServiceClass();
         void SetAuthenticationServiceClass(ReadOnlyBinaryStringRef value);
         BinaryString GetPCB();
@@ -218,11 +218,11 @@ namespace MsRdpEx.Interop
         int GetHotKeyFocusReleaseLeft();
         void SetHotKeyFocusReleaseRight(int value);
         int GetHotKeyFocusReleaseRight();
-        void SetEnableCredSspSupport(VariantBool value);
-        VariantBool GetEnableCredSspSupport();
+        void SetEnableCredSspSupport([MarshalAs(UnmanagedType.VariantBool)] bool value);
+        [return: MarshalAs(UnmanagedType.VariantBool)] bool GetEnableCredSspSupport();
         uint GetAuthenticationType();
-        void SetConnectToAdministerServer(VariantBool value);
-        VariantBool GetConnectToAdministerServer();
+        void SetConnectToAdministerServer([MarshalAs(UnmanagedType.VariantBool)] bool value);
+        [return: MarshalAs(UnmanagedType.VariantBool)] bool GetConnectToAdministerServer();
     }
 
     [GeneratedComInterface]
@@ -230,20 +230,20 @@ namespace MsRdpEx.Interop
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public unsafe partial interface IMsRdpClientAdvancedSettings7 : IMsRdpClientAdvancedSettings6
     {
-        void SetAudioCaptureRedirectionMode(VariantBool value);
-        VariantBool GetAudioCaptureRedirectionMode();
+        void SetAudioCaptureRedirectionMode([MarshalAs(UnmanagedType.VariantBool)] bool value);
+        [return: MarshalAs(UnmanagedType.VariantBool)] bool GetAudioCaptureRedirectionMode();
         void SetVideoPlaybackMode(uint value);
         uint GetVideoPlaybackMode();
-        void SetEnableSuperPan(VariantBool value);
-        VariantBool GetEnableSuperPan();
+        void SetEnableSuperPan([MarshalAs(UnmanagedType.VariantBool)] bool value);
+        [return: MarshalAs(UnmanagedType.VariantBool)] bool GetEnableSuperPan();
         void SetSuperPanAccelerationFactor(uint value);
         uint GetSuperPanAccelerationFactor();
-        void SetNegotiateSecurityLayer(VariantBool value);
-        VariantBool GetNegotiateSecurityLayer();
+        void SetNegotiateSecurityLayer([MarshalAs(UnmanagedType.VariantBool)] bool value);
+        [return: MarshalAs(UnmanagedType.VariantBool)] bool GetNegotiateSecurityLayer();
         void SetAudioQualityMode(uint value);
         uint GetAudioQualityMode();
-        void SetRedirectDirectX(VariantBool value);
-        VariantBool GetRedirectDirectX();
+        void SetRedirectDirectX([MarshalAs(UnmanagedType.VariantBool)] bool value);
+        [return: MarshalAs(UnmanagedType.VariantBool)] bool GetRedirectDirectX();
         void SetNetworkConnectionType(uint value);
         uint GetNetworkConnectionType();
     }
@@ -253,9 +253,9 @@ namespace MsRdpEx.Interop
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public unsafe partial interface IMsRdpClientAdvancedSettings8 : IMsRdpClientAdvancedSettings7
     {
-        void SetBandwidthDetection(VariantBool value);
+        void SetBandwidthDetection([MarshalAs(UnmanagedType.VariantBool)] bool value);
 
-        VariantBool GetBandwidthDetection();
+        [return: MarshalAs(UnmanagedType.VariantBool)] bool GetBandwidthDetection();
 
         void SetClientProtocolSpec(ClientSpec value);
 

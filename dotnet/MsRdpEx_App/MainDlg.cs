@@ -463,10 +463,10 @@ namespace MsRdpEx_App
             if (axHookEnabled)
             {
                 object corePropsVal = extendedSettings.get_Property("CoreProperties");
-                IMsRdpExtendedSettings coreProps = (IMsRdpExtendedSettings)ProxyObject.Pack(corePropsVal);
+                IMsRdpExtendedSettings coreProps = (IMsRdpExtendedSettings)corePropsVal;
 
                 object basePropsVal = extendedSettings.get_Property("BaseProperties");
-                IMsRdpExtendedSettings baseProps = (IMsRdpExtendedSettings)ProxyObject.Pack(basePropsVal);
+                IMsRdpExtendedSettings baseProps = (IMsRdpExtendedSettings)basePropsVal;
 
                 object BandwidthAutodetect = false;
                 coreProps.set_Property("BandwidthAutodetect", ref BandwidthAutodetect);
