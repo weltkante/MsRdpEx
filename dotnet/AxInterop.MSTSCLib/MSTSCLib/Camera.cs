@@ -13,9 +13,9 @@ namespace MsRdpEx.Interop
         void Rescan();
         uint GetCount();
         IMsRdpCameraRedirConfig GetByIndex(uint index);
-        IMsRdpCameraRedirConfig GetBySymbolicLink(ReadOnlyBinaryStringRef SymbolicLink);
-        IMsRdpCameraRedirConfig GetByInstanceId(ReadOnlyBinaryStringRef InstanceId);
-        void AddConfig(ReadOnlyBinaryStringRef SymbolicLink, [MarshalAs(UnmanagedType.VariantBool)] bool fRedirected);
+        IMsRdpCameraRedirConfig GetBySymbolicLink(BinaryStringRef SymbolicLink);
+        IMsRdpCameraRedirConfig GetByInstanceId(BinaryStringRef InstanceId);
+        void AddConfig(BinaryStringRef SymbolicLink, [MarshalAs(UnmanagedType.VariantBool)] bool fRedirected);
         void SetRedirectByDefault([MarshalAs(UnmanagedType.VariantBool)] bool pfRedirect);
         [return: MarshalAs(UnmanagedType.VariantBool)] bool GetRedirectByDefault();
         void SetEncodeVideo([MarshalAs(UnmanagedType.VariantBool)] bool pfEncode);

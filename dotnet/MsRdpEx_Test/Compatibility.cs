@@ -98,7 +98,7 @@ namespace MsRdpEx.Tests
 
                 case "Object" when info.GetCustomAttribute<MarshalAsAttribute>()?.Value == UnmanagedType.Struct:
                     // COM source generator doesn't support VARIANT yet, manually map it to a corresponding struct
-                    return typeof(Variant);
+                    return typeof(object);
 
                 case "Object" when info.GetCustomAttribute<MarshalAsAttribute>()?.Value == UnmanagedType.IDispatch:
                     // COM source generator doesn't support IDispatch yet, manually map it to the interface
@@ -107,7 +107,7 @@ namespace MsRdpEx.Tests
                 case "String" when info.Mode == ParameterMode.Input && info.GetCustomAttribute<MarshalAsAttribute>()?.Value == UnmanagedType.BStr:
                     // BSTR supports binary data, some APIs require this. Going through a string type prevents using that
                     // feature and makes those APIs unusable. Using a custom type to support both strings and spans.
-                    return typeof(ReadOnlyBinaryStringRef);
+                    return typeof(BinaryStringRef);
 
                 case "String" when info.Mode == ParameterMode.Output && info.GetCustomAttribute<MarshalAsAttribute>()?.Value == UnmanagedType.BStr:
                     // BSTR supports binary data, some APIs require this. Going through a string type prevents using that

@@ -16,7 +16,7 @@ namespace MsRdpEx.Interop
         [PreserveSig, DispId(4)] void OnDisconnected(int discReason);
         [PreserveSig, DispId(5)] void OnEnterFullScreenMode();
         [PreserveSig, DispId(6)] void OnLeaveFullScreenMode();
-        [PreserveSig, DispId(7)] void OnChannelReceivedData(ReadOnlyBinaryStringRef chanName, ReadOnlyBinaryStringRef data);
+        [PreserveSig, DispId(7)] void OnChannelReceivedData(BinaryStringRef chanName, BinaryStringRef data);
         [PreserveSig, DispId(8)] void OnRequestGoFullScreen();
         [PreserveSig, DispId(9)] void OnRequestLeaveFullScreen();
         [PreserveSig, DispId(10)] void OnFatalError(int errorCode);
@@ -25,18 +25,18 @@ namespace MsRdpEx.Interop
         [PreserveSig, DispId(13)] void OnIdleTimeoutNotification();
         [PreserveSig, DispId(14)] void OnRequestContainerMinimize();
         [PreserveSig, DispId(15)] void OnConfirmClose([MarshalAs(UnmanagedType.VariantBool)] out bool pfAllowClose);
-        [PreserveSig, DispId(16)] void OnReceivedTSPublicKey(ReadOnlyBinaryStringRef publicKey, [MarshalAs(UnmanagedType.VariantBool)] out bool pfContinueLogon);
+        [PreserveSig, DispId(16)] void OnReceivedTSPublicKey(BinaryStringRef publicKey, [MarshalAs(UnmanagedType.VariantBool)] out bool pfContinueLogon);
         [PreserveSig, DispId(17)] void OnAutoReconnecting(int disconnectReason, int attemptCount, out AutoReconnectContinueState pArcContinueStatus);
         [PreserveSig, DispId(18)] void OnAuthenticationWarningDisplayed();
         [PreserveSig, DispId(19)] void OnAuthenticationWarningDismissed();
-        [PreserveSig, DispId(20)] void OnRemoteProgramResult(ReadOnlyBinaryStringRef bstrRemoteProgram, RemoteProgramResult lError, [MarshalAs(UnmanagedType.VariantBool)] bool vbIsExecutable);
+        [PreserveSig, DispId(20)] void OnRemoteProgramResult(BinaryStringRef bstrRemoteProgram, RemoteProgramResult lError, [MarshalAs(UnmanagedType.VariantBool)] bool vbIsExecutable);
         [PreserveSig, DispId(21)] void OnRemoteProgramDisplayed([MarshalAs(UnmanagedType.VariantBool)] bool vbDisplayed, uint uDisplayInformation);
         [PreserveSig, DispId(29)] void OnRemoteWindowDisplayed([MarshalAs(UnmanagedType.VariantBool)] bool vbDisplayed, nint hwnd, RemoteWindowDisplayedAttribute windowAttribute);
         [PreserveSig, DispId(22)] void OnLogonError(int lError);
         [PreserveSig, DispId(23)] void OnFocusReleased(int iDirection);
-        [PreserveSig, DispId(24)] void OnUserNameAcquired(ReadOnlyBinaryStringRef bstrUserName);
+        [PreserveSig, DispId(24)] void OnUserNameAcquired(BinaryStringRef bstrUserName);
         [PreserveSig, DispId(26)] void OnMouseInputModeChanged([MarshalAs(UnmanagedType.VariantBool)] bool fMouseModeRelative);
-        [PreserveSig, DispId(28)] void OnServiceMessageReceived(ReadOnlyBinaryStringRef serviceMessage);
+        [PreserveSig, DispId(28)] void OnServiceMessageReceived(BinaryStringRef serviceMessage);
         [PreserveSig, DispId(30)] void OnConnectionBarPullDown();
         [PreserveSig, DispId(32)] void OnNetworkStatusChanged(uint qualityLevel, int bandwidth, int rtt);
         [PreserveSig, DispId(35)] void OnDevicesButtonPressed();
@@ -82,15 +82,15 @@ namespace MsRdpEx.Interop
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public unsafe partial interface IMsTscAx : IMsTscAx_Redist
     {
-        void SetServer(ReadOnlyBinaryStringRef value);
+        void SetServer(BinaryStringRef value);
         BinaryString GetServer();
-        void SetDomain(ReadOnlyBinaryStringRef value);
+        void SetDomain(BinaryStringRef value);
         BinaryString GetDomain();
-        void SetUserName(ReadOnlyBinaryStringRef value);
+        void SetUserName(BinaryStringRef value);
         BinaryString GetUserName();
-        void SetDisconnectedText(ReadOnlyBinaryStringRef value);
+        void SetDisconnectedText(BinaryStringRef value);
         BinaryString GetDisconnectedText();
-        void SetConnectingText(ReadOnlyBinaryStringRef value);
+        void SetConnectingText(BinaryStringRef value);
         BinaryString GetConnectingText();
         short GetConnected();
         void SetDesktopWidth(int value);
@@ -101,7 +101,7 @@ namespace MsRdpEx.Interop
         int GetStartConnected();
         int GetHorizontalScrollBarVisible();
         int GetVerticalScrollBarVisible();
-        void SetFullScreenTitle(ReadOnlyBinaryStringRef value);
+        void SetFullScreenTitle(BinaryStringRef value);
         int GetCipherStrength();
         BinaryString GetVersion();
         int GetSecuredSettingsEnabled();
@@ -110,8 +110,8 @@ namespace MsRdpEx.Interop
         IMsTscDebug GetDebugger();
         void Connect();
         void Disconnect();
-        void CreateVirtualChannels(ReadOnlyBinaryStringRef newVal);
-        void SendOnVirtualChannel(ReadOnlyBinaryStringRef chanName, ReadOnlyBinaryStringRef ChanData);
+        void CreateVirtualChannels(BinaryStringRef newVal);
+        void SendOnVirtualChannel(BinaryStringRef chanName, BinaryStringRef ChanData);
     }
 
     [GeneratedComInterface]
@@ -126,8 +126,8 @@ namespace MsRdpEx.Interop
         ExtendedDisconnectReasonCode GetExtendedDisconnectReason();
         void SetFullScreen([MarshalAs(UnmanagedType.VariantBool)] bool value);
         [return: MarshalAs(UnmanagedType.VariantBool)] bool GetFullScreen();
-        void SetVirtualChannelOptions(ReadOnlyBinaryStringRef chanName, int chanOptions);
-        int GetVirtualChannelOptions(ReadOnlyBinaryStringRef chanName);
+        void SetVirtualChannelOptions(BinaryStringRef chanName, int chanOptions);
+        int GetVirtualChannelOptions(BinaryStringRef chanName);
         ControlCloseStatus RequestClose();
     }
 
@@ -177,7 +177,7 @@ namespace MsRdpEx.Interop
     public unsafe partial interface IMsRdpClient2 : IMsRdpClient
     {
         IMsRdpClientAdvancedSettings2 GetAdvancedSettings3();
-        void SetConnectedStatusText(ReadOnlyBinaryStringRef value);
+        void SetConnectedStatusText(BinaryStringRef value);
         BinaryString GetConnectedStatusText();
     }
 
@@ -264,8 +264,8 @@ namespace MsRdpEx.Interop
         IMsRdpClientTransportSettings4 GetTransportSettings4();
         void SyncSessionDisplaySettings();
         void UpdateSessionDisplaySettings(uint DesktopWidth, uint DesktopHeight, uint PhysicalWidth, uint PhysicalHeight, uint Orientation, uint DesktopScaleFactor, uint DeviceScaleFactor);
-        void attachEvent(ReadOnlyBinaryStringRef eventName, IDispatch callback);
-        void detachEvent(ReadOnlyBinaryStringRef eventName, IDispatch callback);
+        void attachEvent(BinaryStringRef eventName, IDispatch callback);
+        void detachEvent(BinaryStringRef eventName, IDispatch callback);
     }
 
     [GeneratedComInterface]

@@ -7,41 +7,41 @@ namespace MsRdpEx.Tests
         [Fact]
         public void ReadOnlyBinaryStringRef_Conversions()
         {
-            Assert.True(default == ReadOnlyBinaryStringRef.Null);
+            Assert.True(default == BinaryStringRef.Null);
 
-            Assert.True(default(string) == ReadOnlyBinaryStringRef.Null);
-            Assert.True(string.Empty == ReadOnlyBinaryStringRef.Empty);
+            Assert.True(default(string) == BinaryStringRef.Null);
+            Assert.True(string.Empty == BinaryStringRef.Empty);
 
-            Assert.True((ReadOnlyBinaryStringRef)default(BinaryString) == ReadOnlyBinaryStringRef.Null);
-            Assert.True((ReadOnlyBinaryStringRef)BinaryString.Empty == ReadOnlyBinaryStringRef.Empty);
+            Assert.True((BinaryStringRef)default(BinaryString) == BinaryStringRef.Null);
+            Assert.True((BinaryStringRef)BinaryString.Empty == BinaryStringRef.Empty);
 
-            Assert.True(Array.Empty<byte>() == ReadOnlyBinaryStringRef.Empty);
-            Assert.True(Array.Empty<char>() == ReadOnlyBinaryStringRef.Empty);
+            Assert.True(Array.Empty<byte>() == BinaryStringRef.Empty);
+            Assert.True(Array.Empty<char>() == BinaryStringRef.Empty);
 
-            Assert.True(default(Span<byte>) == ReadOnlyBinaryStringRef.Null);
-            Assert.True(default(Span<char>) == ReadOnlyBinaryStringRef.Null);
+            Assert.True(default(Span<byte>) == BinaryStringRef.Null);
+            Assert.True(default(Span<char>) == BinaryStringRef.Null);
 
-            Assert.True(default == ReadOnlyBinaryStringRef.Null.AsByteSpan());
-            Assert.False(default == ReadOnlyBinaryStringRef.Empty.AsByteSpan());
+            Assert.True(default == BinaryStringRef.Null.AsByteSpan());
+            Assert.False(default == BinaryStringRef.Empty.AsByteSpan());
 
-            Assert.True(default == ReadOnlyBinaryStringRef.Null.AsTextSpan());
-            Assert.False(default == ReadOnlyBinaryStringRef.Empty.AsTextSpan());
+            Assert.True(default == BinaryStringRef.Null.AsTextSpan());
+            Assert.False(default == BinaryStringRef.Empty.AsTextSpan());
         }
 
         [Fact]
         public void ReadOnlyBinaryStringRef_DifferentiatesBetweenNullAndEmpty()
         {
-            Assert.True(ReadOnlyBinaryStringRef.Null.IsNull);
-            Assert.True(ReadOnlyBinaryStringRef.Null.IsEmpty);
+            Assert.True(BinaryStringRef.Null.IsNull);
+            Assert.True(BinaryStringRef.Null.IsEmpty);
 
-            Assert.False(ReadOnlyBinaryStringRef.Empty.IsNull);
-            Assert.True(ReadOnlyBinaryStringRef.Empty.IsEmpty);
+            Assert.False(BinaryStringRef.Empty.IsNull);
+            Assert.True(BinaryStringRef.Empty.IsEmpty);
 
-            Assert.True(ReadOnlyBinaryStringRef.Null == ReadOnlyBinaryStringRef.Null);
-            Assert.True(ReadOnlyBinaryStringRef.Empty == ReadOnlyBinaryStringRef.Empty);
+            Assert.True(BinaryStringRef.Null == BinaryStringRef.Null);
+            Assert.True(BinaryStringRef.Empty == BinaryStringRef.Empty);
 
-            Assert.False(ReadOnlyBinaryStringRef.Null == ReadOnlyBinaryStringRef.Empty);
-            Assert.False(ReadOnlyBinaryStringRef.Empty == ReadOnlyBinaryStringRef.Null);
+            Assert.False(BinaryStringRef.Null == BinaryStringRef.Empty);
+            Assert.False(BinaryStringRef.Empty == BinaryStringRef.Null);
         }
 
         /*

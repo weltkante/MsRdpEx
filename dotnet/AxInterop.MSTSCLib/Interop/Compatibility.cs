@@ -2,22 +2,6 @@
 using System.Runtime.InteropServices;
 using MSTSCLib;
 
-#if !NET8_0_OR_GREATER
-[AttributeUsage(AttributeTargets.Class, Inherited = false, AllowMultiple = false)]
-internal sealed class GeneratedComClassAttribute : Attribute { }
-#endif
-
-#if !NET8_0_OR_GREATER
-namespace MSTSCLib
-{
-    public static class ProxyObject
-    {
-        public static object Pack(object value) => value;
-        public static object Unpack(object value) => value;
-    }
-}
-#endif
-
 namespace MsRdpEx.Interop.Compatibility
 {
     [ComImport]
@@ -82,63 +66,5 @@ namespace MsRdpEx.Interop.Compatibility
         [PreserveSig, DispId(762)] void OnRemoteDesktopSizeChanged(int width, int height);
         [PreserveSig, DispId(800)] void OnTouchPointerCursorMoved(int x, int y);
         #endregion
-    }
-
-    internal unsafe sealed class BinaryStringMarshaler : ICustomMarshaler
-    {
-        public static ICustomMarshaler GetInstance(string cookie) => new BinaryStringMarshaler();
-
-        public object MarshalNativeToManaged(IntPtr pointer)
-        {
-#if NET8_0_OR_GREATER
-            return BinaryString.Marshaller.ConvertToManaged(pointer);
-#else
-            if (pointer == IntPtr.Zero)
-                return null;
-
-            // make sure we don't construct a BinaryString larger than .NET can manage
-            // (it's safe to throw here, the marshaller retains ownership and frees it)
-            if (((int*)pointer)[-1] < 0)
-                throw new OverflowException();
-
-            // transfer ownership to managed code
-            return new BinaryString(pointer);
-#endif
-        }
-
-        public void CleanUpManagedData(object ManagedObj)
-        {
-        }
-
-        public IntPtr MarshalManagedToNative(object ManagedObj)
-        {
-#if NET8_0_OR_GREATER
-            return BinaryString.Marshaller.ConvertToUnmanaged((BinaryString)ManagedObj);
-#else
-            var value = (BinaryString)ManagedObj;
-            if (value is null)
-                return IntPtr.Zero;
-
-            var pointer = value.pointer;
-            value.pointer = 0;
-
-            // we are using zero pointers in non-null BinaryString as a cheap representation of an empty BinaryString
-            // however if we need to pass ownership of an empty string to native code we actually have to allocate one
-            if (pointer == 0 && (pointer = BinaryStringInterop.AllocateByteBuffer(null, 0)) == 0)
-                throw new OutOfMemoryException();
-
-            return pointer;
-#endif
-        }
-
-        public void CleanUpNativeData(IntPtr pNativeData)
-        {
-            Marshal.FreeBSTR(pNativeData);
-        }
-
-        public int GetNativeDataSize()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

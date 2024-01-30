@@ -10,10 +10,10 @@ namespace MsRdpEx.Interop
     public unsafe partial interface IMsRdpClientShell : IDispatch
     {
         void Launch();
-        void SetRdpFileContents(ReadOnlyBinaryStringRef RdpFile);
+        void SetRdpFileContents(BinaryStringRef RdpFile);
         BinaryString GetRdpFileContents();
-        void SetRdpProperty(ReadOnlyBinaryStringRef Property, [MarshalUsing(typeof(Variant.ObjectMarshaller))] object value);
-        [return: MarshalUsing(typeof(Variant.ObjectMarshaller))] object GetRdpProperty(ReadOnlyBinaryStringRef Property);
+        void SetRdpProperty(BinaryStringRef Property, [MarshalUsing(typeof(VariantMarshaller))] object value);
+        [return: MarshalUsing(typeof(VariantMarshaller))] object GetRdpProperty(BinaryStringRef Property);
         [return: MarshalAs(UnmanagedType.VariantBool)] bool GetIsRemoteProgramClientInstalled();
         void SetPublicMode([MarshalAs(UnmanagedType.VariantBool)] bool pfPublicMode);
         [return: MarshalAs(UnmanagedType.VariantBool)] bool GetPublicMode();

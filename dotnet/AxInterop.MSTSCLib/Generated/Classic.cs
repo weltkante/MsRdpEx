@@ -1,6 +1,6 @@
 using System.Runtime.InteropServices;
 
-namespace MSTSCLib.Legacy
+namespace MSTSCLib
 {
     [ComImport]
     [Guid("327BB5CD-834E-4400-AEF2-B30E15E5D682")]

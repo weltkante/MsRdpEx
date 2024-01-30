@@ -27,9 +27,9 @@ namespace MsRdpEx.Interop
         int GetMallocHugeFailuresPercent();
         void SetNetThroughput(int NetThroughput);
         int GetNetThroughput();
-        void SetCLXCmdLine(ReadOnlyBinaryStringRef pCLXCmdLine);
+        void SetCLXCmdLine(BinaryStringRef pCLXCmdLine);
         BinaryString GetCLXCmdLine();
-        void SetCLXDll(ReadOnlyBinaryStringRef pCLXDll);
+        void SetCLXDll(BinaryStringRef pCLXDll);
         BinaryString GetCLXDll();
         void SetRemoteProgramsHatchVisibleRegion(int pcbHatch);
         int GetRemoteProgramsHatchVisibleRegion();

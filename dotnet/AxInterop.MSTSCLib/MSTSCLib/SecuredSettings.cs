@@ -9,9 +9,9 @@ namespace MsRdpEx.Interop
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public unsafe partial interface IMsTscSecuredSettings : IDispatch
     {
-        void SetStartProgram(ReadOnlyBinaryStringRef pStartProgram);
+        void SetStartProgram(BinaryStringRef pStartProgram);
         BinaryString GetStartProgram();
-        void SetWorkDir(ReadOnlyBinaryStringRef pWorkDir);
+        void SetWorkDir(BinaryStringRef pWorkDir);
         BinaryString GetWorkDir();
         void SetFullScreen(int pfFullScreen);
         int GetFullScreen();
@@ -34,6 +34,6 @@ namespace MsRdpEx.Interop
     public unsafe partial interface IMsRdpClientSecuredSettings2 : IMsRdpClientSecuredSettings
     {
         BinaryString GetPCB();
-        void SetPCB(ReadOnlyBinaryStringRef bstrPCB);
+        void SetPCB(BinaryStringRef bstrPCB);
     }
 }

@@ -11,7 +11,7 @@ namespace MsRdpEx.Interop
     {
         void SetRemoteProgramMode([MarshalAs(UnmanagedType.VariantBool)] bool value);
         [return: MarshalAs(UnmanagedType.VariantBool)] bool GetRemoteProgramMode();
-        void ServerStartProgram(ReadOnlyBinaryStringRef ExecutablePath, ReadOnlyBinaryStringRef FilePath, ReadOnlyBinaryStringRef WorkingDirectory, [MarshalAs(UnmanagedType.VariantBool)] bool ExpandEnvVarInWorkingDirectoryOnServer, ReadOnlyBinaryStringRef Arguments, [MarshalAs(UnmanagedType.VariantBool)] bool ExpandEnvVarInArgumentsOnServer);
+        void ServerStartProgram(BinaryStringRef ExecutablePath, BinaryStringRef FilePath, BinaryStringRef WorkingDirectory, [MarshalAs(UnmanagedType.VariantBool)] bool ExpandEnvVarInWorkingDirectoryOnServer, BinaryStringRef Arguments, [MarshalAs(UnmanagedType.VariantBool)] bool ExpandEnvVarInArgumentsOnServer);
     }
 
     [GeneratedComInterface]
@@ -19,9 +19,9 @@ namespace MsRdpEx.Interop
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public unsafe partial interface ITSRemoteProgram2 : ITSRemoteProgram
     {
-        void SetRemoteApplicationName(ReadOnlyBinaryStringRef value);
-        void SetRemoteApplicationProgram(ReadOnlyBinaryStringRef value);
-        void SetRemoteApplicationArgs(ReadOnlyBinaryStringRef value);
+        void SetRemoteApplicationName(BinaryStringRef value);
+        void SetRemoteApplicationProgram(BinaryStringRef value);
+        void SetRemoteApplicationArgs(BinaryStringRef value);
     }
 
     [GeneratedComInterface]
@@ -29,6 +29,6 @@ namespace MsRdpEx.Interop
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public unsafe partial interface ITSRemoteProgram3 : ITSRemoteProgram2
     {
-        void ServerStartApp(ReadOnlyBinaryStringRef AppUserModelId, ReadOnlyBinaryStringRef Arguments, [MarshalAs(UnmanagedType.VariantBool)] bool ExpandEnvVarInArgumentsOnServer);
+        void ServerStartApp(BinaryStringRef AppUserModelId, BinaryStringRef Arguments, [MarshalAs(UnmanagedType.VariantBool)] bool ExpandEnvVarInArgumentsOnServer);
     }
 }

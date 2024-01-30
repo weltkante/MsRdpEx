@@ -2,15 +2,9 @@
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
 
-#nullable enable
-
 namespace MsRdpEx.Interop
 {
-#if NET8_0_OR_GREATER
     [GeneratedComInterface]
-#else
-    [ComImport]
-#endif
     [Guid("00020400-0000-0000-C000-000000000046")]
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public unsafe partial interface IDispatch

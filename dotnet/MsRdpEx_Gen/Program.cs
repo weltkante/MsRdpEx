@@ -24,14 +24,14 @@ internal static class Program
     private static void Main()
     {
         var assembly = LoadEmbeddedAssembly("Interop.MSTSCLib.dll");
-        var outpath = "../../../dotnet/AxInterop.MSTSCLib/MSTSCLib";
+        var outpath = "../../../dotnet/AxInterop.MSTSCLib/Generated";
 
         // This assumes CMake was generated into a subdirectory of the git root.
         if (!Path.Exists(outpath))
             throw new InvalidOperationException("Invalid relative output path.");
 
         CodeGenerator.Generate(assembly, Path.Combine(outpath, "Enums.cs"), GeneratorMode.Enums);
-        CodeGenerator.Generate(assembly, Path.Combine(outpath, "Legacy.cs"), GeneratorMode.Legacy);
+        CodeGenerator.Generate(assembly, Path.Combine(outpath, "Classic.cs"), GeneratorMode.Classic);
         CodeGenerator.Generate(assembly, Path.Combine(outpath, "Desktop", "Interfaces.cs"), GeneratorMode.Desktop);
         CodeGenerator.Generate(assembly, Path.Combine(outpath, "NetCore", "Interfaces.cs"), GeneratorMode.NetCore);
         CodeGenerator.Generate(assembly, Path.Combine(outpath, "NetCore", "Redirection.cs"), GeneratorMode.Proxy);
@@ -40,7 +40,7 @@ internal static class Program
 
 internal enum GeneratorMode
 {
-    Legacy, Desktop, NetCore, Enums, Proxy
+    Classic, Desktop, NetCore, Enums, Proxy
 }
 
 internal static class CodeGenerator
@@ -60,16 +60,14 @@ internal static class CodeGenerator
         using var sw = new StreamWriter(stream);
         using var sb = new IndentedTextWriter(sw, "    ");
 
-        if (Mode == GeneratorMode.Proxy)
-            sb.WriteLine($"using System;");
-        sb.WriteLine($"using System.Runtime.InteropServices;");
-        if (Mode == GeneratorMode.Desktop)
-            sb.WriteLine($"using System.Runtime.InteropServices.Marshalling;");
-        sb.WriteLine();
-        if (Mode == GeneratorMode.Legacy)
-            sb.WriteLine($"namespace MSTSCLib.Legacy");
-        else
-            sb.WriteLine($"namespace MSTSCLib");
+        if (Mode != GeneratorMode.Enums)
+        {
+            sb.WriteLine($"using System.Runtime.InteropServices;");
+            if (Mode != GeneratorMode.Classic)
+                sb.WriteLine($"using MsRdpEx.Interop;");
+            sb.WriteLine();
+        }
+        sb.WriteLine($"namespace MSTSCLib");
         sb.WriteLine($"{{");
         sb.Indent++;
         foreach (var type in assembly.GetTypes())
@@ -403,7 +401,7 @@ internal static class CodeGenerator
                     var kind = (UnmanagedType)(int)attr.ConstructorArguments.Single().Value!;
                     if (kind == UnmanagedType.BStr)
                     {
-                        if (Mode == GeneratorMode.Legacy)
+                        if (Mode == GeneratorMode.Classic)
                             sb += ($"[{prefix}MarshalAs(UnmanagedType.{kind})] ");
                         if (Mode == GeneratorMode.Desktop)
                             sb += ($"[{prefix}MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(BinaryStringMarshaler))] ");
@@ -431,7 +429,7 @@ internal static class CodeGenerator
         {
             case "Void": return "void";
             case "Object": return "object";
-            case "String": return (Mode == GeneratorMode.Legacy) ? "string" : "BinaryString";
+            case "String": return (Mode == GeneratorMode.Classic) ? "string" : "BinaryString";
             case "Boolean": return "bool";
             case "Double": return "double";
             case "Int16": return "short";

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
 
@@ -10,7 +9,7 @@ namespace MsRdpEx.Interop
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public unsafe partial interface IMsRdpExtendedSettings
     {
-        void SetProperty(ReadOnlyBinaryStringRef PropertyName, [MarshalUsing(typeof(Variant.ObjectMarshaller))] in object value);
-        [return: MarshalUsing(typeof(Variant.ObjectMarshaller))] object GetProperty(ReadOnlyBinaryStringRef PropertyName);
+        void SetProperty(BinaryStringRef PropertyName, [MarshalUsing(typeof(VariantMarshaller))] in object value);
+        [return: MarshalUsing(typeof(VariantMarshaller))] object GetProperty(BinaryStringRef PropertyName);
     }
 }

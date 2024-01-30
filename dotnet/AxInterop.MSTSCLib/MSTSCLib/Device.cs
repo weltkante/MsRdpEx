@@ -11,7 +11,7 @@ namespace MsRdpEx.Interop
     {
         void RescanDevices([MarshalAs(UnmanagedType.VariantBool)] bool DynRedir);
         IMsRdpDevice GetDeviceByIndex(uint index);
-        IMsRdpDevice GetDeviceById(ReadOnlyBinaryStringRef DeviceInstanceId);
+        IMsRdpDevice GetDeviceById(BinaryStringRef DeviceInstanceId);
         uint GetDeviceCount();
     }
 

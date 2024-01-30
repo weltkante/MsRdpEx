@@ -16,9 +16,9 @@ namespace MsRdpEx.Interop
         int GetBitmapPeristence();
         void SetAllowBackgroundInput(int value);
         int GetAllowBackgroundInput();
-        void SetKeyBoardLayoutStr(ReadOnlyBinaryStringRef value);
-        void SetPluginDlls(ReadOnlyBinaryStringRef value);
-        void SetIconFile(ReadOnlyBinaryStringRef value);
+        void SetKeyBoardLayoutStr(BinaryStringRef value);
+        void SetPluginDlls(BinaryStringRef value);
+        void SetIconFile(BinaryStringRef value);
         void SetIconIndex(int value);
         void SetContainerHandledFullScreen(int value);
         int GetContainerHandledFullScreen();
@@ -83,7 +83,7 @@ namespace MsRdpEx.Interop
         int GetNumBitmapCaches();
         void SetCachePersistenceActive(int value);
         int GetCachePersistenceActive();
-        void SetPersistCacheDirectory(ReadOnlyBinaryStringRef value);
+        void SetPersistCacheDirectory(BinaryStringRef value);
         void SetBrushSupportLevel(int value);
         int GetBrushSupportLevel();
         void SetMinInputSendInterval(int value);
@@ -116,20 +116,20 @@ namespace MsRdpEx.Interop
         int GetMinutesToIdleTimeout();
         void SetSmartSizing([MarshalAs(UnmanagedType.VariantBool)] bool value);
         [return: MarshalAs(UnmanagedType.VariantBool)] bool GetSmartSizing();
-        void SetRdpdrLocalPrintingDocName(ReadOnlyBinaryStringRef value);
+        void SetRdpdrLocalPrintingDocName(BinaryStringRef value);
         BinaryString GetRdpdrLocalPrintingDocName();
-        void SetRdpdrClipCleanTempDirString(ReadOnlyBinaryStringRef value);
+        void SetRdpdrClipCleanTempDirString(BinaryStringRef value);
         BinaryString GetRdpdrClipCleanTempDirString();
-        void SetRdpdrClipPasteInfoString(ReadOnlyBinaryStringRef value);
+        void SetRdpdrClipPasteInfoString(BinaryStringRef value);
         BinaryString GetRdpdrClipPasteInfoString();
-        void SetClearTextPassword(ReadOnlyBinaryStringRef value);
+        void SetClearTextPassword(BinaryStringRef value);
         void SetDisplayConnectionBar([MarshalAs(UnmanagedType.VariantBool)] bool value);
         [return: MarshalAs(UnmanagedType.VariantBool)] bool GetDisplayConnectionBar();
         void SetPinConnectionBar([MarshalAs(UnmanagedType.VariantBool)] bool value);
         [return: MarshalAs(UnmanagedType.VariantBool)] bool GetPinConnectionBar();
         void SetGrabFocusOnConnect([MarshalAs(UnmanagedType.VariantBool)] bool value);
         [return: MarshalAs(UnmanagedType.VariantBool)] bool GetGrabFocusOnConnect();
-        void SetLoadBalanceInfo(ReadOnlyBinaryStringRef value);
+        void SetLoadBalanceInfo(BinaryStringRef value);
         BinaryString GetLoadBalanceInfo();
         void SetRedirectDrives([MarshalAs(UnmanagedType.VariantBool)] bool value);
         [return: MarshalAs(UnmanagedType.VariantBool)] bool GetRedirectDrives();
@@ -145,7 +145,7 @@ namespace MsRdpEx.Interop
         int GetBitmapVirtualCache24BppSize();
         void SetPerformanceFlags(int value);
         int GetPerformanceFlags();
-        void SetConnectWithEndpoint([MarshalUsing(typeof(Variant.ObjectMarshaller))] in object value);
+        void SetConnectWithEndpoint([MarshalUsing(typeof(VariantMarshaller))] in object value);
         void SetNotifyTSPublicKey([MarshalAs(UnmanagedType.VariantBool)] bool value);
         [return: MarshalAs(UnmanagedType.VariantBool)] bool GetNotifyTSPublicKey();
     }
@@ -211,9 +211,9 @@ namespace MsRdpEx.Interop
         void SetRelativeMouseMode([MarshalAs(UnmanagedType.VariantBool)] bool value);
         [return: MarshalAs(UnmanagedType.VariantBool)] bool GetRelativeMouseMode();
         BinaryString GetAuthenticationServiceClass();
-        void SetAuthenticationServiceClass(ReadOnlyBinaryStringRef value);
+        void SetAuthenticationServiceClass(BinaryStringRef value);
         BinaryString GetPCB();
-        void SetPCB(ReadOnlyBinaryStringRef value);
+        void SetPCB(BinaryStringRef value);
         void SetHotKeyFocusReleaseLeft(int value);
         int GetHotKeyFocusReleaseLeft();
         void SetHotKeyFocusReleaseRight(int value);

@@ -13,14 +13,14 @@ namespace MsRdpEx.Interop
         [PreserveSig, DispId(750)] void OnConnecting();
         [PreserveSig, DispId(751)] void OnConnected();
         [PreserveSig, DispId(752)] void OnLoginCompleted();
-        [PreserveSig, DispId(753)] void OnDisconnected(int disconnectReason, int ExtendedDisconnectReason, ReadOnlyBinaryStringRef disconnectErrorMessage);
-        [PreserveSig, DispId(754)] void OnStatusChanged(int statusCode, ReadOnlyBinaryStringRef statusMessage);
-        [PreserveSig, DispId(755)] void OnAutoReconnecting(int disconnectReason, int ExtendedDisconnectReason, ReadOnlyBinaryStringRef disconnectErrorMessage, [MarshalAs(UnmanagedType.VariantBool)] bool networkAvailable, int attemptCount, int maxAttemptCount);
+        [PreserveSig, DispId(753)] void OnDisconnected(int disconnectReason, int ExtendedDisconnectReason, BinaryStringRef disconnectErrorMessage);
+        [PreserveSig, DispId(754)] void OnStatusChanged(int statusCode, BinaryStringRef statusMessage);
+        [PreserveSig, DispId(755)] void OnAutoReconnecting(int disconnectReason, int ExtendedDisconnectReason, BinaryStringRef disconnectErrorMessage, [MarshalAs(UnmanagedType.VariantBool)] bool networkAvailable, int attemptCount, int maxAttemptCount);
         [PreserveSig, DispId(756)] void OnAutoReconnected();
         [PreserveSig, DispId(757)] void OnDialogDisplaying();
         [PreserveSig, DispId(758)] void OnDialogDismissed();
         [PreserveSig, DispId(759)] void OnNetworkStatusChanged(uint qualityLevel, int bandwidth, int rtt);
-        [PreserveSig, DispId(760)] void OnAdminMessageReceived(ReadOnlyBinaryStringRef adminMessage);
+        [PreserveSig, DispId(760)] void OnAdminMessageReceived(BinaryStringRef adminMessage);
         [PreserveSig, DispId(761)] void OnKeyCombinationPressed(int keyCombination);
         [PreserveSig, DispId(762)] void OnRemoteDesktopSizeChanged(int width, int height);
         [PreserveSig, DispId(800)] void OnTouchPointerCursorMoved(int x, int y);
@@ -37,10 +37,10 @@ namespace MsRdpEx.Interop
         IRemoteDesktopClientSettings GetSettings();
         IRemoteDesktopClientActions GetActions();
         IRemoteDesktopClientTouchPointer GetTouchPointer();
-        void DeleteSavedCredentials(ReadOnlyBinaryStringRef serverName);
+        void DeleteSavedCredentials(BinaryStringRef serverName);
         void UpdateSessionDisplaySettings(uint width, uint height);
-        void attachEvent(ReadOnlyBinaryStringRef eventName, IDispatch callback);
-        void detachEvent(ReadOnlyBinaryStringRef eventName, IDispatch callback);
+        void attachEvent(BinaryStringRef eventName, IDispatch callback);
+        void detachEvent(BinaryStringRef eventName, IDispatch callback);
     }
 
     [GeneratedComInterface]
@@ -48,10 +48,10 @@ namespace MsRdpEx.Interop
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public unsafe partial interface IRemoteDesktopClientSettings : IDispatch
     {
-        void ApplySettings(ReadOnlyBinaryStringRef RdpFileContents);
+        void ApplySettings(BinaryStringRef RdpFileContents);
         BinaryString RetrieveSettings();
-        [return: MarshalUsing(typeof(Variant.ObjectMarshaller))] object GetRdpProperty(ReadOnlyBinaryStringRef propertyName);
-        void SetRdpProperty(ReadOnlyBinaryStringRef propertyName, [MarshalUsing(typeof(Variant.ObjectMarshaller))] object value);
+        [return: MarshalUsing(typeof(VariantMarshaller))] object GetRdpProperty(BinaryStringRef propertyName);
+        void SetRdpProperty(BinaryStringRef propertyName, [MarshalUsing(typeof(VariantMarshaller))] object value);
     }
 
     [GeneratedComInterface]

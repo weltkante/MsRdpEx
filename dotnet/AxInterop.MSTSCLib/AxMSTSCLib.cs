@@ -1,6 +1,7 @@
 
 using System;
 using System.Runtime.InteropServices.Marshalling;
+using BinaryString = MsRdpEx.Interop.BinaryString;
 
 namespace AxMSTSCLib {
     

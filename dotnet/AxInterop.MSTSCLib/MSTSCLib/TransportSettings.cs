@@ -9,7 +9,7 @@ namespace MsRdpEx.Interop
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public unsafe partial interface IMsRdpClientTransportSettings : IDispatch
     {
-        void SetGatewayHostname(ReadOnlyBinaryStringRef value);
+        void SetGatewayHostname(BinaryStringRef value);
         BinaryString GetGatewayHostname();
         void SetGatewayUsageMethod(uint value);
         uint GetGatewayUsageMethod();
@@ -32,19 +32,19 @@ namespace MsRdpEx.Interop
         uint GetGatewayCredSharing();
         void SetGatewayPreAuthRequirement(uint value);
         uint GetGatewayPreAuthRequirement();
-        void SetGatewayPreAuthServerAddr(ReadOnlyBinaryStringRef value);
+        void SetGatewayPreAuthServerAddr(BinaryStringRef value);
         BinaryString GetGatewayPreAuthServerAddr();
-        void SetGatewaySupportUrl(ReadOnlyBinaryStringRef value);
+        void SetGatewaySupportUrl(BinaryStringRef value);
         BinaryString GetGatewaySupportUrl();
-        void SetGatewayEncryptedOtpCookie(ReadOnlyBinaryStringRef value);
+        void SetGatewayEncryptedOtpCookie(BinaryStringRef value);
         BinaryString GetGatewayEncryptedOtpCookie();
         void SetGatewayEncryptedOtpCookieSize(uint value);
         uint GetGatewayEncryptedOtpCookieSize();
-        void SetGatewayUsername(ReadOnlyBinaryStringRef value);
+        void SetGatewayUsername(BinaryStringRef value);
         BinaryString GetGatewayUsername();
-        void SetGatewayDomain(ReadOnlyBinaryStringRef value);
+        void SetGatewayDomain(BinaryStringRef value);
         BinaryString GetGatewayDomain();
-        void SetGatewayPassword(ReadOnlyBinaryStringRef value);
+        void SetGatewayPassword(BinaryStringRef value);
     }
 
     [GeneratedComInterface]
@@ -54,13 +54,13 @@ namespace MsRdpEx.Interop
     {
         void SetGatewayCredSourceCookie(uint value);
         uint GetGatewayCredSourceCookie();
-        void SetGatewayAuthCookieServerAddr(ReadOnlyBinaryStringRef value);
+        void SetGatewayAuthCookieServerAddr(BinaryStringRef value);
         BinaryString GetGatewayAuthCookieServerAddr();
-        void SetGatewayEncryptedAuthCookie(ReadOnlyBinaryStringRef value);
+        void SetGatewayEncryptedAuthCookie(BinaryStringRef value);
         BinaryString GetGatewayEncryptedAuthCookie();
         void SetGatewayEncryptedAuthCookieSize(uint value);
         uint GetGatewayEncryptedAuthCookieSize();
-        void SetGatewayAuthLoginPage(ReadOnlyBinaryStringRef value);
+        void SetGatewayAuthLoginPage(BinaryStringRef value);
         BinaryString GetGatewayAuthLoginPage();
     }
 

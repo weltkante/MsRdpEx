@@ -10,14 +10,14 @@ namespace MsRdpEx.Interop
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public unsafe partial interface IMsTscNonScriptable
     {
-        void SetClearTextPassword(ReadOnlyBinaryStringRef value);
-        void SetPortablePassword(ReadOnlyBinaryStringRef value);
+        void SetClearTextPassword(BinaryStringRef value);
+        void SetPortablePassword(BinaryStringRef value);
         BinaryString GetPortablePassword();
-        void SetPortableSalt(ReadOnlyBinaryStringRef value);
+        void SetPortableSalt(BinaryStringRef value);
         BinaryString GetPortableSalt();
-        void SetBinaryPassword(ReadOnlyBinaryStringRef value);
+        void SetBinaryPassword(BinaryStringRef value);
         BinaryString GetBinaryPassword();
-        void SetBinarySalt(ReadOnlyBinaryStringRef value);
+        void SetBinarySalt(BinaryStringRef value);
         BinaryString GetBinarySalt();
         void ResetPassword();
     }
@@ -29,42 +29,6 @@ namespace MsRdpEx.Interop
     {
         void NotifyRedirectDeviceChange(nuint wParam, nint lParam);
         void SendKeys(int numKeys, VariantBool* pbArrayKeyUp, int* plKeyData);
-    }
-
-    public static unsafe partial class InteropExtensions
-    {
-        public static void SendKeys(this IMsRdpClientNonScriptable client, ReadOnlySpan<bool> keyUp, ReadOnlySpan<int> keyData)
-        {
-            if (keyUp.Length != keyData.Length)
-                throw new InvalidOperationException();
-
-            // Documentation says 20 is the maximum number of keys this API can send, so we also use it as the safety limit for stackalloc.
-            // If the documentation is wrong and the library supports more inputs this can be removed but the stackalloc needs a soft limit
-            // and fall back to array allocation when exceeding it:
-            //
-            // Span<VariantBool> tempKeyUp = keyUp.Length <= 512 ? stackalloc VariantBool[keyUp.Length] : new VariantBool[keyUp.Length];
-            //
-            if (keyUp.Length > 20)
-                throw new InvalidOperationException();
-
-            Span<VariantBool> keyUpBuffer = stackalloc VariantBool[keyUp.Length];
-            for (int i = 0; i < keyUp.Length; i++)
-                keyUpBuffer[i] = keyUp[i];
-
-            fixed (VariantBool* pKeyUp = keyUpBuffer)
-            fixed (int* pKeyData = keyData)
-                client.SendKeys(keyUp.Length, pKeyUp, pKeyData);
-        }
-
-        public static void SendKeys(this IMsRdpClientNonScriptable client, ReadOnlySpan<VariantBool> keyUp, ReadOnlySpan<int> keyData)
-        {
-            if (keyUp.Length != keyData.Length)
-                throw new InvalidOperationException();
-
-            fixed (VariantBool* pKeyUp = keyUp)
-            fixed (int* pKeyData = keyData)
-                client.SendKeys(keyUp.Length, pKeyUp, pKeyData);
-        }
     }
 
     [GeneratedComInterface]
@@ -99,7 +63,7 @@ namespace MsRdpEx.Interop
         [return: MarshalAs(UnmanagedType.VariantBool)] bool GetWarnAboutSendingCredentials();
         void SetWarnAboutClipboardRedirection([MarshalAs(UnmanagedType.VariantBool)] bool value);
         [return: MarshalAs(UnmanagedType.VariantBool)] bool GetWarnAboutClipboardRedirection();
-        void SetConnectionBarText(ReadOnlyBinaryStringRef value);
+        void SetConnectionBarText(BinaryStringRef value);
         BinaryString GetConnectionBarText();
     }
 
@@ -112,8 +76,8 @@ namespace MsRdpEx.Interop
         RedirectionWarningType GetRedirectionWarningType();
         void SetMarkRdpSettingsSecure([MarshalAs(UnmanagedType.VariantBool)] bool value);
         [return: MarshalAs(UnmanagedType.VariantBool)] bool GetMarkRdpSettingsSecure();
-        void SetPublisherCertificateChain([MarshalUsing(typeof(Variant.ObjectMarshaller))] in object value);
-        [return: MarshalUsing(typeof(Variant.ObjectMarshaller))] object GetPublisherCertificateChain();
+        void SetPublisherCertificateChain([MarshalUsing(typeof(VariantMarshaller))] in object value);
+        [return: MarshalUsing(typeof(VariantMarshaller))] object GetPublisherCertificateChain();
         void SetWarnAboutPrinterRedirection([MarshalAs(UnmanagedType.VariantBool)] bool value);
         [return: MarshalAs(UnmanagedType.VariantBool)] bool GetWarnAboutPrinterRedirection();
         void SetAllowCredentialSaving([MarshalAs(UnmanagedType.VariantBool)] bool value);
@@ -181,13 +145,13 @@ namespace MsRdpEx.Interop
     public unsafe partial interface IMsRdpClientNonScriptable8 : IMsRdpClientNonScriptable7
     {
         Guid GetCorrelationId();
-        void StartWorkspaceExtension([MarshalAs(UnmanagedType.VariantBool)] bool isWebHosted, ReadOnlyBinaryStringRef workspaceId, byte* publisherThumbPrint, int publisherThumbPrintLength);
+        void StartWorkspaceExtension([MarshalAs(UnmanagedType.VariantBool)] bool isWebHosted, BinaryStringRef workspaceId, byte* publisherThumbPrint, int publisherThumbPrintLength);
         void SetSupportsWorkspaceReconnect([MarshalAs(UnmanagedType.VariantBool)] bool value);
     }
 
     public static unsafe partial class InteropExtensions
     {
-        public static void StartWorkspaceExtension(this IMsRdpClientNonScriptable8 client, [MarshalAs(UnmanagedType.VariantBool)] bool isWebHosted, ReadOnlyBinaryStringRef workspaceId, ReadOnlySpan<byte> publisherThumbPrint)
+        public static void StartWorkspaceExtension(this IMsRdpClientNonScriptable8 client, [MarshalAs(UnmanagedType.VariantBool)] bool isWebHosted, BinaryStringRef workspaceId, ReadOnlySpan<byte> publisherThumbPrint)
         {
             fixed (byte* publisherThumbPrintPointer = publisherThumbPrint)
                 client.StartWorkspaceExtension(isWebHosted, workspaceId, publisherThumbPrintPointer, publisherThumbPrint.Length);
