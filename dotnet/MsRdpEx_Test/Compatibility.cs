@@ -36,7 +36,7 @@ namespace MsRdpEx.Tests
             var lib = msRdpExLib.Value;
             foreach (var refType in interopLib.Value.GetTypes())
                 if (refType.IsEnum && refType.IsPublic && !refType.Name.StartsWith("_"))
-                    yield return [refType, lib.GetType(GeneratedComInterfaceNamespace + refType.Name)!];
+                    yield return [refType, lib.GetType(refType.FullName!)!];
         }
 
         public static IEnumerable<object[]> GetGeneratedComInterfaces()
@@ -92,14 +92,6 @@ namespace MsRdpEx.Tests
         {
             switch (type.Name)
             {
-                case "Boolean" when info.GetCustomAttribute<MarshalAsAttribute>() is null:
-                    // COM source generator doesn't support VARIANT_BOOL yet, a two-byte bool with -1 for true.
-                    return typeof(VariantBool);
-
-                case "Object" when info.GetCustomAttribute<MarshalAsAttribute>()?.Value == UnmanagedType.Struct:
-                    // COM source generator doesn't support VARIANT yet, manually map it to a corresponding struct
-                    return typeof(object);
-
                 case "Object" when info.GetCustomAttribute<MarshalAsAttribute>()?.Value == UnmanagedType.IDispatch:
                     // COM source generator doesn't support IDispatch yet, manually map it to the interface
                     return typeof(IDispatch);
@@ -211,6 +203,9 @@ namespace MsRdpEx.Tests
                 // For correctness it doesn't matter since they are pointers so no marshalling is required.
                 libParameters[1].Mode = ParameterMode.Input;
                 libParameters[2].Mode = ParameterMode.Input;
+
+                // The reference implementation is broken here and expects a boolean reference instead of an array/pointer.
+                libParameters[1].Type = typeof(bool).MakeByRefType();
             }
 
             #endregion
